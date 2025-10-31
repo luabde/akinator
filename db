@@ -1,0 +1,103 @@
+CREATE DATABASE IF NOT EXISTS akinator_dc CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE akinator_dc;
+
+-- TABLA DE PERSONAJES
+CREATE TABLE personajes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    es_hombre TINYINT(1),
+    tiene_barba TINYINT(1),
+    tiene_pelo TINYINT(1),
+    lleva_mascara TINYINT(1),
+    lleva_casco TINYINT(1),
+    lleva_capa TINYINT(1),
+    lleva_gafas TINYINT(1),
+    color_rojo TINYINT(1),
+    color_azul TINYINT(1),
+    color_negro TINYINT(1),
+    color_verde TINYINT(1),
+    color_amarillo TINYINT(1),
+    lleva_armadura TINYINT(1),
+    tiene_maquillaje TINYINT(1),
+    tiene_simbolo_pecho TINYINT(1),
+    lleva_guantes TINYINT(1),
+    lleva_objeto TINYINT(1),
+    puede_volar TINYINT(1),
+    cambia_forma TINYINT(1),
+    liga_justicia TINYINT(1)
+);
+
+-- TABLA DE DETALLES DE PERSONAJES
+CREATE TABLE detalles_personajes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    personaje_id INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    foto VARCHAR(255),
+    descripcion TEXT,
+    FOREIGN KEY (personaje_id) REFERENCES personajes(id) ON DELETE CASCADE
+);
+
+-- TABLA DE PREGUNTAS
+CREATE TABLE preguntas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    texto VARCHAR(255) NOT NULL,
+    columna_asociada VARCHAR(50) NOT NULL
+);
+
+-- INSERT DE PERSONAJES
+INSERT INTO personajes (
+nombre, es_hombre, tiene_barba, tiene_pelo, lleva_mascara, lleva_casco, lleva_capa, lleva_gafas,
+color_rojo, color_azul, color_negro, color_verde, color_amarillo, lleva_armadura, tiene_maquillaje,
+tiene_simbolo_pecho, lleva_guantes, lleva_objeto, puede_volar, cambia_forma, liga_justicia
+) VALUES
+('Batman', 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1),
+('Superman', 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1),
+('Wonder Woman', 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1),
+('Flash', 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1),
+('Aquaman', 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1),
+('Green Lantern', 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1),
+('Cyborg', 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1),
+('Robin', 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1),
+('Catwoman', 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0),
+('Harley Quinn', 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0),
+('Joker', 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0),
+('Lex Luthor', 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0),
+('Shazam', 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1),
+('Green Arrow', 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1),
+('Black Canary', 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1);
+
+-- INSERT DE DETALLES DE PERSONAJES
+INSERT INTO detalles_personajes (personaje_id, nombre, foto, descripcion) VALUES
+(1, 'Batman', '', 'Es hombre, no tiene barba, tiene pelo, lleva máscara, no lleva casco, lleva capa, no lleva gafas, color rojo: no, color azul: no, color negro: sí, color verde: no, color amarillo: no, lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(2, 'Superman', '', 'Es hombre, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, lleva capa, no lleva gafas, color rojo: sí, color azul: sí, color negro: no, color verde: no, color amarillo: sí, lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(3, 'Wonder Woman', '', 'Es mujer, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: sí, color azul: no, color negro: no, color verde: no, color amarillo: sí, lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(4, 'Flash', '', 'Es hombre, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: sí, color azul: no, color negro: no, color verde: no, color amarillo: no, no lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(5, 'Aquaman', '', 'Es hombre, tiene barba, tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: no, color azul: no, color negro: sí, color verde: sí, color amarillo: sí, lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(6, 'Green Lantern', '', 'Es hombre, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: no, color azul: sí, color negro: no, color verde: sí, color amarillo: no, no lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(7, 'Cyborg', '', 'Es hombre, no tiene barba, no tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: no, color azul: no, color negro: sí, color verde: no, color amarillo: no, lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(8, 'Robin', '', 'Es hombre, no tiene barba, tiene pelo, lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: sí, color azul: no, color negro: sí, color verde: no, color amarillo: no, no lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(9, 'Catwoman', '', 'Es mujer, no tiene barba, tiene pelo, lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: no, color azul: no, color negro: sí, color verde: no, color amarillo: no, no lleva armadura, no tiene maquillaje, no tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, no pertenece a la Liga de la Justicia'),
+(10, 'Harley Quinn', '', 'Es mujer, no tiene barba, tiene pelo, lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: sí, color azul: no, color negro: sí, color verde: no, color amarillo: no, no lleva armadura, tiene maquillaje, no tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, no pertenece a la Liga de la Justicia'),
+(11, 'Joker', '', 'Es hombre, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: sí, color azul: no, color negro: sí, color verde: no, color amarillo: no, no lleva armadura, tiene maquillaje, no tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, no pertenece a la Liga de la Justicia'),
+(12, 'Lex Luthor', '', 'Es hombre, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: no, color azul: sí, color negro: no, color verde: no, color amarillo: no, no lleva armadura, no tiene maquillaje, no tiene símbolo en el pecho, lleva guantes, no lleva objeto, no puede volar, no cambia de forma, no pertenece a la Liga de la Justicia'),
+(13, 'Shazam', '', 'Es hombre, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, lleva capa, no lleva gafas, color rojo: sí, color azul: no, color negro: no, color verde: no, color amarillo: sí, lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(14, 'Green Arrow', '', 'Es hombre, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: no, color azul: sí, color negro: no, color verde: sí, color amarillo: no, no lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, lleva objeto, no puede volar, no cambia de forma, pertenece a la Liga de la Justicia'),
+(15, 'Black Canary', '', 'Es mujer, no tiene barba, tiene pelo, no lleva máscara, no lleva casco, no lleva capa, no lleva gafas, color rojo: sí, color azul: no, color negro: no, color verde: no, color amarillo: sí, no lleva armadura, no tiene maquillaje, tiene símbolo en el pecho, lleva guantes, no lleva objeto, no puede volar, no cambia de forma, pertenece a la Liga de la Justicia');
+
+-- INSERT DE PREGUNTAS
+INSERT INTO preguntas (texto, columna_asociada) VALUES
+('¿Es hombre?', 'es_hombre'),
+('¿Lleva máscara?', 'lleva_mascara'),
+('¿Lleva capa?', 'lleva_capa'),
+('¿Su color principal es rojo?', 'color_rojo'),
+('¿Su color principal es azul?', 'color_azul'),
+('¿Su color principal es negro?', 'color_negro'),
+('¿Su color principal es verde?', 'color_verde'),
+('¿Su color principal es amarillo?', 'color_amarillo'),
+('¿Lleva armadura?', 'lleva_armadura'),
+('¿Tiene símbolo en el pecho?', 'tiene_simbolo_pecho'),
+('¿Lleva guantes?', 'lleva_guantes'),
+('¿Lleva algún objeto?', 'lleva_objeto'),
+('¿Puede volar?', 'puede_volar'),
+('¿Pertenece a la Liga de la Justicia?', 'liga_justicia'),
+;

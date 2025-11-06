@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -10,5 +13,9 @@
 <body>
   <nav>
     <p>LOGO</p>
-    <a href="../public/login.php">"Iniciar sessión"</a>
+    <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+      <a href="#"><?php echo $_SESSION['usuario']; ?></a>
+    <?php else: ?>
+      <a href="../public/login.php">Iniciar sesión</a>
+    <?php endif; ?>
   </nav>

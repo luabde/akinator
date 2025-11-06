@@ -28,10 +28,24 @@
 
             if($resultado->num_rows){
                 // Mirar si el password es correcto
+
+                // Obtener el registro del usuario en formato array associativo
                 $usuario = mysqli_fetch_assoc($resultado);
                 var_dump($usuario);
                 // Verificar si la contraseña es correcta o no
                 $auth = password_verify($password, $usuario['contrasena']);
+
+                if($auth){
+                    // El usuario esta autenticado
+                    session_start();
+
+                    // Se gurada en session el nombre del usuario y login true que se obtiene de lo que ha devuelto la consulta a la db
+                    $_SESSION['usuario'] = $usuario['nombre_usuario'];;
+                    $_SESSION['login'] = true;
+                }else{
+                    // password incorrecto
+                    $errores[] = "La contraseña no es correcta";
+                }
 
                 var_dump($auth);
             }else{

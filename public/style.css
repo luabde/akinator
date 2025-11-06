@@ -1,0 +1,291 @@
+:root {
+    /* COLORS PRINCIPALS */
+    --vermell: #c95d5d;
+    --blau: #5d7dc9;
+    --blanc: #fff;
+    --gris: #ccc;
+    
+    /* VARIANTS I TRANSPARÈNCIES */
+    --vermell-dark: #a94444;
+    --blau-dark: #4a66a1;
+    --blanc-transp: rgba(255,255,255,0.15);
+    --or-daurat: rgba(255,215,0,0.75);
+    --blanc-transp-card: rgba(255,255,255,0.75);
+
+    /* TEXT */
+    --text-primary: #111;
+    --text-light: var(--blanc);
+
+    /* BOTONS */
+    --btn-primary: var(--blau);
+    --btn-primary-hover: var(--blau-dark);
+    --btn-negative: var(--vermell);
+    --btn-negative-hover: var(--vermell-dark);
+    --or-daurat-hover: rgba(188, 160, 0, 0.75);
+
+    /* TRANSICIONS */
+    --transition-speed: 0.3s;
+}
+
+body {
+    margin: 0;
+    font-family: 'Comic Neue', sans-serif;
+    color: var(--text-primary);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    background: var(--blanc);
+}
+
+#toggle-sidebar { display: none; }
+
+/* ================================ */
+/* 1. LAYOUT (Modificat per Akinator centrat i Login a la dreta) */
+.right-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-speed) ease;
+    overflow: hidden;
+}
+
+.topbar {
+    height: 50px;
+    display: flex;
+    /* Al centrar el contingut, el títol es queda al mig */
+    justify-content: center; 
+    align-items: center;
+    background: var(--vermell);
+    color: var(--text-light);
+    font-weight: bold;
+    /* Necessari per posicionar el contenidor de login absolutament */
+    position: relative; 
+}
+
+/* Nou contenidor per col·locar el botó de login a la dreta del topbar */
+.login-container {
+    position: absolute; 
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1; 
+}
+
+
+.main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.main h2 span { color: var(--vermell); }
+
+/* ================================ */
+/* 2. SIDEBAR */
+.sidebar {
+    background: var(--blau);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 300px;
+    min-width: 300px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.sidebar-handle {
+    position: absolute;
+    top: 0; right: 0;
+    width: 5px; height: 100%;
+    cursor: ew-resize;
+    background: rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.toggle-btn {
+    width: 35px; height: 35px;
+    font-size: 1.4rem;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background var(--transition-speed);
+    align-self: flex-start;
+    margin-bottom: 5px;
+}
+
+.toggle-btn:hover { background: var(--blanc-transp); }
+.toggle-btn::before { content: "✕"; }
+#toggle-sidebar:checked + .sidebar .toggle-btn::before { content: "☰"; }
+
+.sidebar a, .llista-sidebar li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 6px;
+    margin-bottom: 4px;
+    transition: background 0.2s;
+}
+.sidebar a:hover, .llista-sidebar li:hover  { background: var(--blanc-transp); }
+
+.resultado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.resultado .foto-gran {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 12px;
+    margin: 10px 0;
+    display: block;
+}
+.resultado p {
+    max-width: 400px;
+    margin: 0 auto 20px;
+    text-align: center;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.sidebar a span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sidebar p { margin: 10px 0 5px; padding: 10px; }
+
+#toggle-sidebar:checked + .sidebar {
+    min-width: 55px;
+    max-width: 55px;
+    align-items: center;
+    overflow: hidden;
+}
+#toggle-sidebar:checked + .sidebar a { justify-content: center; }
+#toggle-sidebar:checked + .sidebar a span,
+#toggle-sidebar:checked + .sidebar .sidebar-content,
+#toggle-sidebar:checked + .sidebar form { display: none; }
+
+/* ================================ */
+/* 3. BOTONS */
+.btn, .btn-no, .btn-login {
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 7.5px 10px;
+    transition: background var(--transition-speed);
+    margin: 5px;
+    display: inline-block;
+}
+.btn { background: var(--btn-primary); color: var(--blanc); }
+.btn:hover { background: var(--btn-primary-hover); }
+.btn-no { background: var(--btn-negative); color: var(--blanc); }
+.btn-no:hover { background: var(--btn-negative-hover); }
+.btn-login { background: var(--or-daurat); color: var(--blanc); }
+.btn-login:hover { background: var(--or-daurat-hover); }
+
+/* ================================ */
+/* 4. LLISTES */
+.llista-sidebar {
+    list-style: none;
+    padding: 0 5px;
+    margin: 0;
+}
+.historial-buit { text-align: center; color: var(--blanc); padding: 10px 20px !important; }
+
+/* ================================ */
+/* 5. FORMULARI */
+.main form input[type="text"] {
+    width: 220px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid var(--gris);
+    border-radius: 6px;
+    margin: 8px;
+    outline: none;
+    transition: all var(--transition-speed);
+    box-sizing: border-box;
+}
+.main form input[type="text"]:focus {
+    border-color: var(--btn-primary-hover);
+    background-color: var(--blanc-transp);
+}
+.main form button.btn { vertical-align: middle; }
+
+/* ================================ */
+/* 6. BIBLIOTECA / CARTES */
+.biblioteca {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--vermell);
+    padding: 7.5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.card:hover { transform: scale(1.04); box-shadow: 0 6px 15px rgba(0,0,0,0.4); }
+
+.card-inner { position: relative; border-radius: 8px; overflow: hidden; width: 100%; height: 100%; }
+.foto { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(100%); }
+.card:hover .foto { filter: brightness(90%); }
+
+.card h3 {
+    position: absolute; top: -20px; left: 0; right: 0;
+    background: var(--or-daurat);
+    color: var(--text-primary);
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 8px;
+}
+.card p {
+    position: absolute; bottom: 2.5px; left: 7.5px; right: 7.5px;
+    background: var(--blanc-transp-card);
+    color: var(--text-primary);
+    font-size: 0.7em;
+    border-radius: 0 0 6px 6px;
+    padding: 8px 10px;
+    line-height: 1.3;
+}
+
+
+.restants {
+    background: var(--blanc);
+    border: 3px solid var(--text-primary);
+    border-radius: 10px;
+    padding: 50px 25px; 
+    margin: 40px auto; 
+    max-width: 80%; 
+}
+
+.input-text, .input-file, .input-textarea {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid var(--gris);
+    border-radius: 6px;
+    margin: 8px;
+    outline: none;
+    transition: all var(--transition-speed);
+    box-sizing: border-box;
+}
+.input-text:focus, .input-textarea:focus, .input-file:focus {
+    border-color: var(--btn-primary-hover);
+    background-color: var(--blanc-transp);
+}
+.input-textarea { resize: vertical; min-height: 80px; }

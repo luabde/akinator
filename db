@@ -266,3 +266,22 @@ INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
 (30, 1, 1), (30, 2, 0), (30, 3, 1), (30, 4, 1), (30, 5, 0), (30, 6, 0), (30, 7, 1), (30, 8, 0),
 (30, 9, 0), (30, 10, 0), (30, 11, 1), (30, 12, 0), (30, 13, 1), (30, 14, 0), (30, 15, 0),
 (30, 16, 0), (30, 17, 1), (30, 18, 0), (30, 19, 0), (30, 20, 0), (30, 21, 0), (30, 22, 0), (30, 23, 1), (30, 24, 1);
+
+-- TABLA DE USUARIOS
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    contrasena VARCHAR(255) NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- TABLA DE HISTORIAL (registro de personajes adivinados por usuario)
+CREATE TABLE historial (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    personaje_id INT NOT NULL,
+    fecha_juego TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (personaje_id) REFERENCES personajes(id) ON DELETE CASCADE
+);

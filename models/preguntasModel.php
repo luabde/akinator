@@ -9,7 +9,7 @@ class PreguntasModel{
 
     // Función para obtener una pregunta por ID
     public function getQuestionById($qId){
-        $consulta = $this->db->query("SELECT * FROM preguntas WHERE pregunta = $qId;");
+        $consulta = $this->db->query("SELECT * FROM preguntas WHERE id = $qId;");
         return $consulta;
     }
 }

@@ -13,5 +13,10 @@ class PersonajesModel{
         $consulta = $this->db->query("SELECT * FROM personajes");
     }
 
+    // Función para obtener un personaje por id
+    public function getPersonajeById($pId){
+        $consulta = $this->db->query("SELECT * FROM personajes WHERE id = $pId");
+    }
+    
 }
 ?>

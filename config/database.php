@@ -1,21 +1,20 @@
 <?php
-    // function getConnection(){
-    //     $user = 'root';
-    //     $pass = '';
-    //     try {
-    //         $dbh = new PDO('mysql:host=localhost;dbname=akinator', $user, $pass);
-    //         echo "conexion con la BD OK";
-    //         return $dbh;
-    //     } catch(PDOException $e){
-    //         // intentar reintentar la conexión después de un cierto tiempo, por ejemplo
-    //         echo "error haciendo conexion con la BD $e";
+function conectarDB(): mysqli{
+    $db = mysqli_connect('localhost', 'root', '', 'akinator');
+
+    if(!$db){
+        echo"Error no se pudo conectar";
+        exit;
+    }
+
+    return $db;
+}
+    // class Conectar{
+
+    //     public static function conexion(){
+    //         $db = new mysqli("localhost", "root", "", "akinator");
+    //         $db->query("SET NAMES 'utf8'");
+    //         return $db;
     //     }
     // }
-    class Conectar{
-        public static function conexion(){
-            $conexion = new mysqli("localhost", "akinator", "root", "");
-            $conexion->query("SET NAMES 'utf8'");
-            return $conexion;
-        }
-    }
 ?>

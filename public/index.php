@@ -215,12 +215,12 @@ $comptador_restants = 0;
     <div class="sidebar-handle"></div>
 </div>
 
-<div class="topbar">
+<div class="header">
     <?php
         require '../views/header.php';
     ?>
-<div class="topbar">
-    <!-- <span class="topbar-title">AKINATOR DC</span>  -->
+<div class="header">
+    <!-- <span class="header-title">AKINATOR DC</span>  -->
 
     <!-- <div class="login-container">
         <button class="btn-login">Login</button>

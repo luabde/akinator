@@ -49,7 +49,7 @@ body {
     overflow: hidden;
 }
 
-.topbar {
+.header {
     height: 50px;
     display: flex;
     /* Al centrar el contingut, el títol es queda al mig */
@@ -62,7 +62,7 @@ body {
     position: relative; 
 }
 
-/* Nou contenidor per col·locar el botó de login a la dreta del topbar */
+/* Nou contenidor per col·locar el botó de login a la dreta del header */
 .login-container {
     position: absolute; 
     right: 10px;

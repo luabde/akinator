@@ -49,7 +49,7 @@ body {
     overflow: hidden;
 }
 
-.topbar {
+.header {
     height: 50px;
     display: flex;
     /* Al centrar el contingut, el títol es queda al mig */

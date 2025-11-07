@@ -217,16 +217,13 @@ $comptador_restants = 0;
     <div class="sidebar-handle"></div>
 </div>
 
-<div class="header">
-    <?php
-        require '../views/header.php';
-    ?>
-<div class="header">
-    <!-- <span class="header-title">AKINATOR DC</span>  -->
+<div class="right-container">
+<div class="topbar">
+    <span class="topbar-title">AKINATOR DC</span> 
 
-    <!-- <div class="login-container">
+    <div class="login-container">
         <button class="btn-login">Login</button>
-    </div> -->
+    </div>
 </div>
 
 <div class="main">
@@ -248,9 +245,9 @@ $comptador_restants = 0;
         <div class="restants">
             Estic pensant en <?= $comptador_restants ?> personatges possibles
         </div>
-        <!-- <h2><?= $pregunta['texto'] ?></h2> -->
+        <h2><?= $pregunta['texto'] ?></h2>
         <form method="post">
-            <!-- <input type="hidden" name="pregunta_id" value="<?= $pregunta['id'] ?>"> -->
+            <input type="hidden" name="pregunta_id" value="<?= $pregunta['id'] ?>">
             <button name="respuesta" value="1" class="btn">Sí</button>
             <button name="respuesta" value="0" class="btn-no">No</button>
         </form>

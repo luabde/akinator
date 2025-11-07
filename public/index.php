@@ -13,7 +13,10 @@
 // } catch (PDOException $e) {
 //     die("Error de connexió: " . $e->getMessage());
 // }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3a3701327ef713db127c3130c90b31e2748ce2f4
 require '../config/database.php';
 $db = conectarDB();
 

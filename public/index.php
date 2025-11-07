@@ -16,6 +16,8 @@
 require '../config/database.php';
 $db = conectarDB();
 
+session_start();
+
 if (!isset($_SESSION['historial'])) $_SESSION['historial'] = [];
 if (!isset($_SESSION['condiciones'])) $_SESSION['condiciones'] = [];
 
@@ -246,9 +248,9 @@ $comptador_restants = 0;
         <div class="restants">
             Estic pensant en <?= $comptador_restants ?> personatges possibles
         </div>
-        <h2><?= $pregunta['texto'] ?></h2>
+        <!-- <h2><?= $pregunta['texto'] ?></h2> -->
         <form method="post">
-            <input type="hidden" name="pregunta_id" value="<?= $pregunta['id'] ?>">
+            <!-- <input type="hidden" name="pregunta_id" value="<?= $pregunta['id'] ?>"> -->
             <button name="respuesta" value="1" class="btn">Sí</button>
             <button name="respuesta" value="0" class="btn-no">No</button>
         </form>

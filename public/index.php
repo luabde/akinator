@@ -2,17 +2,20 @@
 // -------------------
 // Conexión a DB
 // -------------------
-$host = 'localhost';
-$dbname = 'akinator_dc';
-$user = 'root';
-$pass = '';
+// $host = 'localhost';
+// $dbname = 'akinator_dc';
+// $user = 'root';
+// $pass = '';
 
-try {
-    $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error de connexió: " . $e->getMessage());
-}
+// try {
+//     $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+//     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (PDOException $e) {
+//     die("Error de connexió: " . $e->getMessage());
+// }
+
+require '../config/database.php';
+$db = conectarDB();
 
 session_start();
 if (!isset($_SESSION['historial'])) $_SESSION['historial'] = [];
@@ -105,64 +108,64 @@ $seccio = $_GET['seccio'] ?? '';
 $pregunta = null;
 $comptador_restants = 0;
 
-$preguntas = $db->query("SELECT * FROM preguntas")->fetchAll(PDO::FETCH_ASSOC);
+// $preguntas = $db->query("SELECT * FROM preguntas")->fetchAll(PDO::FETCH_ASSOC);
 
-if (isset($_POST['start'])) {
-    $_SESSION['condiciones'] = [];
-    $pregunta = $preguntas[array_rand($preguntas)];
-} elseif (isset($_POST['pregunta_id'], $_POST['respuesta'])) {
-    $id_pregunta = (int)$_POST['pregunta_id'];
-    $respuesta = (int)$_POST['respuesta'];
+// if (isset($_POST['start'])) {
+//     $_SESSION['condiciones'] = [];
+//     $pregunta = $preguntas[array_rand($preguntas)];
+// } elseif (isset($_POST['pregunta_id'], $_POST['respuesta'])) {
+//     $id_pregunta = (int)$_POST['pregunta_id'];
+//     $respuesta = (int)$_POST['respuesta'];
 
-    $_SESSION['condiciones'][$id_pregunta] = $respuesta;
+//     $_SESSION['condiciones'][$id_pregunta] = $respuesta;
 
-    $sql = "SELECT p.* FROM personajes p WHERE NOT EXISTS (SELECT 1 FROM respuestas_personajes r WHERE r.personaje_id = p.id AND (";
-    $condiciones = [];
-    foreach ($_SESSION['condiciones'] as $id_p => $resp) {
-        $condiciones[] = "(r.pregunta_id = $id_p AND r.respuesta != $resp)";
-    }
-    $sql .= implode(" OR ", $condiciones) . "))";
+//     $sql = "SELECT p.* FROM personajes p WHERE NOT EXISTS (SELECT 1 FROM respuestas_personajes r WHERE r.personaje_id = p.id AND (";
+//     $condiciones = [];
+//     foreach ($_SESSION['condiciones'] as $id_p => $resp) {
+//         $condiciones[] = "(r.pregunta_id = $id_p AND r.respuesta != $resp)";
+//     }
+//     $sql .= implode(" OR ", $condiciones) . "))";
 
-    $resultado = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    $comptador_restants = count($resultado);
+//     $resultado = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+//     $comptador_restants = count($resultado);
 
-    if ($comptador_restants == 1) {
-        $personaje = $resultado[0];
-        $_SESSION['historial'][] = $personaje['nombre'];
-        $_SESSION['condiciones'] = [];
+//     if ($comptador_restants == 1) {
+//         $personaje = $resultado[0];
+//         $_SESSION['historial'][] = $personaje['nombre'];
+//         $_SESSION['condiciones'] = [];
 
-        $missatge = "
-            <div class='resultado'>
-                <h2>El personatge és: <span>{$personaje['nombre']}</span></h2>
-                <img src='{$personaje['imagen_url']}' alt='{$personaje['nombre']}' class='foto-gran'>
-                <p>{$personaje['descripcion']}</p>
-            </div>";
-        $final = true;
-    } elseif ($comptador_restants == 0) {
-        $_SESSION['condiciones'] = [];
-        $missatge = "
-            <h2>No hi ha coincidències</h2>
-            <p>Vols afegir el personatge que havies pensat?</p>
-            <form method='post' enctype='multipart/form-data'>
-                <input type='text' name='nou_personatge' placeholder='Nom del personatge' required class='input-text'><br><br>
-                <textarea name='descripcion_personatge' placeholder='Descripció' required class='input-textarea'></textarea><br><br>
-                <input type='file' name='imagen_personatge' accept='image/*' required class='input-file'><br><br>
-                <button type='submit' name='afegir_personatge' class='btn'>Afegir</button>
-            </form>";
-        $final = true;
-    } else {
-        $preguntes_fetes = array_keys($_SESSION['condiciones']);
-        $pendents = array_filter($preguntas, fn($p) => !in_array($p['id'], $preguntes_fetes));
+//         $missatge = "
+//             <div class='resultado'>
+//                 <h2>El personatge és: <span>{$personaje['nombre']}</span></h2>
+//                 <img src='{$personaje['imagen_url']}' alt='{$personaje['nombre']}' class='foto-gran'>
+//                 <p>{$personaje['descripcion']}</p>
+//             </div>";
+//         $final = true;
+//     } elseif ($comptador_restants == 0) {
+//         $_SESSION['condiciones'] = [];
+//         $missatge = "
+//             <h2>No hi ha coincidències</h2>
+//             <p>Vols afegir el personatge que havies pensat?</p>
+//             <form method='post' enctype='multipart/form-data'>
+//                 <input type='text' name='nou_personatge' placeholder='Nom del personatge' required class='input-text'><br><br>
+//                 <textarea name='descripcion_personatge' placeholder='Descripció' required class='input-textarea'></textarea><br><br>
+//                 <input type='file' name='imagen_personatge' accept='image/*' required class='input-file'><br><br>
+//                 <button type='submit' name='afegir_personatge' class='btn'>Afegir</button>
+//             </form>";
+//         $final = true;
+//     } else {
+//         $preguntes_fetes = array_keys($_SESSION['condiciones']);
+//         $pendents = array_filter($preguntas, fn($p) => !in_array($p['id'], $preguntes_fetes));
 
-        if (empty($pendents)) {
-            $_SESSION['condiciones'] = [];
-            $missatge = "<h2>No queden preguntes</h2>";
-            $final = true;
-        } else {
-            $pregunta = $pendents[array_rand($pendents)];
-        }
-    }
-}
+//         if (empty($pendents)) {
+//             $_SESSION['condiciones'] = [];
+//             $missatge = "<h2>No queden preguntes</h2>";
+//             $final = true;
+//         } else {
+//             $pregunta = $pendents[array_rand($pendents)];
+//         }
+//     }
+// }
 ?>
 
 <!DOCTYPE html>
@@ -213,7 +216,7 @@ if (isset($_POST['start'])) {
     <div class="sidebar-handle"></div>
 </div>
 
-<div class="right-container">
+<div class="topbar">
     <?php
         require '../views/header.php';
     ?>

@@ -45,7 +45,7 @@ function mostraBiblioteca($db) {
             echo "
             <div class='card'>
                 <div class='card-inner'>
-                    <img src='{$p['imagen_url']}' alt='{$p['nombre']}' class='foto'>
+                    <img src='./{$p['imagen_url']}' alt='{$p['nombre']}' class='foto'>  
                     <h3>{$p['nombre']}</h3>
                     <p>{$p['descripcion']}</p>
                 </div>

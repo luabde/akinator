@@ -222,7 +222,7 @@ $comptador_restants = 0;
     <span class="header-title">AKINATOR DC</span> 
 
     <div class="login-container">
-        <button class="btn-login">Login</button>
+        <a href="login.php" class="btn-login">Login</a>
     </div>
 </div>
 
@@ -254,6 +254,6 @@ $comptador_restants = 0;
     <?php endif; ?>
 </div>
 </div>
-
+<?php require '../views/footer.php';?>
 </body>
 </html>

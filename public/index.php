@@ -253,7 +253,7 @@ $comptador_restants = 0;
         </form>
     <?php endif; ?>
 </div>
-</div>
 <?php require '../views/footer.php';?>
+</div>
 </body>
 </html>

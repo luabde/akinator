@@ -16,7 +16,7 @@
 require '../config/database.php';
 $db = conectarDB();
 
-session_start();
+// session_start();
 if (!isset($_SESSION['historial'])) $_SESSION['historial'] = [];
 if (!isset($_SESSION['condiciones'])) $_SESSION['condiciones'] = [];
 

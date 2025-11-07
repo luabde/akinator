@@ -16,7 +16,6 @@
 require '../config/database.php';
 $db = conectarDB();
 
-session_start();
 if (!isset($_SESSION['historial'])) $_SESSION['historial'] = [];
 if (!isset($_SESSION['condiciones'])) $_SESSION['condiciones'] = [];
 
@@ -35,7 +34,8 @@ function mostraHistorial() {
 
 function mostraBiblioteca($db) {
     $sql = "SELECT nombre, imagen_url, descripcion FROM personajes ORDER BY nombre ASC";
-    $personatges = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    $personatges = mysqli_query($db, $sql);
+    // $personatges = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     if ($personatges) {
         echo "<div class='biblioteca'>";

@@ -218,8 +218,8 @@ $comptador_restants = 0;
 </div>
 
 <div class="right-container">
-<div class="topbar">
-    <span class="topbar-title">AKINATOR DC</span> 
+<div class="header">
+    <span class="header-title">AKINATOR DC</span> 
 
     <div class="login-container">
         <button class="btn-login">Login</button>

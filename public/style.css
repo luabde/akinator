@@ -122,10 +122,10 @@ body::before {
 }
 
 .main h2::before {
-  bottom: -20px;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid var(--comic-black);
+  bottom: -22px;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 22px solid var(--comic-black);
 }
 
 .main h2::after {
@@ -146,6 +146,7 @@ p {
   font-size: 1.4rem;
   color: var(--comic-black);
   font-weight: 600;
+  padding: 15px;
 }
 
 .sidebar {
@@ -182,7 +183,6 @@ p {
   box-shadow: 2px 2px 0 var(--comic-black);
   border-radius: 10px;
   padding: 5px 10px;
-  height: 50px;
 }
 
 .btn:hover,

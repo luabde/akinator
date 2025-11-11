@@ -1,6 +1,6 @@
 <?php
-    // require '../config/database.php';
-    // $db = conectarDB();
+    require '../config/database.php';
+    $db = conectarDB();
     // var_dump(($db));
     // $nombre_usuario = "prueba";
     // $email = "correo@correo.com";
@@ -14,11 +14,21 @@
     // mysqli_query($db, $query);
 
     session_start();
-    
-    if(isset($_GET['action']) || $_GET['action'] === 'logout'){
-        logOut();
+    $action = $_GET['action'];
+
+    if(isset($action)){
+        switch($action){
+            case 'logout':
+                logOut();
+                break;
+            case 'signin':
+                break;
+        }
     }
 
+    function signin(){
+        
+    }
     function logOut(){
         // Dejaremos el login a false, porque se ha cerrado la session
         $_SESSION['login'] = false;

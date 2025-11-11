@@ -12,4 +12,19 @@
     // $query = "INSERT INTO usuarios (nombre_usuario, email, contrasena) VALUES ('$nombre_usuario', '$email', '$passwordHash')";
 
     // mysqli_query($db, $query);
+
+    session_start();
+    
+    if(isset($_GET['action']) || $_GET['action'] === 'logout'){
+        logOut();
+    }
+
+    function logOut(){
+        // Dejaremos el login a false, porque se ha cerrado la session
+        $_SESSION['login'] = false;
+
+        // Eliminamos de la sesión el usuario, porque ya se ha cerrado session y no nos interesa tener el nombre de este guardado
+        unset($_SESSION['usuario']);
+        header("Location: ../public/index.php");
+    }   
 ?>

@@ -204,13 +204,7 @@ $comptador_restants = 0;
 </div>
 
 <div class="right-container">
-<div class="header">
-    <span class="header-title">AKINATOR DC</span> 
-
-    <div class="login-container">
-        <a href="login.php" class="btn-login">Login</a>
-    </div>
-</div>
+<?php require '../views/header.php'?>
 
 <div class="main">
     <?php if(!isset($_POST['start']) && !isset($_POST['pregunta_id']) && !$final): ?>

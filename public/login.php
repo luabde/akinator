@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/general.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php
@@ -41,7 +41,7 @@
 
                 // Obtener el registro del usuario en formato array associativo
                 $usuario = mysqli_fetch_assoc($resultado);
-                var_dump($usuario);
+                // var_dump($usuario);
                 // Verificar si la contraseña es correcta o no
                 $auth = password_verify($password, $usuario['contrasena']);
 
@@ -57,7 +57,7 @@
                     $errores[] = "La contraseña no es correcta";
                 }
 
-                var_dump($auth);
+                // var_dump($auth);
             }else{
                 $errores[] = "El usuario no existe";
             }

@@ -19,7 +19,7 @@
       <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
         <img src="img/user-icon.png" id="user-icon">
         <p><?php echo $_SESSION['usuario']; ?></p>
-        <a href="#" class="btn-login">Tancar sessió</a>
+        <a href="../controllers/loginController.php?action=logout" class="btn-login">Tancar sessió</a>
       <?php else: ?>
         <a href="../public/login.php" class="btn-login">Iniciar sessió</a>
       <?php endif; ?>

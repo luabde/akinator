@@ -68,6 +68,15 @@
     // Se incluye el header 
     require '../views/header.php';
 ?>
+
+<?php 
+    $form = $_GET['login'] ?? '';
+
+    if(empty($form) || $form == 'login'){
+        // Se muestra el formulario de login
+    
+?>
+
 <div class="login-container">
   <h2>Iniciar sesión</h2>
 
@@ -90,10 +99,41 @@
   </form>
 
   <p class="registro-link">
-    ¿No tienes cuenta? <a href="#">Regístrate aquí</a>
+    ¿No tens compte?<a href="login.php?login=signIn">Registra't aquí</a>
+
+<?php
+    }else{
+        // Se muestra el formulario de registrarse
+    
+?>
+
+<div class="signIn-container">
+  <h2>Regístrate</h2>
+
+  <?php foreach($errores as $key):?>
+    <div class="errores-login-form">
+        <?php echo $key;?>
+    </div>
+    <?php endforeach;?>
+
+  <form method="POST" novalidate>
+    <fieldset>
+        <legend>Nombre de usuario, Email y password</legend>
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Tu email" id="email" required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" placeholder="Tu contraseña" id="password" required>
+    </fieldset>
+    <input type="submit" value="Iniciar Session">
+  </form>
+
+  <p class="registro-link">
+    ¿Ja tens compte? <a href="login.php?login=login">Inicia sessió aquí</a>
   </p>
 </div>
 <?php
+    }
     require '../views/footer.php';
 ?>
 </body>

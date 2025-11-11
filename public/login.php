@@ -1,4 +1,14 @@
-
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>Akinator DC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="">
+</head>
+<body>
 <?php
     require '../config/database.php';
     $db = conectarDB();
@@ -86,3 +96,4 @@
 <?php
     require '../views/footer.php';
 ?>
+</body>

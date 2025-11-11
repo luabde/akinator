@@ -24,6 +24,7 @@ body {
   position: relative;
 }
 
+
 /* Puntos de Ben-Day */
 body::before {
   content: '';
@@ -69,11 +70,14 @@ body::before {
 }
 
 .login-container {
+  display: flex;
   position: absolute;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
+  align-items: center;
+
 }
 
 .main {

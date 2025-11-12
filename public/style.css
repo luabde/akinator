@@ -20,6 +20,13 @@
   height: 100%;
 }
 
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   font-family: 'Comic Neue', cursive;
   color: var(--comic-black);
@@ -392,4 +399,19 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* LOGIN STYLE */
+.login-form, .signIn-container{
+  width: 40%;
+      position: relative;
+    border-radius: 12px;
+    overflow: visible;
+    background: var(--comic-white);
+    padding: 8px;
+    border: 5px solid var(--comic-black);
+    box-shadow: 8px 8px 0 var(--comic-black);
+    transition: all 0.2s 
+ease;
+    cursor: pointer;
 }

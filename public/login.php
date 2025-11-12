@@ -76,64 +76,65 @@
         // Se muestra el formulario de login
     
 ?>
+<div class="container">
+    <div class="login-form">
+    <h2>Iniciar sesión</h2>
 
-<div class="login-form">
-  <h2>Iniciar sesión</h2>
+    <?php foreach($errores as $key):?>
+        <div class="errores-login-form">
+            <?php echo $key;?>
+        </div>
+        <?php endforeach;?>
 
-  <?php foreach($errores as $key):?>
-    <div class="errores-login-form">
-        <?php echo $key;?>
+    <form method="POST" novalidate>
+        <fieldset>
+            <legend>Email y password</legend>
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Tu email" id="email" required>
+
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" placeholder="Tu contraseña" id="password" required>
+        </fieldset>
+        <input type="submit" value="Iniciar Session">
+    </form>
+
+    <p class="registro-link">
+        ¿No tens compte?<a href="login.php?login=signIn">Registra't aquí</a></p>
     </div>
-    <?php endforeach;?>
+    <?php
+        }else{
+            // Se muestra el formulario de registrarse
+        
+    ?>
 
-  <form method="POST" novalidate>
-    <fieldset>
-        <legend>Email y password</legend>
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Tu email" id="email" required>
+    <div class="signIn-container">
+    <h2>Regístrate</h2>
 
-        <label for="password">Contraseña</label>
-        <input type="password" name="password" placeholder="Tu contraseña" id="password" required>
-    </fieldset>
-    <input type="submit" value="Iniciar Session">
-  </form>
+    <?php foreach($errores as $key):?>
+        <div class="errores-login-form">
+            <?php echo $key;?>
+        </div>
+        <?php endforeach;?>
 
-  <p class="registro-link">
-    ¿No tens compte?<a href="login.php?login=signIn">Registra't aquí</a>
+    <form method="POST" novalidate>
+        <fieldset>
+            <legend>Nombre de usuario, Email y password</legend>
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Tu email" id="email" required>
 
-<?php
-    }else{
-        // Se muestra el formulario de registrarse
-    
-?>
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" placeholder="Tu contraseña" id="password" required>
+        </fieldset>
+        <input type="submit" value="Iniciar Session">
+    </form>
 
-<div class="signIn-container">
-  <h2>Regístrate</h2>
-
-  <?php foreach($errores as $key):?>
-    <div class="errores-login-form">
-        <?php echo $key;?>
+    <p class="registro-link">
+        ¿Ja tens compte? <a href="login.php?login=login">Inicia sessió aquí</a>
+    </p>
     </div>
-    <?php endforeach;?>
-
-  <form method="POST" novalidate>
-    <fieldset>
-        <legend>Nombre de usuario, Email y password</legend>
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Tu email" id="email" required>
-
-        <label for="password">Contraseña</label>
-        <input type="password" name="password" placeholder="Tu contraseña" id="password" required>
-    </fieldset>
-    <input type="submit" value="Iniciar Session">
-  </form>
-
-  <p class="registro-link">
-    ¿Ja tens compte? <a href="login.php?login=login">Inicia sessió aquí</a>
-  </p>
+    <?php
+        }
+        require '../views/footer.php';
+    ?>
 </div>
-<?php
-    }
-    require '../views/footer.php';
-?>
 </body>

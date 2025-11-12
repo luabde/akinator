@@ -77,7 +77,7 @@
     
 ?>
 
-<div class="login-container">
+<div class="login-form">
   <h2>Iniciar sesión</h2>
 
   <?php foreach($errores as $key):?>

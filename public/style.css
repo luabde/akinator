@@ -246,11 +246,13 @@ p {
   * como los enlaces del sidebar.
   */
 .btn-login,
-.sidebar a,
-.btn-logout { 
+.sidebar a { 
   font-size: 1.3rem;
 }
 
+.btn-logout{
+  font-size: 1rem;
+}
 
 
 /* Globo tipo cómic */

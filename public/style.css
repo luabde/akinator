@@ -49,6 +49,7 @@ body::before {
 }
 
 .header {
+  padding: 20px;
   height: 80px;
   display: flex;
   align-items: center;
@@ -61,7 +62,6 @@ body::before {
 }
 
 .header-title {
-  padding-left: 25px;
   font-family: 'Bangers', cursive;
   font-size: 2rem;
   letter-spacing: 3px;
@@ -70,18 +70,26 @@ body::before {
   transform: rotate(-2deg);
 }
 
-.login-container {
-  display: flex;
-  z-index: 2;
-  align-items: center;
-      font-family: 'Bangers', cursive;
-    font-size: 1.5rem;
-    background: var(--comic-white);
-    color: var(--comic-black);
-    border: 5px solid var(--comic-black);
-    border-radius: 15px;
-    position: relative;
+.login-container { 
+  z-index: 2; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  font-family: 'Bangers', cursive; 
+  font-size: 1.5rem; 
+  background: var(--comic-yellow); 
+  color: var(--comic-black); 
+  border: 4px solid var(--comic-black); 
+  border-radius: 15px; 
+  position: relative; 
+  height: 60px;
+  line-height: 1;
+    box-shadow: 2px 2px 0 var(--comic-black);
+}
 
+.login-container { 
+  display: flex; 
+  align-items: center; /* Asegura el centrado vertical */
 }
 
 .main {
@@ -129,22 +137,6 @@ body::before {
   height: 0;
 }
 
-.login-container::before,
-.login-container::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-}
-
-.login-container::before {
-  bottom: -22px;
-  border-left: 22px solid transparent;
-  border-right: 22px solid transparent;
-  border-top: 22px solid var(--comic-black);
-}
 
 .main h2::before {
   bottom: -22px;
@@ -158,17 +150,6 @@ body::before {
   border-left: 17px solid transparent;
   border-right: 17px solid transparent;
   border-top: 17px solid var(--comic-white);
-}
-
-.login-container::after {
-  bottom: -15px;
-  border-left: 17px solid transparent;
-  border-right: 17px solid transparent;
-  border-top: 17px solid var(--comic-white);
-}
-
-.login-container p{
-  font-family: 'Bangers', cursive;
 }
 
 .main p {
@@ -232,10 +213,12 @@ p {
   box-shadow: none;
 }
 
+/** * 🚨 ESTILOS ACTUALIZADOS PARA .btn-logout 🚨
+  * Ahora es AMARILLO (como el sidebar) en lugar de rojo.
+  */
 .btn-logout {
-  background: var(--comic-red);
-  color: var(--comic-white);
-  /* height: auto; */
+  background: var(--comic-red); /* Fondo amarillo como los enlaces del sidebar */
+  color: var(--comic-black); /* Texto negro como los enlaces del sidebar */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -258,23 +241,35 @@ p {
   color: var(--comic-black);
 }
 
+/** * 🚨 ESTILOS ACTUALIZADOS PARA CONSISTENCIA DE FUENTE 🚨
+  * Se incluye .btn-logout para que el tamaño de fuente sea 1.3rem,
+  * como los enlaces del sidebar.
+  */
 .btn-login,
-.sidebar a {
+.sidebar a,
+.btn-logout { 
   font-size: 1.3rem;
 }
 
 /* === TOGGLE === */
 .toggle-btn {
   border-radius: 50%;
-      width: 50px;
-        padding: 0px 9px;
+  /* 🚨 ACTUALIZACIÓN DE PROPORCIONES 🚨 */
+  width: 45px; /* Altura y anchura igual al botón/enlace del sidebar */
+  height: 45px; /* Altura igual al login-container p */
+  padding: 0; /* Eliminar padding para usar width/height fijos */
+  display: flex; /* Usar flexbox para centrar el icono */
+  align-items: center;
+  justify-content: center;
+  /* Mantenemos el font-size grande para el icono X/☰ */
+  font-size: 1.8rem; 
 }
 
 .toggle-btn::before {
   content: "✕";
   line-height: 1;
-  display: inline-block;
-  transform: translateY(-1px);
+  display: block; /* Cambiado a block para centrar con flexbox */
+  transform: none; /* Eliminado el transform para centrar con flexbox */
 }
 
 #toggle-sidebar:checked ~ .sidebar .toggle-btn::before {
@@ -405,7 +400,7 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-    cursor: pointer;
+  cursor: pointer;
   background: var(--comic-red);
   border: 6px solid var(--comic-black);
   border-radius: 10px;
@@ -416,7 +411,8 @@ p {
 .sidebar a,
 .btn,
 .btn-no,
-.btn-login {
+.btn-login,
+.btn-logout { /* Se incluye .btn-logout aquí */
   display: inline-flex;
   align-items: center;
   gap: 8px; /* separa el icono del texto */
@@ -427,7 +423,8 @@ p {
 .sidebar a svg,
 .btn svg,
 .btn-no svg,
-.btn-login svg {
+.btn-login svg,
+.btn-logout svg { /* Se incluye .btn-logout aquí */
   width: 1.2em;
   height: 1.2em;
   flex-shrink: 0;
@@ -441,4 +438,3 @@ p {
   align-items: center;
   justify-content: center;
 }
-

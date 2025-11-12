@@ -87,7 +87,7 @@ body::before {
   border: 4px solid var(--comic-black); 
   border-radius: 15px; 
   position: relative; 
-  height: 60px;
+  height: 50px;
   line-height: 1;
     box-shadow: 2px 2px 0 var(--comic-black);
 }
@@ -251,53 +251,6 @@ p {
   font-size: 1.3rem;
 }
 
-/* === TOGGLE === */
-.toggle-btn {
-  border-radius: 50%;
-  /* 🚨 ACTUALIZACIÓN DE PROPORCIONES 🚨 */
-  width: 45px; /* Altura y anchura igual al botón/enlace del sidebar */
-  height: 45px; /* Altura igual al login-container p */
-  padding: 0; /* Eliminar padding para usar width/height fijos */
-  display: flex; /* Usar flexbox para centrar el icono */
-  align-items: center;
-  justify-content: center;
-  /* Mantenemos el font-size grande para el icono X/☰ */
-  font-size: 1.8rem; 
-}
-
-.toggle-btn::before {
-  content: "✕";
-  line-height: 1;
-  display: block; /* Cambiado a block para centrar con flexbox */
-  transform: none; /* Eliminado el transform para centrar con flexbox */
-}
-
-#toggle-sidebar:checked ~ .sidebar .toggle-btn::before {
-  content: "☰";
-}
-
-/* Estado colapsado */
-#toggle-sidebar:checked ~ .sidebar {
-  width: 110px;
-  min-width: 110px;
-}
-
-/* Oculta el texto y centra los iconos */
-#toggle-sidebar:checked ~ .sidebar a span {
-  display: none;
-}
-
-#toggle-sidebar:checked ~ .sidebar a {
-  justify-content: center;
-}
-
-#toggle-sidebar:checked ~ .sidebar a svg {
-  margin: 0 auto;
-}
-
-#toggle-sidebar:checked ~ .sidebar .sidebar-content {
-  display: none;
-}
 
 
 /* Globo tipo cómic */

@@ -14,6 +14,11 @@
 </head>
 <body>
 
+<div>
+    <img src="img/fotoAkinator.png" alt="Akinator" width="500px">
+</div>
+
+
   <div class="login-wrapper">
     <?php
       require '../config/database.php';
@@ -116,6 +121,5 @@
     <?php } ?>
   </div>
 
-  <?php require '../views/footer.php'; ?>
 </body>
 </html>

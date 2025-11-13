@@ -167,8 +167,6 @@ $comptador_restants = 0;
 </head>
 <body>
 
-<div class="akinator">
-
 <div class="sidebar">
     <p>Menu</p>
     <a href="?seccio=">

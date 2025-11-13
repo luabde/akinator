@@ -20,15 +20,18 @@
   box-sizing: border-box;
 }
 
-body {
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: var(--paper-bg);
-  overflow: hidden;
-      font-family: 'Bangers', cursive;
+html, body {
+  height: 100%; /* important per ocupar tota l'altura */
 }
 
+body {
+  display: flex;
+  justify-content: flex-start; /* sidebar a l'esquerra */
+  align-items: stretch;        /* els fills ocupen tota l'altura */
+  background: var(--paper-bg);
+  overflow: hidden;
+  font-family: 'Bangers', cursive;
+}
 
 /* Puntos de Ben-Day */
 body::before {
@@ -42,14 +45,8 @@ body::before {
 }
 
 /* ================================
-   🧱 LAYOUT GENERAL
+   🖤 LAYOUT PRINCIPAL
 ================================ */
-.akinator {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -62,6 +59,7 @@ body::before {
   border-right: 6px solid var(--comic-black);
   transition: all 0.3s ease;
   position: relative;
+  height: 100%; /* ocupa tota l'altura */
   box-sizing: border-box;
 }
 
@@ -73,6 +71,7 @@ body::before {
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
+  height: 100%; /* ocupa tota l'altura */
 }
 
 /* ================================
@@ -130,8 +129,6 @@ body::before {
   border-radius: 15px;
   box-shadow: 8px 8px 0 var(--comic-yellow);
 }
-
-
 
 /* ================================
    📜 MAIN CONTENT
@@ -410,6 +407,7 @@ p {
 
 /* Centrar el formulari */
 .login-wrapper {
+  height: 80%;
   flex: 1; /* ocupa tot l’espai disponible */
   display: flex;
   justify-content: center; /* horitzontal */

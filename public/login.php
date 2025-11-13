@@ -13,6 +13,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php
+  session_start();
+  // Obtener errores de la sesión y limpiarlos
+  $errores = $_SESSION['errores_login'] ?? [];
+  unset($_SESSION['errores_login']);
+
+?>
 
 <div>
     <img src="img/fotoAkinator.png" alt="Akinator" width="500px">
@@ -20,60 +27,26 @@
 
 
   <div class="login-wrapper">
+
     <?php
-      require '../config/database.php';
-      $db = conectarDB();
-
-      $errores = [];
-
-      if($_SERVER['REQUEST_METHOD'] === 'POST'){
-          $email = mysqli_real_escape_string($db, filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
-          $password = mysqli_real_escape_string($db, $_POST['password']);
-
-          if(!$email){
-              $errores[] = "El email es obligatorio o no es válido";
-          }
-          if(!$password){
-              $errores[] = "La contraseña es obligatoria";
-          }
-
-          if(empty($errores)){
-              $query = "SELECT * FROM usuarios WHERE email = '{$email}'";
-              $resultado = mysqli_query($db, $query);
-
-              if($resultado->num_rows){
-                  $usuario = mysqli_fetch_assoc($resultado);
-                  $auth = password_verify($password, $usuario['contrasena']);
-
-                  if($auth){
-                      session_start();
-                      $_SESSION['usuario'] = $usuario['nombre_usuario'];
-                      $_SESSION['login'] = true;
-                      header('Location: index.php');
-                  } else {
-                      $errores[] = "La contraseña no es correcta";
-                  }
-              } else {
-                  $errores[] = "El usuario no existe";
-              }
-          }
-      }
-
       $form = $_GET['login'] ?? '';
-
+      // En el caso de que no haya nada en form o que form sea login, se mostrará el formulario de login.
       if(empty($form) || $form == 'login'){
     ?>
 
     <div class="login-form">
       <h2>Iniciar sessió</h2>
-
-      <?php foreach($errores as $key): ?>
-        <div class="errores-login-form">
-          <?php echo $key; ?>
+        <!-- En el caso de hayan errores, se mostraran a traves de un foreach -->
+        <?php if (!empty($errores)): ?>
+        <div class="errores-container">
+          <?php foreach($errores as $error): ?>
+            <div class="errores-login-form">
+              <?php echo $error; ?>
+            </div>
+          <?php endforeach; ?>
         </div>
-      <?php endforeach; ?>
-
-      <form method="POST" novalidate>
+      <?php endif; ?>
+      <form method="POST" novalidate action="../controllers/userController.php?action=login">
         <label for="email">Email</label>
         <input type="email" name="email" placeholder="El teu email" id="email" required>
 
@@ -90,6 +63,7 @@
 
     <?php
       } else {
+        // Cuando el form sea algo diferente a login, en este caso signup se mostrará el formulario para registrarse
     ?>
 
     <div class="signIn-container">
@@ -101,9 +75,12 @@
         </div>
       <?php endforeach; ?>
 
-      <form method="POST" novalidate>
+      <form method="POST" novalidate action="../controllers/userController.php?action=signin">
         <fieldset>
           <legend>Nom d'usuari, Email i contrasenya</legend>
+          <label for="nomUsuari">Nom d'usuari</label>
+          <input type="text" name="nomUsuari" placeholder="El teu nom d'usuari" id="nomUsuari" required>
+
           <label for="email">Email</label>
           <input type="email" name="email" placeholder="El teu email" id="email" required>
 
@@ -120,6 +97,5 @@
 
     <?php } ?>
   </div>
-
 </body>
 </html>

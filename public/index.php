@@ -177,7 +177,6 @@ $comptador_restants = 0;
             $controller = new PersonajeController();
             $controller->obtenerPersonajes();
         ?>
-            <!-- <?php mostraBiblioteca($db); ?> -->
         </div>
     <?php endif; ?>
 

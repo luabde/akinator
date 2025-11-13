@@ -1,5 +1,5 @@
 <?php
-require '../config/database.php';
+require_once '../config/database.php';
 $db = conectarDB();
 
 session_start();
@@ -10,15 +10,6 @@ if (!isset($_SESSION['condiciones'])) $_SESSION['condiciones'] = [];
 // -------------------
 // FUNCIONES
 // -------------------
-function mostraHistorial() {
-    if (!empty($_SESSION['historial'])) {
-        echo "<ul class='llista-sidebar'>";
-        foreach (array_reverse($_SESSION['historial']) as $h) echo "<li>$h</li>";
-        echo "</ul>";
-    } else {
-        echo "<p class='historial-buit'>No hi ha encerts</p>";
-    }
-}
 
 function mostraBiblioteca($db) {
     $sql = "SELECT nombre, imagen_url, descripcion FROM personajes ORDER BY nombre ASC";
@@ -197,7 +188,12 @@ $comptador_restants = 0;
 
     <?php if ($seccio==='biblioteca'): ?>
         <div class="sidebar-content"><p>Biblioteca</p>
-            <?php mostraBiblioteca($db); ?>
+        <?php
+            require '../controllers/personajesController.php';
+            $controller = new PersonajeController();
+            $controller->obtenerPersonajes();
+        ?>
+            <!-- <?php mostraBiblioteca($db); ?> -->
         </div>
     <?php endif; ?>
 

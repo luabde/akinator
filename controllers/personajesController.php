@@ -1,6 +1,6 @@
 <?php
     // Importamos base de datos y modelo de personajes
-    require '../config/database.php';
+    require_once '../config/database.php';
     require '../models/personajesModel.php';
     class PersonajeController{
         private $model;

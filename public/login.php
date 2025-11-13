@@ -1,140 +1,121 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-<meta charset="UTF-8">
-<title>Akinator DC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Akinator DC</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Bangers&display=swap" rel="stylesheet">
+
+  <!-- Estils -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php
-    require '../config/database.php';
-    $db = conectarDB();
 
-    $errores = [];
-
-    // Autenticar el usuario
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        // Obtenemos el email y la password y evitamos que introduzcan codigo no deseado.
-        $email = mysqli_real_escape_string($db, filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
-
-        $password = mysqli_real_escape_string($db, $_POST['password']);
-
-        // Validamos que los campos no esten vacios
-        if(!$email){
-            $errores[] = "El email es obligatorio o no es válido";
-        }
-
-        if(!$password){
-            $errores[] = "La contraseña es obligatoria";
-        }
-
-        if(empty($errores)){
-            // Miramos si el user existe
-            $query = "SELECT * FROM usuarios WHERE email = '{$email}'";
-            $resultado = mysqli_query($db, $query);
-
-            if($resultado->num_rows){
-                // Mirar si el password es correcto
-
-                // Obtener el registro del usuario en formato array associativo
-                $usuario = mysqli_fetch_assoc($resultado);
-                // var_dump($usuario);
-                // Verificar si la contraseña es correcta o no
-                $auth = password_verify($password, $usuario['contrasena']);
-
-                if($auth){
-                    // El usuario esta autenticado
-                    session_start();
-
-                    // Se gurada en session el nombre del usuario y login true que se obtiene de lo que ha devuelto la consulta a la db
-                    $_SESSION['usuario'] = $usuario['nombre_usuario'];;
-                    $_SESSION['login'] = true;
-                }else{
-                    // password incorrecto
-                    $errores[] = "La contraseña no es correcta";
-                }
-
-                // var_dump($auth);
-            }else{
-                $errores[] = "El usuario no existe";
-            }
-        }
-
-
-    }
-    // Se incluye el header 
-    require '../views/header.php';
-?>
-
-<?php 
-    $form = $_GET['login'] ?? '';
-
-    if(empty($form) || $form == 'login'){
-        // Se muestra el formulario de login
-    
-?>
-<div class="container">
-    <div class="login-form">
-    <h2>Iniciar sesión</h2>
-
-    <?php foreach($errores as $key):?>
-        <div class="errores-login-form">
-            <?php echo $key;?>
-        </div>
-        <?php endforeach;?>
-
-    <form method="POST" novalidate>
-        <fieldset>
-            <legend>Email y password</legend>
-            <label for="email">Email</label>
-            <input type="email" name="email" placeholder="Tu email" id="email" required>
-
-            <label for="password">Contraseña</label>
-            <input type="password" name="password" placeholder="Tu contraseña" id="password" required>
-        </fieldset>
-        <input type="submit" value="Iniciar Session">
-    </form>
-
-    <p class="registro-link">
-        ¿No tens compte?<a href="login.php?login=signIn">Registra't aquí</a></p>
-    </div>
+  <div class="login-wrapper">
     <?php
-        }else{
-            // Se muestra el formulario de registrarse
-        
+      require '../config/database.php';
+      $db = conectarDB();
+
+      $errores = [];
+
+      if($_SERVER['REQUEST_METHOD'] === 'POST'){
+          $email = mysqli_real_escape_string($db, filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
+          $password = mysqli_real_escape_string($db, $_POST['password']);
+
+          if(!$email){
+              $errores[] = "El email es obligatorio o no es válido";
+          }
+          if(!$password){
+              $errores[] = "La contraseña es obligatoria";
+          }
+
+          if(empty($errores)){
+              $query = "SELECT * FROM usuarios WHERE email = '{$email}'";
+              $resultado = mysqli_query($db, $query);
+
+              if($resultado->num_rows){
+                  $usuario = mysqli_fetch_assoc($resultado);
+                  $auth = password_verify($password, $usuario['contrasena']);
+
+                  if($auth){
+                      session_start();
+                      $_SESSION['usuario'] = $usuario['nombre_usuario'];
+                      $_SESSION['login'] = true;
+                      header('Location: index.php');
+                  } else {
+                      $errores[] = "La contraseña no es correcta";
+                  }
+              } else {
+                  $errores[] = "El usuario no existe";
+              }
+          }
+      }
+
+      $form = $_GET['login'] ?? '';
+
+      if(empty($form) || $form == 'login'){
+    ?>
+
+    <div class="login-form">
+      <h2>Iniciar sessió</h2>
+
+      <?php foreach($errores as $key): ?>
+        <div class="errores-login-form">
+          <?php echo $key; ?>
+        </div>
+      <?php endforeach; ?>
+
+      <form method="POST" novalidate>
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="El teu email" id="email" required>
+
+        <label for="password">Contrasenya</label>
+        <input type="password" name="password" placeholder="La teva contrasenya" id="password" required>
+
+        <input type="submit" value="Iniciar sessió">
+      </form>
+
+      <p class="registro-link">
+        No tens compte? <a href="login.php?login=signIn">Registra't aquí</a>
+      </p>
+    </div>
+
+    <?php
+      } else {
     ?>
 
     <div class="signIn-container">
-    <h2>Regístrate</h2>
+      <h2>Registra't</h2>
 
-    <?php foreach($errores as $key):?>
+      <?php foreach($errores as $key): ?>
         <div class="errores-login-form">
-            <?php echo $key;?>
+          <?php echo $key; ?>
         </div>
-        <?php endforeach;?>
+      <?php endforeach; ?>
 
-    <form method="POST" novalidate>
+      <form method="POST" novalidate>
         <fieldset>
-            <legend>Nombre de usuario, Email y password</legend>
-            <label for="email">Email</label>
-            <input type="email" name="email" placeholder="Tu email" id="email" required>
+          <legend>Nom d'usuari, Email i contrasenya</legend>
+          <label for="email">Email</label>
+          <input type="email" name="email" placeholder="El teu email" id="email" required>
 
-            <label for="password">Contraseña</label>
-            <input type="password" name="password" placeholder="Tu contraseña" id="password" required>
+          <label for="password">Contrasenya</label>
+          <input type="password" name="password" placeholder="La teva contrasenya" id="password" required>
         </fieldset>
-        <input type="submit" value="Iniciar Session">
-    </form>
+        <input type="submit" value="Crear compte">
+      </form>
 
-    <p class="registro-link">
-        ¿Ja tens compte? <a href="login.php?login=login">Inicia sessió aquí</a>
-    </p>
+      <p class="registro-link">
+        Ja tens compte? <a href="login.php?login=login">Inicia sessió aquí</a>
+      </p>
     </div>
-    <?php
-        }
-        require '../views/footer.php';
-    ?>
-</div>
+
+    <?php } ?>
+  </div>
+
+  <?php require '../views/footer.php'; ?>
 </body>
+</html>

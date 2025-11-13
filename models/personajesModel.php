@@ -23,40 +23,4 @@
         }
         
     }
-
-    // $personajes = new Personaje();
-    // $lista = $personajes->obtenerPersonajes();
-    // // var_dump($lista);
-    // foreach($lista as $personaje){
-    //      echo "
-    //         <div class='card'>
-    //             <div class='card-inner'>
-    //                 <img src='./{$personaje['imagen_url']}' alt='{$personaje['nombre']}' class='foto'>  
-    //                 <h3>{$personaje['nombre']}</h3>
-    //                 <p>{$personaje['descripcion']}</p>
-    //             </div>
-    //         </div>";
-    // }
-
-    
-// class PersonajesModel{
-//     private $db;
-//     private $personajes;
-
-//     public function __construct(){
-//         $this->db=Conectar::conexion();
-//         $this->personajes = $this->personajes.array();
-//     }
-
-//     // Para obtener todos los personajes (se usará para cuando se quiera mostrar toda la info o imagenes de los personajes)
-//     public function getAllPersonajes(){
-//         $consulta = $this->db->query("SELECT * FROM personajes");
-//     }
-
-//     // Función para obtener un personaje por id
-//     public function getPersonajeById($pId){
-//         $consulta = $this->db->query("SELECT * FROM personajes WHERE id = $pId");
-//     }
-
-// }
 ?>

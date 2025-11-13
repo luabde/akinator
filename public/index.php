@@ -10,27 +10,13 @@ if (!isset($_SESSION['condiciones'])) $_SESSION['condiciones'] = [];
 // -------------------
 // FUNCIONES
 // -------------------
-
-function mostraBiblioteca($db) {
-    $sql = "SELECT nombre, imagen_url, descripcion FROM personajes ORDER BY nombre ASC";
-    $personatges = mysqli_query($db, $sql);
-    // $personatges = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-
-    if ($personatges) {
-        echo "<div class='biblioteca'>";
-        foreach ($personatges as $p) {
-            echo "
-            <div class='card'>
-                <div class='card-inner'>
-                    <img src='./{$p['imagen_url']}' alt='{$p['nombre']}' class='foto'>  
-                    <h3>{$p['nombre']}</h3>
-                    <p>{$p['descripcion']}</p>
-                </div>
-            </div>";
-        }
-        echo "</div>";
+function mostraHistorial() {
+    if (!empty($_SESSION['historial'])) {
+        echo "<ul class='llista-sidebar'>";
+        foreach (array_reverse($_SESSION['historial']) as $h) echo "<li>$h</li>";
+        echo "</ul>";
     } else {
-        echo "<p>No hi ha personatges registrats</p>";
+        echo "<p class='historial-buit'>No hi ha encerts</p>";
     }
 }
 

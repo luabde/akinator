@@ -15,7 +15,7 @@
 <body>
 
 <div>
-    <img src="img/" alt="Akinator">
+    <img src="img/fotoAkinator.png" alt="Akinator" width="500px">
 </div>
 
 
@@ -121,6 +121,5 @@
     <?php } ?>
   </div>
 
-  <?php require '../views/footer.php'; ?>
 </body>
 </html>

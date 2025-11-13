@@ -1,3 +1,6 @@
+/* ================================
+   🎨 VARIABLES PRINCIPALES
+================================ */
 :root {
   --comic-red: #e63946;
   --comic-blue: #457b9d;
@@ -8,32 +11,22 @@
   --ink-shadow: #2c3e50;
 }
 
+/* ================================
+   ⚙️ BASE Y RESETEO
+================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.akinator {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-.container{
-  display: flex;
-  flex-direction: column;
+body {
   justify-content: center;
   align-items: center;
-}
-
-body {
-  font-family: 'Comic Neue', cursive;
-  color: var(--comic-black);
   height: 100vh;
-  overflow: hidden;
   background: var(--paper-bg);
-  position: relative;
+  overflow: hidden;
+      font-family: 'Bangers', cursive;
 }
 
 
@@ -42,39 +35,62 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 4px 4px;
   pointer-events: none;
   z-index: 0;
 }
 
-#toggle-sidebar { display: none; }
+/* ================================
+   🧱 LAYOUT GENERAL
+================================ */
+.akinator {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  min-width: 350px;
+  padding: 15px;
+  overflow-y: auto;
+  background: var(--comic-blue);
+  color: var(--comic-white);
+  border-right: 6px solid var(--comic-black);
+  transition: all 0.3s ease;
+  position: relative;
+  box-sizing: border-box;
+}
 
 .right-container {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
   overflow: hidden;
+  transition: all 0.3s ease;
   position: relative;
   z-index: 1;
 }
 
+/* ================================
+   🧭 HEADER
+================================ */
 .header {
-  padding: 20px;
-  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 80px;
+  padding: 20px;
   background: var(--comic-white);
   color: var(--comic-black);
   font-weight: bold;
-  position: relative;
   border-bottom: 6px solid var(--comic-black);
 }
 
 .header-title {
-  font-family: 'Bangers', cursive;
   font-size: 2rem;
   letter-spacing: 3px;
   color: var(--comic-red);
@@ -82,36 +98,55 @@ body::before {
   transform: rotate(-2deg);
 }
 
-.login-container { 
-  z-index: 2; 
-  display: inline-flex; 
-  align-items: center; 
+/* ================================
+   🧍 LOGIN
+================================ */
+.login-container {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  font-family: 'Bangers', cursive; 
-  font-size: 1.5rem; 
-  background: var(--comic-yellow); 
-  color: var(--comic-black); 
-  border: 4px solid var(--comic-black); 
-  border-radius: 15px; 
-  position: relative; 
+  z-index: 2;
+  font-size: 1.5rem;
+  background: var(--comic-yellow);
+  color: var(--comic-black);
+  border: 4px solid var(--comic-black);
+  border-radius: 15px;
   height: 50px;
   line-height: 1;
-    box-shadow: 2px 2px 0 var(--comic-black);
+  box-shadow: 2px 2px 0 var(--comic-black);
+  position: relative;
 }
 
+.login-form,
+.signIn-container {
+  font-family: 'Bangers', cursive;
+  width: 750px;
+  font-size: 1.5rem;
+  margin: 30px 0;
+  padding: 25px 35px;
+  background: var(--comic-white);
+  color: var(--comic-black);
+  border: 5px solid var(--comic-black);
+  border-radius: 15px;
+  box-shadow: 8px 8px 0 var(--comic-yellow);
+}
+
+
+
+/* ================================
+   📜 MAIN CONTENT
+================================ */
 .main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
   text-align: center;
   overflow-y: auto;
 }
 
 .main h1 {
-  font-family: 'Bangers', cursive;
   font-size: 3.5rem;
   margin-bottom: 20px;
   color: var(--comic-blue);
@@ -140,10 +175,7 @@ body::before {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
-  height: 0;
 }
-
 
 .main h2::before {
   bottom: -22px;
@@ -161,9 +193,9 @@ body::before {
 
 .main p {
   font-size: 1.4rem;
-  margin-bottom: 30px;
   color: var(--comic-black);
   font-weight: 600;
+  padding: 15px;
 }
 
 p {
@@ -173,96 +205,9 @@ p {
   padding: 15px;
 }
 
-.sidebar {
-  background: var(--comic-blue);
-  color: var(--comic-white);
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  width: 350px;
-  min-width: 350px;
-  overflow-y: auto;
-  border-right: 6px solid var(--comic-black);
-  box-sizing: border-box;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-/* Botones estilo cómic */
-.btn,
-.btn-no,
-.btn-login,
-.sidebar a,
-.toggle-btn,
-.btn-logout {
-  text-decoration: none;
-  font-family: 'Bangers', cursive;
-  border: 4px solid var(--comic-black);
-  font-size: 1.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin: 10px;
-  display: inline-block;
-  letter-spacing: 2px;
-  position: relative;
-  box-shadow: 2px 2px 0 var(--comic-black);
-  border-radius: 10px;
-  padding: 5px 10px;
-}
-
-.btn:hover,
-.btn-no:hover,
-.btn-login:hover,
-.sidebar a:hover,
-.toggle-btn:hover,
-.btn-logout:hover {
-  transform: translate(2px, 2px);
-  box-shadow: none;
-}
-
-/** * 🚨 ESTILOS ACTUALIZADOS PARA .btn-logout 🚨
-  * Ahora es AMARILLO (como el sidebar) en lugar de rojo.
-  */
-.btn-logout {
-  background: var(--comic-red); /* Fondo amarillo como los enlaces del sidebar */
-  color: var(--comic-black); /* Texto negro como los enlaces del sidebar */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn {
-  background: var(--comic-blue);
-  color: var(--comic-white);
-}
-
-.btn-no {
-  background: var(--comic-red);
-  color: var(--comic-white);
-}
-
-.btn-login,
-.sidebar a,
-.toggle-btn {
-  background: var(--comic-yellow);
-  color: var(--comic-black);
-}
-
-/** * 🚨 ESTILOS ACTUALIZADOS PARA CONSISTENCIA DE FUENTE 🚨
-  * Se incluye .btn-logout para que el tamaño de fuente sea 1.3rem,
-  * como los enlaces del sidebar.
-  */
-.btn-login,
-.sidebar a { 
-  font-size: 1.3rem;
-}
-
-.btn-logout{
-  font-size: 1rem;
-}
-
-
-/* Globo tipo cómic */
+/* ================================
+   💬 GLOBO CÓMIC
+================================ */
 .restants {
   background: var(--comic-yellow);
   border: 5px solid var(--comic-black);
@@ -270,7 +215,6 @@ p {
   padding: 25px 40px;
   margin: 30px auto;
   max-width: 80%;
-  font-family: 'Bangers', cursive;
   font-size: 1.8rem;
   letter-spacing: 1px;
   box-shadow: 4px 4px 0 var(--comic-black);
@@ -278,6 +222,9 @@ p {
   transform: rotate(-1deg);
 }
 
+/* ================================
+   📚 BIBLIOTECA / CARDS
+================================ */
 .biblioteca {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -289,7 +236,6 @@ p {
 .card {
   position: relative;
   border-radius: 12px;
-  overflow: visible;
   background: var(--comic-red);
   padding: 8px;
   border: 5px solid var(--comic-black);
@@ -304,20 +250,20 @@ p {
 }
 
 .card-inner {
-  position: relative;
   border-radius: 8px;
   overflow: hidden;
   width: 100%;
   height: 280px;
   border: 3px solid var(--comic-black);
+  position: relative;
 }
 
 .foto {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
   filter: contrast(1.1) saturate(1.2);
+  display: block;
 }
 
 .card h3 {
@@ -327,7 +273,6 @@ p {
   right: 10px;
   background: var(--comic-yellow);
   color: var(--comic-black);
-  font-family: 'Bangers', cursive;
   text-align: center;
   padding: 8px 12px;
   letter-spacing: 2px;
@@ -352,7 +297,102 @@ p {
   font-weight: 600;
 }
 
-/* Scrollbar estilo cómic */
+/* ================================
+   🔘 BOTONES CÓMIC
+================================ */
+.btn,
+.btn-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 4px solid var(--comic-black);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0 var(--comic-black);
+  text-decoration: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 10px;
+  padding: 10px 20px;
+  letter-spacing: 2px;
+}
+
+.btn:hover,
+.btn-no:hover {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.btn {
+  background: var(--comic-blue);
+  color: var(--comic-white);
+}
+
+.btn-no {
+  background: var(--comic-red);
+  color: var(--comic-white);
+}
+
+/* Botones secundarios (login, sidebar, logout) */
+.btn-login,
+.sidebar a,
+.btn-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  font-size: 1.3rem;
+  border: 4px solid var(--comic-black);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0 var(--comic-black);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.btn-login {
+  background: var(--comic-yellow);
+  color: var(--comic-black);
+}
+
+.sidebar a {
+  background: var(--comic-yellow);
+  color: var(--comic-black);
+}
+
+.btn-logout {
+  background: var(--comic-red);
+  color: var(--comic-black);
+  font-size: 1rem;
+}
+
+.btn-login:hover,
+.sidebar a:hover,
+.btn-logout:hover {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Iconos SVG */
+.btn svg,
+.btn-no svg,
+.btn-login svg,
+.sidebar a svg,
+.btn-logout svg {
+  width: 1.2em;
+  height: 1.2em;
+  flex-shrink: 0;
+  display: block;
+  vertical-align: middle;
+}
+
+/* ================================
+   🧾 SCROLLBAR CÓMIC
+================================ */
 ::-webkit-scrollbar {
   width: 14px;
 }
@@ -362,56 +402,93 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-  cursor: pointer;
   background: var(--comic-red);
   border: 6px solid var(--comic-black);
   border-radius: 10px;
+  cursor: pointer;
 }
 
-
-/* Centrar iconos SVG en botones y enlaces */
-.sidebar a,
-.btn,
-.btn-no,
-.btn-login,
-.btn-logout { /* Se incluye .btn-logout aquí */
-  display: inline-flex;
-  align-items: center;
-  gap: 8px; /* separa el icono del texto */
-  vertical-align: middle;
-}
-
-/* Ajuste fino de los SVG */
-.sidebar a svg,
-.btn svg,
-.btn-no svg,
-.btn-login svg,
-.btn-logout svg { /* Se incluye .btn-logout aquí */
-  width: 1.2em;
-  height: 1.2em;
-  flex-shrink: 0;
-  vertical-align: middle;
-  display: block;
-}
-
-/* Cuando la barra está colapsada */
-#toggle-sidebar:checked ~ .sidebar a {
+/* Centrar el formulari */
+.login-wrapper {
+  flex: 1; /* ocupa tot l’espai disponible */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: center; /* horitzontal */
+  align-items: center;     /* vertical */
 }
 
-/* LOGIN STYLE */
-.login-form, .signIn-container{
-  width: 40%;
-      position: relative;
-    border-radius: 12px;
-    overflow: visible;
-    background: var(--comic-white);
-    padding: 8px;
-    border: 5px solid var(--comic-black);
-    box-shadow: 8px 8px 0 var(--comic-black);
-    transition: all 0.2s 
-ease;
-    cursor: pointer;
+/* Formularis */
+.login-form,
+.signIn-container {
+  width: 750px;
+  font-size: 1.5rem;
+  padding: 25px 35px;
+  background: var(--comic-white);
+  color: var(--comic-black);
+  border: 5px solid var(--comic-black);
+  border-radius: 15px;
+  box-shadow: 8px 8px 0 var(--comic-yellow);
+  text-align: center;
+}
+
+.login-form h2,
+.signIn-container h2 {
+  font-size: 2rem;
+  color: var(--comic-blue);
+  text-shadow: 3px 3px 0 var(--comic-black);
+  margin-bottom: 20px;
+}
+
+.login-form label,
+.signIn-container label {
+  display: block;
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"],
+.signIn-container input[type="email"],
+.signIn-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 3px solid var(--comic-black);
+  border-radius: 8px;
+  margin-top: 5px;
+  font-family: 'Comic Neue', cursive;
+  font-size: 1rem;
+}
+
+input[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--comic-blue);
+  color: var(--comic-white);
+  border: 4px solid var(--comic-black);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Bangers', cursive;
+  box-shadow: 4px 4px 0 var(--comic-black);
+  transition: all 0.2s ease;
+}
+
+input[type="submit"]:hover {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Enllaç de registre */
+.registro-link {
+  margin-top: 15px;
+  font-family: 'Comic Neue', cursive;
+}
+
+.registro-link a {
+  color: var(--comic-red);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  text-align: center;
 }

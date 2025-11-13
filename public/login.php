@@ -14,6 +14,11 @@
 </head>
 <body>
 
+<div>
+    <img src="img/" alt="Akinator">
+</div>
+
+
   <div class="login-wrapper">
     <?php
       require '../config/database.php';

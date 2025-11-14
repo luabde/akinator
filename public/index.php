@@ -146,7 +146,7 @@ $comptador_restants = 0;
 </head>
 <body>
 <div class="sidebar">
-    <p>Menu</p>
+    <h2>Menu</h2>
     <a href="?seccio=">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000ff"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h240v80H200v560h560v-240h80v240q0 33-23.5 56.5T760-120H200Zm440-400v-120H520v-80h120v-120h80v120h120v80H720v120h-80Z"/></svg>
         <span>Nova partida</span>
@@ -161,7 +161,7 @@ $comptador_restants = 0;
     </a>
 
     <?php if ($seccio==='historial'): ?>
-        <div class="sidebar-content"><p>Historial</p>
+        <div class="sidebar-content"><h2>Historial</h2>
             <?php mostraHistorial(); ?>
             <form method="post">
                 <?php if(!empty($_SESSION['historial'])): ?>
@@ -172,7 +172,7 @@ $comptador_restants = 0;
     <?php endif; ?>
 
     <?php if ($seccio==='biblioteca'): ?>
-        <div class="sidebar-content"><p>Biblioteca</p>
+        <div class="sidebar-content"><h2>Biblioteca</h2>
         <?php
             require '../controllers/personajesController.php';
             $controller = new PersonajeController();

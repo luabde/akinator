@@ -195,6 +195,12 @@ html, body {
   color: var(--comic-black);
 }
 
+.sidebar h2 {
+  color: var(--comic-black);
+    padding: 20px 15px;
+    font-size: 1.5rem;
+}
+
 .btn-logout {
   background: var(--comic-red);
   color: var(--comic-black);

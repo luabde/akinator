@@ -20,7 +20,8 @@
 }
 
 footer {
-  border-top: 6px solid var(--comic-black);
-  background: var(--comic-white);
+  border-top: 6px solid var(--login-black);
+  background: var(--login-white);
   text-align: center;
+  padding: 15px 0;
 }

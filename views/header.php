@@ -8,7 +8,9 @@
 </head>
 <body>
   <nav class="header">
-    <span class="header-title">AKINATOR DC</span> 
+    <span class="header-title">
+  <a href="index.php" style="text-decoration: none; color: inherit;">AKINATOR DC</a>
+</span>
 
       <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
         <div class="login-container">

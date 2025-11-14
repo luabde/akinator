@@ -187,10 +187,10 @@ $comptador_restants = 0;
 <?php require '../views/header.php'?>
 
 <div class="main">
-    <?php if(!isset($_POST['start']) && !isset($_POST['pregunta_id']) && !$final): ?>
+    <!-- <?php if(!isset($_POST['start']) && !isset($_POST['pregunta_id']) && !$final): ?> -->
         <h1>Pensa en un personatge!</h1>
         <p>I jo intentaré endevinar-lo amb preguntes de sí/no!</p>
-        <form method="post">
+        <form action="../controllers/gameController?estadoJuego=comenzar">
             <button name="start" class="btn">Començar partida</button>
         </form>
     <?php elseif($final): ?>

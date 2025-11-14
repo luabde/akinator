@@ -12,7 +12,8 @@
   <!-- Estils -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="login-page">
+
 <?php
   session_start();
   // Obtener errores de la sesión y limpiarlos
@@ -21,10 +22,9 @@
 
 ?>
 
-<div>
-    <img src="img/fotoAkinator.png" alt="Akinator" width="500px">
-</div>
-
+<?php require '../views/header.php'?>
+<div class="akinator">
+  <img src="img/fotoAkinator.png" alt="Akinator" height="auto">
 
   <div class="login-wrapper">
 
@@ -76,8 +76,8 @@
       <?php endforeach; ?>
 
       <form method="POST" novalidate action="../controllers/userController.php?action=signin">
-        <fieldset>
-          <legend>Nom d'usuari, Email i contrasenya</legend>
+      <fieldset style="border: none;">          
+        <legend>Nom d'usuari, Email i contrasenya</legend>
           <label for="nomUsuari">Nom d'usuari</label>
           <input type="text" name="nomUsuari" placeholder="El teu nom d'usuari" id="nomUsuari" required>
 
@@ -97,5 +97,7 @@
 
     <?php } ?>
   </div>
+  </div>
+  <?php require '../views/footer.php';?>
 </body>
 </html>

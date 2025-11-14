@@ -24,10 +24,30 @@ html, body {
   height: 100%; /* important per ocupar tota l'altura */
 }
 
-body {
+.game-page .akinator {
   display: flex;
-  justify-content: flex-start; /* sidebar a l'esquerra */
-  align-items: stretch;        /* els fills ocupen tota l'altura */
+  height: 100%;   /* SOLO en el juego */
+}
+
+.login-page .akinator {
+  flex: 1;                      /* Ocupa todo el espacio disponible sin mover el footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+/* Imagen del Akinator */
+.akinator img {
+  height: 100%;                 /* Ocupa el máximo alto disponible */
+  max-height: 100%;             /* Sin desbordar */
+  width: auto;                  /* Mantiene proporción */
+  object-fit: contain;
+}
+
+
+body {
   background: var(--paper-bg);
   overflow: hidden;
   font-family: 'Bangers', cursive;
@@ -119,7 +139,7 @@ body {
 .login-form,
 .signIn-container {
   font-family: 'Bangers', cursive;
-  width: 750px;
+  width: 50%;
   font-size: 1.5rem;
   margin: 30px 0;
   padding: 25px 35px;
@@ -407,7 +427,6 @@ p {
 
 /* Centrar el formulari */
 .login-wrapper {
-  height: 80%;
   flex: 1; /* ocupa tot l’espai disponible */
   display: flex;
   justify-content: center; /* horitzontal */
@@ -415,18 +434,6 @@ p {
 }
 
 /* Formularis */
-.login-form,
-.signIn-container {
-  width: 750px;
-  font-size: 1.5rem;
-  padding: 25px 35px;
-  background: var(--comic-white);
-  color: var(--comic-black);
-  border: 5px solid var(--comic-black);
-  border-radius: 15px;
-  box-shadow: 8px 8px 0 var(--comic-yellow);
-  text-align: center;
-}
 
 .login-form h2,
 .signIn-container h2 {
@@ -488,5 +495,7 @@ input[type="submit"]:hover {
 
 /* Footer */
 footer {
+  border-top: 6px solid var(--comic-black);
+  background: var(--comic-white);
   text-align: center;
 }

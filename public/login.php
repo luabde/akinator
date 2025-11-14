@@ -25,8 +25,8 @@
 <?php require '../views/header.php'; ?>
 
 <div id="main">
-    <img src="img/fotoAkinator.png" alt="Akinator">
-
+    <img src="img/fotoAkinator.png" alt="Akinator" height="100%">
+<div>
     <?php
       $form = $_GET['login'] ?? '';
       if(empty($form) || $form == 'login'):
@@ -55,7 +55,6 @@
         <p class="registro-link">
           No tens compte? <a href="login.php?login=signIn">Registra't aquí</a>
         </p>
-      </div>
     <?php else: ?>
       <div class="signIn-container">
         <h2>Registra't</h2>
@@ -79,10 +78,10 @@
         <p class="registro-link">
           Ja tens compte? <a href="login.php?login=login">Inicia sessió aquí</a>
         </p>
-      </div>
     <?php endif; ?>
-</div>
 
+</div>
 <?php require '../views/footer.php'; ?>
+</div>
 </body>
 </html>

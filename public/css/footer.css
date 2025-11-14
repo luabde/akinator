@@ -15,8 +15,6 @@
 
 footer {
   font-family: cursive;
-  border-top: 6px solid var(--login-black);
-  background: var(--login-white);
   text-align: center;
   padding: 20px 0;
   font-size: 1.3rem;

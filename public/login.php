@@ -58,10 +58,10 @@
         <p class="registro-link">
           No tens compte? <a href="login.php?login=signIn">Registra't aquí</a>
         </p>
-        <?php
-        else 
-        // Cuando el form sea algo diferente a login, en este caso signup se mostrará el formulario para registrarse
-    ?>
+        
+    <?php else: ?>
+      <!-- Cuando el form sea algo diferente a login, en este caso signup se mostrará el formulario para registrarse -->
+
       <div class="signIn-container">
         <h2>Registra't</h2>
         <?php foreach($errores as $key): ?>

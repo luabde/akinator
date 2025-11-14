@@ -1,5 +1,3 @@
-  <footer>
-    <p>Akinator - Derechos reservados</p>
-  </footer>
-</body>
-</html>
+<footer>
+  <p>Akinator - Lucia Abellán i Pau Soldevilla 🄯</p>
+</footer>

@@ -24,7 +24,7 @@
 
 <?php require '../views/header.php'?>
 <div class="akinator">
-  <img src="img/fotoAkinator.png" alt="Akinator" height="auto">
+  <img src="img/fotoAkinator.png" alt="Akinator" height="600px">
 
   <div class="login-wrapper">
 

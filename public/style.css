@@ -38,31 +38,12 @@ html, body {
   overflow: hidden;
 }
 
-/* Imagen del Akinator */
-.akinator img {
-  height: 100%;                 /* Ocupa el máximo alto disponible */
-  max-height: 100%;             /* Sin desbordar */
-  width: auto;                  /* Mantiene proporción */
-  object-fit: contain;
-}
-
 
 body {
   background: var(--paper-bg);
   overflow: hidden;
   font-family: 'Bangers', cursive;
 }
-
-/* Puntos de Ben-Day */
-/* body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  background-size: 4px 4px;
-  pointer-events: none;
-  z-index: 0;
-} */
 
 /* ================================
    🖤 LAYOUT PRINCIPAL
@@ -450,8 +431,10 @@ p {
   font-size: 1.2rem;
 }
 
+.login-form input[type="text"],
 .login-form input[type="email"],
 .login-form input[type="password"],
+.signIn-container input[type="text"],
 .signIn-container input[type="email"],
 .signIn-container input[type="password"] {
   width: 100%;

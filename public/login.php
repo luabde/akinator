@@ -18,6 +18,7 @@
 
 <?php
   session_start();
+  // Obtener errores de la sesión y limpiarlos
   $errores = $_SESSION['errores_login'] ?? [];
   unset($_SESSION['errores_login']);
 ?>
@@ -29,10 +30,12 @@
 <div>
     <?php
       $form = $_GET['login'] ?? '';
+      // En el caso de que no haya nada en form o que form sea login, se mostrará el formulario de login.
       if(empty($form) || $form == 'login'):
     ?>
       <div class="login-form">
         <h2>Iniciar sessió</h2>
+        <!-- En el caso de hayan errores, se mostraran a traves de un foreach -->
         <?php if (!empty($errores)): ?>
           <div class="errores-container">
             <?php foreach($errores as $error): ?>
@@ -55,7 +58,10 @@
         <p class="registro-link">
           No tens compte? <a href="login.php?login=signIn">Registra't aquí</a>
         </p>
-    <?php else: ?>
+        <?php
+        else 
+        // Cuando el form sea algo diferente a login, en este caso signup se mostrará el formulario para registrarse
+    ?>
       <div class="signIn-container">
         <h2>Registra't</h2>
         <?php foreach($errores as $key): ?>

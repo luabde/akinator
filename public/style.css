@@ -1,5 +1,5 @@
 /* ================================
-   🎨 VARIABLES PRINCIPALES
+   🎨 VARIABLES GENERALS
 ================================ */
 :root {
   --comic-red: #e63946;
@@ -12,7 +12,7 @@
 }
 
 /* ================================
-   ⚙️ BASE Y RESETEO
+   ⚙️ RESET BÀSIC
 ================================ */
 * {
   margin: 0;
@@ -21,28 +21,12 @@
 }
 
 html, body {
-  height: 100%; /* important per ocupar tota l'altura */
-}
-
-.game-page .akinator {
+  width: 100%;
   display: flex;
-  height: 100%;   /* SOLO en el juego */
-}
-
-.login-page .akinator {
-  flex: 1;                      /* Ocupa todo el espacio disponible sin mover el footer */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  overflow: hidden;
-}
-
-
-body {
+  height: 100%;
+  font-family: 'Bangers', cursive;
   background: var(--paper-bg);
   overflow: hidden;
-  font-family: 'Bangers', cursive;
 }
 
 /* ================================
@@ -60,7 +44,7 @@ body {
   border-right: 6px solid var(--comic-black);
   transition: all 0.3s ease;
   position: relative;
-  height: 100%; /* ocupa tota l'altura */
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -72,152 +56,7 @@ body {
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
-  height: 100%; /* ocupa tota l'altura */
-}
-
-/* ================================
-   🧭 HEADER
-================================ */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
-  padding: 20px;
-  background: var(--comic-white);
-  color: var(--comic-black);
-  font-weight: bold;
-  border-bottom: 6px solid var(--comic-black);
-}
-
-.header-title {
-  font-size: 2rem;
-  letter-spacing: 3px;
-  color: var(--comic-red);
-  text-shadow: 3px 3px 0 var(--comic-black);
-  transform: rotate(-2deg);
-}
-
-/* ================================
-   🧍 LOGIN
-================================ */
-.login-container {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  font-size: 1.5rem;
-  background: var(--comic-yellow);
-  color: var(--comic-black);
-  border: 4px solid var(--comic-black);
-  border-radius: 15px;
-  height: 50px;
-  line-height: 1;
-  box-shadow: 2px 2px 0 var(--comic-black);
-  position: relative;
-}
-
-.login-form,
-.signIn-container {
-  font-family: 'Bangers', cursive;
-  width: 50%;
-  font-size: 1.5rem;
-  margin: 30px 0;
-  padding: 25px 35px;
-  background: var(--comic-white);
-  color: var(--comic-black);
-  border: 5px solid var(--comic-black);
-  border-radius: 15px;
-  box-shadow: 8px 8px 0 var(--comic-yellow);
-}
-
-/* ================================
-   📜 MAIN CONTENT
-================================ */
-.main {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  overflow-y: auto;
-}
-
-.main h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  color: var(--comic-blue);
-  text-shadow: 4px 4px 0 var(--comic-black);
-  letter-spacing: 2px;
-  transform: rotate(-1deg);
-}
-
-.main h2 {
-  font-family: 'Bangers', cursive;
-  width: 750px;
-  font-size: 1.5rem;
-  margin: 30px 0;
-  padding: 25px 35px;
-  background: var(--comic-white);
-  color: var(--comic-black);
-  border: 5px solid var(--comic-black);
-  border-radius: 15px;
-  box-shadow: 8px 8px 0 var(--comic-yellow);
-  position: relative;
-}
-
-.main h2::before,
-.main h2::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.main h2::before {
-  bottom: -22px;
-  border-left: 22px solid transparent;
-  border-right: 22px solid transparent;
-  border-top: 22px solid var(--comic-black);
-}
-
-.main h2::after {
-  bottom: -15px;
-  border-left: 17px solid transparent;
-  border-right: 17px solid transparent;
-  border-top: 17px solid var(--comic-white);
-}
-
-.main p {
-  font-size: 1.4rem;
-  color: var(--comic-black);
-  font-weight: 600;
-  padding: 15px;
-}
-
-p {
-  font-size: 1.4rem;
-  color: var(--comic-black);
-  font-weight: 600;
-  padding: 15px;
-}
-
-/* ================================
-   💬 GLOBO CÓMIC
-================================ */
-.restants {
-  background: var(--comic-yellow);
-  border: 5px solid var(--comic-black);
-  border-radius: 20px;
-  padding: 25px 40px;
-  margin: 30px auto;
-  max-width: 80%;
-  font-size: 1.8rem;
-  letter-spacing: 1px;
-  box-shadow: 4px 4px 0 var(--comic-black);
-  color: var(--comic-black);
-  transform: rotate(-1deg);
+  height: 100%;
 }
 
 /* ================================
@@ -296,7 +135,7 @@ p {
 }
 
 /* ================================
-   🔘 BOTONES CÓMIC
+   🔘 BOTONS
 ================================ */
 .btn,
 .btn-no {
@@ -332,8 +171,7 @@ p {
   color: var(--comic-white);
 }
 
-/* Botones secundarios (login, sidebar, logout) */
-.btn-login,
+/* Botons secundaris (sidebar, logout) */
 .sidebar a,
 .btn-logout {
   display: inline-flex;
@@ -352,11 +190,6 @@ p {
   letter-spacing: 2px;
 }
 
-.btn-login {
-  background: var(--comic-yellow);
-  color: var(--comic-black);
-}
-
 .sidebar a {
   background: var(--comic-yellow);
   color: var(--comic-black);
@@ -368,28 +201,14 @@ p {
   font-size: 1rem;
 }
 
-.btn-login:hover,
 .sidebar a:hover,
 .btn-logout:hover {
   transform: translate(2px, 2px);
   box-shadow: none;
 }
 
-/* Iconos SVG */
-.btn svg,
-.btn-no svg,
-.btn-login svg,
-.sidebar a svg,
-.btn-logout svg {
-  width: 1.2em;
-  height: 1.2em;
-  flex-shrink: 0;
-  display: block;
-  vertical-align: middle;
-}
-
 /* ================================
-   🧾 SCROLLBAR CÓMIC
+   🧾 SCROLLBAR
 ================================ */
 ::-webkit-scrollbar {
   width: 14px;
@@ -406,79 +225,85 @@ p {
   cursor: pointer;
 }
 
-/* Centrar el formulari */
-.login-wrapper {
-  flex: 1; /* ocupa tot l’espai disponible */
+/* ================================
+   📜 MAIN CONTENT
+================================ */
+.main {
+  flex-grow: 1;
   display: flex;
-  justify-content: center; /* horitzontal */
-  align-items: center;     /* vertical */
-}
-
-/* Formularis */
-
-.login-form h2,
-.signIn-container h2 {
-  font-size: 2rem;
-  color: var(--comic-blue);
-  text-shadow: 3px 3px 0 var(--comic-black);
-  margin-bottom: 20px;
-}
-
-.login-form label,
-.signIn-container label {
-  display: block;
-  margin-top: 15px;
-  font-size: 1.2rem;
-}
-
-.login-form input[type="text"],
-.login-form input[type="email"],
-.login-form input[type="password"],
-.signIn-container input[type="text"],
-.signIn-container input[type="email"],
-.signIn-container input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 3px solid var(--comic-black);
-  border-radius: 8px;
-  margin-top: 5px;
-  font-family: 'Comic Neue', cursive;
-  font-size: 1rem;
-}
-
-input[type="submit"] {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: var(--comic-blue);
-  color: var(--comic-white);
-  border: 4px solid var(--comic-black);
-  border-radius: 10px;
-  cursor: pointer;
-  font-family: 'Bangers', cursive;
-  box-shadow: 4px 4px 0 var(--comic-black);
-  transition: all 0.2s ease;
-}
-
-input[type="submit"]:hover {
-  transform: translate(2px, 2px);
-  box-shadow: none;
-}
-
-/* Enllaç de registre */
-.registro-link {
-  margin-top: 15px;
-  font-family: 'Comic Neue', cursive;
-}
-
-.registro-link a {
-  color: var(--comic-red);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* Footer */
-footer {
-  border-top: 6px solid var(--comic-black);
-  background: var(--comic-white);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  overflow-y: auto;
 }
+
+.main h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: var(--comic-blue);
+  text-shadow: 4px 4px 0 var(--comic-black);
+  letter-spacing: 2px;
+  transform: rotate(-1deg);
+}
+
+.main h2 {
+  font-family: 'Bangers', cursive;
+  width: 750px;
+  font-size: 1.5rem;
+  margin: 30px 0;
+  padding: 25px 35px;
+  background: var(--comic-white);
+  color: var(--comic-black);
+  border: 5px solid var(--comic-black);
+  border-radius: 15px;
+  box-shadow: 8px 8px 0 var(--comic-yellow);
+  position: relative;
+}
+
+.main h2::before,
+.main h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.main h2::before {
+  bottom: -22px;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 22px solid var(--comic-black);
+}
+
+.main h2::after {
+  bottom: -15px;
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-top: 17px solid var(--comic-white);
+}
+
+.main p {
+  font-size: 1.4rem;
+  color: var(--comic-black);
+  font-weight: 600;
+  padding: 15px;
+}
+
+/* ================================
+   💬 GLOBO CÓMIC
+================================ */
+.restants {
+  background: var(--comic-yellow);
+  border: 5px solid var(--comic-black);
+  border-radius: 20px;
+  padding: 25px 40px;
+  margin: 30px auto;
+  max-width: 80%;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  box-shadow: 4px 4px 0 var(--comic-black);
+  color: var(--comic-black);
+  transform: rotate(-1deg);
+}
+

@@ -1,0 +1,336 @@
+/* ================================
+   🎨 VARIABLES LOGIN
+================================ */
+:root {
+  --login-bg: #fffef0;
+  --login-blue: #457b9d;
+  --login-red: #e63946;
+  --login-yellow: #f1c40f;
+  --login-black: #212529;
+  --login-white: #f8f9fa;
+}
+
+/* ================================
+   ⚙️ RESET BÀSIC
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+display: block;
+  height: 100%;
+  font-family: 'Bangers', cursive;
+  background: var(--login-bg);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ================================
+   🧍 LOGIN WRAPPER
+================================ */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+  gap: 2rem;
+}
+
+/* ================================
+   🖊 FORMULARIS LOGIN / SIGNIN
+================================ */
+.login-form,
+.signIn-container {
+  background: var(--login-white);
+  border: 5px solid var(--login-black);
+  border-radius: 15px;
+  box-shadow: 8px 8px 0 var(--login-yellow);
+  padding: 30px 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form h2,
+.signIn-container h2 {
+  font-size: 2rem;
+  color: var(--login-blue);
+  text-shadow: 3px 3px 0 var(--login-black);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-form label,
+.signIn-container label {
+  display: block;
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"],
+.signIn-container input[type="text"],
+.signIn-container input[type="email"],
+.signIn-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-family: 'Comic Neue', cursive;
+  font-size: 1rem;
+  border: 3px solid var(--login-black);
+  border-radius: 8px;
+}
+
+input[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--login-blue);
+  color: var(--login-white);
+  border: 4px solid var(--login-black);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Bangers', cursive;
+  box-shadow: 4px 4px 0 var(--login-black);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+input[type="submit"]:hover {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* ================================
+   🟥 MISSATGES D'ERROR
+================================ */
+.errores-container {
+  margin-bottom: 15px;
+}
+
+.errores-login-form {
+  background: var(--login-red);
+  color: var(--login-white);
+  border: 3px solid var(--login-black);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  box-shadow: 2px 2px 0 var(--login-black);
+}
+
+/* ================================
+   🔗 ENLLAÇ DE REGISTRE / LOGIN
+================================ */
+.registro-link {
+  margin-top: 15px;
+  text-align: center;
+  font-family: 'Comic Neue', cursive;
+}
+
+.registro-link a {
+  color: var(--login-red);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ================================
+   🖼 AKINATOR IMAGE
+================================ */
+
+.akinator {
+  display: flex;
+}
+
+.akinator > img {
+  max-height: 600px;
+}
+
+/* ================================
+   ⚡ RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .login-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }/* ================================
+   🎨 VARIABLES LOGIN
+================================ */
+:root {
+  --login-bg: #fffef0;
+  --login-blue: #457b9d;
+  --login-red: #e63946;
+  --login-yellow: #f1c40f;
+  --login-black: #212529;
+  --login-white: #f8f9fa;
+}
+
+/* ================================
+   ⚙️ RESET BÀSIC
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Bangers', cursive;
+  background: var(--login-bg);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ================================
+   🧍 LOGIN WRAPPER
+================================ */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+  gap: 2rem;
+}
+
+/* ================================
+   🖊 FORMULARIS LOGIN / SIGNIN
+================================ */
+.login-form,
+.signIn-container {
+  background: var(--login-white);
+  border: 5px solid var(--login-black);
+  border-radius: 15px;
+  box-shadow: 8px 8px 0 var(--login-yellow);
+  padding: 30px 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form h2,
+.signIn-container h2 {
+  font-size: 2rem;
+  color: var(--login-blue);
+  text-shadow: 3px 3px 0 var(--login-black);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-form label,
+.signIn-container label {
+  display: block;
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"],
+.signIn-container input[type="text"],
+.signIn-container input[type="email"],
+.signIn-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-family: 'Comic Neue', cursive;
+  font-size: 1rem;
+  border: 3px solid var(--login-black);
+  border-radius: 8px;
+}
+
+input[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--login-blue);
+  color: var(--login-white);
+  border: 4px solid var(--login-black);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Bangers', cursive;
+  box-shadow: 4px 4px 0 var(--login-black);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+input[type="submit"]:hover {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* ================================
+   🟥 MISSATGES D'ERROR
+================================ */
+.errores-container {
+  margin-bottom: 15px;
+}
+
+.errores-login-form {
+  background: var(--login-red);
+  color: var(--login-white);
+  border: 3px solid var(--login-black);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  box-shadow: 2px 2px 0 var(--login-black);
+}
+
+/* ================================
+   🔗 ENLLAÇ DE REGISTRE / LOGIN
+================================ */
+.registro-link {
+  margin-top: 15px;
+  text-align: center;
+  font-family: 'Comic Neue', cursive;
+}
+
+.registro-link a {
+  color: var(--login-red);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ================================
+   🖼 AKINATOR IMAGE
+================================ */
+.akinator > img {
+  max-height: 600px;
+}
+
+/* ================================
+   ⚡ RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .login-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .akinator > img {
+    max-height: 400px;
+  }
+
+  .login-form,
+  .signIn-container {
+    max-width: 90%;
+  }
+}
+
+
+  .akinator > img {
+    max-height: 400px;
+  }
+
+  .login-form,
+  .signIn-container {
+    max-width: 90%;
+  }
+}

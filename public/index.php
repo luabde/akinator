@@ -141,9 +141,10 @@ $comptador_restants = 0;
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="footer.css">
 </head>
-<body class="game-page">
-<div class="akinator">
+<body>
 <div class="sidebar">
     <p>Menu</p>
     <a href="?seccio=">
@@ -215,6 +216,5 @@ $comptador_restants = 0;
 </div>
 <?php require '../views/footer.php';?>
 </div>
-    </div>
 </body>
 </html>

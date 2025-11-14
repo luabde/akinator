@@ -35,7 +35,7 @@ El sistema segueix el patró **Model-Vista-Controlador (MVC)** per mantenir el c
 
 ---
 
-## 🗄️ Base de dades
+## Base de dades
 
 ### Taula: `usuarios`
 

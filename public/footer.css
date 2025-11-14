@@ -1,0 +1,26 @@
+/* ================================
+   🎨 VARIABLES LOGIN
+================================ */
+:root {
+  --login-bg: #fffef0;
+  --login-blue: #457b9d;
+  --login-red: #e63946;
+  --login-yellow: #f1c40f;
+  --login-black: #212529;
+  --login-white: #f8f9fa;
+}
+
+/* ================================
+   ⚙️ RESET BÀSIC
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+footer {
+  border-top: 6px solid var(--comic-black);
+  background: var(--comic-white);
+  text-align: center;
+}

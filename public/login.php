@@ -10,9 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Bangers&display=swap" rel="stylesheet">
 
   <!-- Estils -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="footer.css">
 </head>
-<body class="login-page">
+<body>
 
 <?php
   session_start();

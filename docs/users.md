@@ -1,6 +1,6 @@
-# 📚 Documentació Sistema de Gestió d'Usuaris - Akinator DC
+# Documentació Sistema de Gestió d'Usuaris - Akinator DC
 
-## 📋 Índex
+## Índex
 1. [Introducció](#introducció)
 2. [Arquitectura MVC](#arquitectura-mvc)
 4. [Model (userModel.php)](#model-usermodelphp)

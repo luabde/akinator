@@ -199,7 +199,7 @@ $seccio = $_GET['seccio'] ?? '';
             <h1>Pensa en un personatge!</h1>
             <p>I jo intentaré endevinar-lo amb preguntes de sí/no!</p>
             <form method="POST" action="../controllers/gameController.php">
-            <button name="inicio" class="btn">Començar partida</button>
+            <button name="inicio" class="btn-primary-si">Començar partida</button>
         </form>
         <?php elseif ($vista === 'pregunta'): ?> 
             <?php

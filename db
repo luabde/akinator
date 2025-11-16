@@ -1,273 +1,210 @@
-CREATE DATABASE IF NOT EXISTS akinator_dc CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE akinator_dc;
+-- ============================================
+-- BASE DE DATOS AKINATOR DC - VERSIÓN SIMPLIFICADA
+-- ============================================
 
--- TABLA DE PERSONAJES
+CREATE DATABASE IF NOT EXISTS akinator CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE akinator;
+
+-- ============================================
+-- TABLA DE PERSONAJES (CON COLUMNAS DIRECTAS)
+-- ============================================
 CREATE TABLE personajes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     imagen_url VARCHAR(255),
-    descripcion TEXT
+    descripcion TEXT,
+    -- Respuestas a las 24 preguntas
+    es_masculino TINYINT(1) DEFAULT NULL,
+    piel_inusual TINYINT(1) DEFAULT NULL,
+    usa_mascara TINYINT(1) DEFAULT NULL,
+    usa_casco TINYINT(1) DEFAULT NULL,
+    usa_capa TINYINT(1) DEFAULT NULL,
+    usa_armadura TINYINT(1) DEFAULT NULL,
+    usa_guantes TINYINT(1) DEFAULT NULL,
+    usa_gafas TINYINT(1) DEFAULT NULL,
+    color_rojo TINYINT(1) DEFAULT NULL,
+    color_azul TINYINT(1) DEFAULT NULL,
+    color_negro TINYINT(1) DEFAULT NULL,
+    color_verde TINYINT(1) DEFAULT NULL,
+    color_amarillo TINYINT(1) DEFAULT NULL,
+    color_morado TINYINT(1) DEFAULT NULL,
+    usa_maquillaje TINYINT(1) DEFAULT NULL,
+    tiene_emblema TINYINT(1) DEFAULT NULL,
+    porta_arma TINYINT(1) DEFAULT NULL,
+    puede_volar TINYINT(1) DEFAULT NULL,
+    super_fuerza TINYINT(1) DEFAULT NULL,
+    usa_magia TINYINT(1) DEFAULT NULL,
+    es_alien TINYINT(1) DEFAULT NULL,
+    es_liga_justicia TINYINT(1) DEFAULT NULL,
+    es_villano TINYINT(1) DEFAULT NULL,
+    asociado_batman TINYINT(1) DEFAULT NULL
 );
 
+-- ============================================
 -- TABLA DE PREGUNTAS
+-- ============================================
 CREATE TABLE preguntas (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    texto VARCHAR(255) NOT NULL
+    texto VARCHAR(255) NOT NULL,
+    columna_asociada VARCHAR(50) NOT NULL
 );
 
--- TABLA INTERMEDIA DE RESPUESTAS
-CREATE TABLE respuestas_personajes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    personaje_id INT NOT NULL,
-    pregunta_id INT NOT NULL,
-    respuesta TINYINT(1) NOT NULL,
-    FOREIGN KEY (personaje_id) REFERENCES personajes(id) ON DELETE CASCADE,
-    FOREIGN KEY (pregunta_id) REFERENCES preguntas(id) ON DELETE CASCADE,
-    UNIQUE KEY unique_respuesta (personaje_id, pregunta_id)
-);
-
--- INSERT DE PERSONAJES
-INSERT INTO personajes (nombre, imagen_url, descripcion) VALUES
-('Batman', '/img/personajes/batman.jpg', 'El Caballero Oscuro de Gotham City, un vigilante enmascarado que combate el crimen usando su intelecto, tecnología y habilidades de combate.'),
-('Superman', '/img/personajes/superman.jpg', 'El Hombre de Acero, un alienígena de Krypton con poderes extraordinarios que protege la Tierra como símbolo de esperanza.'),
-('Wonder Woman', '/img/personajes/wonder-woman.jpg', 'La Princesa Amazona de Themyscira, guerrera con poderes divinos y defensora de la verdad y la justicia.'),
-('Flash', '/img/personajes/flash.jpg', 'Barry Allen, el hombre más rápido del mundo, capaz de moverse a velocidades sobrehumanas.'),
-('Aquaman', '/img/personajes/aquaman.jpg', 'Rey de Atlantis con la capacidad de comunicarse con la vida marina y controlar los océanos.'),
-('Green Lantern', '/img/personajes/green-lantern.jpg', 'Hal Jordan, piloto de pruebas que porta un anillo de poder capaz de crear cualquier cosa que imagine.'),
-('Cyborg', '/img/personajes/cyborg.jpg', 'Victor Stone, mitad humano mitad máquina, con capacidades tecnológicas avanzadas.'),
-('Shazam', '/img/personajes/shazam.jpg', 'Billy Batson, un joven que al decir "Shazam" se transforma en un superhéroe adulto con poderes mágicos.'),
-('Nightwing', '/img/personajes/nightwing.jpg', 'Dick Grayson, el primer Robin que ahora opera como héroe independiente en Blüdhaven.'),
-('Robin', '/img/personajes/robin.jpg', 'Tim Drake, el tercer Robin y aliado detective de Batman.'),
-('Batgirl', '/img/personajes/batgirl.jpg', 'Barbara Gordon, heroína de Gotham con habilidades de combate y tecnología avanzada.'),
-('Supergirl', '/img/personajes/supergirl.jpg', 'Kara Zor-El, prima de Superman con los mismos poderes kryptonianos.'),
-('Green Arrow', '/img/personajes/green-arrow.jpg', 'Oliver Queen, arquero maestro que lucha contra el crimen con su arco y flechas especializadas.'),
-('Black Canary', '/img/personajes/black-canary.jpg', 'Dinah Lance, experta en artes marciales con un grito sónico devastador.'),
-('Hawkgirl', '/img/personajes/hawkgirl.jpg', 'Shayera Hol, guerrera alada de Thanagar con alas metálicas y una maza Nth.'),
-('Zatanna', '/img/personajes/zatanna.jpg', 'Maga y ilusionista que lanza hechizos hablando al revés.'),
-('Constantine', '/img/personajes/constantine.jpg', 'John Constantine, mago y ocultista experto en demonología y magia oscura.'),
-('Red Hood', '/img/personajes/red-hood.jpg', 'Jason Todd, el segundo Robin que ahora opera como antihéroe con métodos más violentos.'),
-('Starfire', '/img/personajes/starfire.jpg', 'Princesa alienígena de Tamaran con la capacidad de volar y proyectar energía estelar.'),
-('Raven', '/img/personajes/raven.jpg', 'Hija de un demonio con poderes de magia oscura y capacidades empáticas.'),
-('Joker', '/img/personajes/joker.jpg', 'El Príncipe Payaso del Crimen, archienemigo de Batman conocido por su caos impredecible.'),
-('Harley Quinn', '/img/personajes/harley-quinn.jpg', 'Antigua psiquiatra del Joker convertida en antiheroína caótica y acrobática.'),
-('Lex Luthor', '/img/personajes/lex-luthor.jpg', 'Genio millonario y archienemigo de Superman, obsesionado con demostrar la superioridad humana.'),
-('Catwoman', '/img/personajes/catwoman.jpg', 'Selina Kyle, ladrona de guante blanco con habilidades felinas y compleja relación con Batman.'),
-('Poison Ivy', '/img/personajes/poison-ivy.jpg', 'Pamela Isley, eco-terrorista con control sobre las plantas y toxinas vegetales.'),
-('Two-Face', '/img/personajes/two-face.jpg', 'Harvey Dent, ex fiscal de distrito obsesionado con la dualidad y las decisiones al azar.'),
-('Penguin', '/img/personajes/penguin.jpg', 'Oswald Cobblepot, señor del crimen de Gotham con apariencia de pingüino y paraguas armados.'),
-('Riddler', '/img/personajes/riddler.jpg', 'Edward Nygma, criminal obsesionado con acertijos y demostrar su superioridad intelectual.'),
-('Bane', '/img/personajes/bane.jpg', 'Mercenario con fuerza sobrehumana gracias al suero Venom, conocido por romper la espalda de Batman.'),
-('Scarecrow', '/img/personajes/scarecrow.jpg', 'Jonathan Crane, psiquiatra que usa toxinas del miedo para aterrorizar a sus víctimas.');
-
+-- ============================================
 -- INSERT DE PREGUNTAS
-INSERT INTO preguntas (texto) VALUES
-('¿Es un personaje masculino?'),
-('¿Su piel es de un color inusual? (verde, morado, azul, etc.)'),
-('¿Usa máscara que cubre su rostro?'),
-('¿Lleva casco o sombrero?'),
-('¿Usa capa?'),
-('¿Lleva armadura metálica o protección corporal?'),
-('¿Usa guantes como parte de su traje?'),
-('¿Lleva gafas, lentes o visera?'),
-('¿Su vestimenta incluye el color rojo?'),
-('¿Su vestimenta incluye el color azul?'),
-('¿Su vestimenta incluye el color negro?'),
-('¿Su vestimenta incluye el color verde?'),
-('¿Su vestimenta incluye el color amarillo o dorado?'),
-('¿Su vestimenta incluye el color morado?'),
-('¿Lleva maquillaje o pintura facial?'),
-('¿Tiene un símbolo o emblema en el pecho?'),
-('¿Porta un arma o herramienta característica?'),
-('¿Tiene la capacidad de volar?'),
-('¿Posee super fuerza?'),
-('¿Usa magia o tiene poderes mágicos?'),
-('¿Es un alien o de origen extraterrestre?'),
-('¿Es miembro de la Liga de la Justicia?'),
-('¿Es un villano o antagonista?'),
-('¿Está asociado directamente con Batman? (familia Bat, villano de Batman)');
+-- ============================================
+INSERT INTO preguntas (texto, columna_asociada) VALUES
+('¿Es un personaje masculino?', 'es_masculino'),
+('¿Su piel es de un color inusual? (verde, morado, azul, etc.)', 'piel_inusual'),
+('¿Usa máscara que cubre su rostro?', 'usa_mascara'),
+('¿Lleva casco o sombrero?', 'usa_casco'),
+('¿Usa capa?', 'usa_capa'),
+('¿Lleva armadura metálica o protección corporal?', 'usa_armadura'),
+('¿Usa guantes como parte de su traje?', 'usa_guantes'),
+('¿Lleva gafas, lentes o visera?', 'usa_gafas'),
+('¿Su vestimenta incluye el color rojo?', 'color_rojo'),
+('¿Su vestimenta incluye el color azul?', 'color_azul'),
+('¿Su vestimenta incluye el color negro?', 'color_negro'),
+('¿Su vestimenta incluye el color verde?', 'color_verde'),
+('¿Su vestimenta incluye el color amarillo o dorado?', 'color_amarillo'),
+('¿Su vestimenta incluye el color morado?', 'color_morado'),
+('¿Lleva maquillaje o pintura facial?', 'usa_maquillaje'),
+('¿Tiene un símbolo o emblema en el pecho?', 'tiene_emblema'),
+('¿Porta un arma o herramienta característica?', 'porta_arma'),
+('¿Tiene la capacidad de volar?', 'puede_volar'),
+('¿Posee super fuerza?', 'super_fuerza'),
+('¿Usa magia o tiene poderes mágicos?', 'usa_magia'),
+('¿Es un alien o de origen extraterrestre?', 'es_alien'),
+('¿Es miembro de la Liga de la Justicia?', 'es_liga_justicia'),
+('¿Es un villano o antagonista?', 'es_villano'),
+('¿Está asociado directamente con Batman? (familia Bat, villano de Batman)', 'asociado_batman');
 
--- INSERT DE RESPUESTAS
--- Batman (1)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(1, 1, 1), (1, 2, 0), (1, 3, 1), (1, 4, 0), (1, 5, 1), (1, 6, 1), (1, 7, 1), (1, 8, 0),
-(1, 9, 0), (1, 10, 0), (1, 11, 1), (1, 12, 0), (1, 13, 1), (1, 14, 0), (1, 15, 0),
-(1, 16, 1), (1, 17, 1), (1, 18, 0), (1, 19, 0), (1, 20, 0), (1, 21, 0), (1, 22, 1), (1, 23, 0), (1, 24, 1);
+-- ============================================
+-- INSERT DE PERSONAJES CON TODAS SUS RESPUESTAS
+-- ============================================
 
--- Superman (2)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(2, 1, 1), (2, 2, 0), (2, 3, 0), (2, 4, 0), (2, 5, 1), (2, 6, 0), (2, 7, 0), (2, 8, 0),
-(2, 9, 1), (2, 10, 1), (2, 11, 0), (2, 12, 0), (2, 13, 1), (2, 14, 0), (2, 15, 0),
-(2, 16, 1), (2, 17, 0), (2, 18, 1), (2, 19, 1), (2, 20, 0), (2, 21, 1), (2, 22, 1), (2, 23, 0), (2, 24, 0);
+-- 1. Batman
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Batman', '/img/personajes/batman.jpg', 'El Caballero Oscuro de Gotham City, un vigilante enmascarado que combate el crimen usando su intelecto, tecnología y habilidades de combate.', 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1);
 
--- Wonder Woman (3)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(3, 1, 0), (3, 2, 0), (3, 3, 0), (3, 4, 0), (3, 5, 0), (3, 6, 1), (3, 7, 1), (3, 8, 0),
-(3, 9, 1), (3, 10, 1), (3, 11, 0), (3, 12, 0), (3, 13, 1), (3, 14, 0), (3, 15, 0),
-(3, 16, 1), (3, 17, 1), (3, 18, 1), (3, 19, 1), (3, 20, 1), (3, 21, 0), (3, 22, 1), (3, 23, 0), (3, 24, 0);
+-- 2. Superman
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Superman', '/img/personajes/superman.jpg', 'El Hombre de Acero, un alienígena de Krypton con poderes extraordinarios que protege la Tierra como símbolo de esperanza.', 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0);
 
--- Flash (4)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(4, 1, 1), (4, 2, 0), (4, 3, 1), (4, 4, 0), (4, 5, 0), (4, 6, 0), (4, 7, 1), (4, 8, 0),
-(4, 9, 1), (4, 10, 0), (4, 11, 0), (4, 12, 0), (4, 13, 1), (4, 14, 0), (4, 15, 0),
-(4, 16, 1), (4, 17, 0), (4, 18, 0), (4, 19, 0), (4, 20, 0), (4, 21, 0), (4, 22, 1), (4, 23, 0), (4, 24, 0);
+-- 3. Wonder Woman
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Wonder Woman', '/img/personajes/wonder-woman.jpg', 'La Princesa Amazona de Themyscira, guerrera con poderes divinos y defensora de la verdad y la justicia.', 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0);
 
--- Aquaman (5)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(5, 1, 1), (5, 2, 0), (5, 3, 0), (5, 4, 0), (5, 5, 0), (5, 6, 1), (5, 7, 1), (5, 8, 0),
-(5, 9, 0), (5, 10, 0), (5, 11, 0), (5, 12, 1), (5, 13, 1), (5, 14, 0), (5, 15, 0),
-(5, 16, 0), (5, 17, 1), (5, 18, 0), (5, 19, 1), (5, 20, 0), (5, 21, 0), (5, 22, 1), (5, 23, 0), (5, 24, 0);
+-- 4. Flash
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Flash', '/img/personajes/flash.jpg', 'Barry Allen, el hombre más rápido del mundo, capaz de moverse a velocidades sobrehumanas.', 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0);
 
--- Green Lantern (6)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(6, 1, 1), (6, 2, 0), (6, 3, 1), (6, 4, 0), (6, 5, 0), (6, 6, 0), (6, 7, 1), (6, 8, 0),
-(6, 9, 0), (6, 10, 0), (6, 11, 1), (6, 12, 1), (6, 13, 0), (6, 14, 0), (6, 15, 0),
-(6, 16, 1), (6, 17, 1), (6, 18, 1), (6, 19, 0), (6, 20, 0), (6, 21, 1), (6, 22, 1), (6, 23, 0), (6, 24, 0);
+-- 5. Aquaman
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Aquaman', '/img/personajes/aquaman.jpg', 'Rey de Atlantis con la capacidad de comunicarse con la vida marina y controlar los océanos.', 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0);
 
--- Cyborg (7)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(7, 1, 1), (7, 2, 0), (7, 3, 0), (7, 4, 0), (7, 5, 0), (7, 6, 1), (7, 7, 0), (7, 8, 1),
-(7, 9, 1), (7, 10, 1), (7, 11, 0), (7, 12, 0), (7, 13, 0), (7, 14, 0), (7, 15, 0),
-(7, 16, 1), (7, 17, 1), (7, 18, 0), (7, 19, 1), (7, 20, 0), (7, 21, 0), (7, 22, 1), (7, 23, 0), (7, 24, 0);
+-- 6. Green Lantern
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Green Lantern', '/img/personajes/green-lantern.jpg', 'Hal Jordan, piloto de pruebas que porta un anillo de poder capaz de crear cualquier cosa que imagine.', 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0);
 
--- Shazam (8)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(8, 1, 1), (8, 2, 0), (8, 3, 0), (8, 4, 0), (8, 5, 1), (8, 6, 0), (8, 7, 1), (8, 8, 0),
-(8, 9, 1), (8, 10, 0), (8, 11, 0), (8, 12, 0), (8, 13, 1), (8, 14, 0), (8, 15, 0),
-(8, 16, 1), (8, 17, 0), (8, 18, 1), (8, 19, 1), (8, 20, 1), (8, 21, 0), (8, 22, 1), (8, 23, 0), (8, 24, 0);
+-- 7. Cyborg
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Cyborg', '/img/personajes/cyborg.jpg', 'Victor Stone, mitad humano mitad máquina, con capacidades tecnológicas avanzadas.', 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0);
 
--- Nightwing (9)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(9, 1, 1), (9, 2, 0), (9, 3, 1), (9, 4, 0), (9, 5, 0), (9, 6, 0), (9, 7, 1), (9, 8, 0),
-(9, 9, 0), (9, 10, 1), (9, 11, 1), (9, 12, 0), (9, 13, 0), (9, 14, 0), (9, 15, 0),
-(9, 16, 1), (9, 17, 1), (9, 18, 0), (9, 19, 0), (9, 20, 0), (9, 21, 0), (9, 22, 0), (9, 23, 0), (9, 24, 1);
+-- 8. Shazam
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Shazam', '/img/personajes/shazam.jpg', 'Billy Batson, un joven que al decir "Shazam" se transforma en un superhéroe adulto con poderes mágicos.', 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0);
 
--- Robin (10)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(10, 1, 1), (10, 2, 0), (10, 3, 1), (10, 4, 0), (10, 5, 1), (10, 6, 0), (10, 7, 1), (10, 8, 0),
-(10, 9, 1), (10, 10, 0), (10, 11, 1), (10, 12, 1), (10, 13, 1), (10, 14, 0), (10, 15, 0),
-(10, 16, 1), (10, 17, 1), (10, 18, 0), (10, 19, 0), (10, 20, 0), (10, 21, 0), (10, 22, 0), (10, 23, 0), (10, 24, 1);
+-- 9. Nightwing
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Nightwing', '/img/personajes/nightwing.jpg', 'Dick Grayson, el primer Robin que ahora opera como héroe independiente en Blüdhaven.', 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1);
 
--- Batgirl (11)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(11, 1, 0), (11, 2, 0), (11, 3, 1), (11, 4, 0), (11, 5, 1), (11, 6, 0), (11, 7, 1), (11, 8, 0),
-(11, 9, 0), (11, 10, 0), (11, 11, 1), (11, 12, 0), (11, 13, 1), (11, 14, 1), (11, 15, 0),
-(11, 16, 1), (11, 17, 1), (11, 18, 0), (11, 19, 0), (11, 20, 0), (11, 21, 0), (11, 22, 0), (11, 23, 0), (11, 24, 1);
+-- 10. Robin
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Robin', '/img/personajes/robin.jpg', 'Tim Drake, el tercer Robin y aliado detective de Batman.', 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1);
 
--- Supergirl (12)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(12, 1, 0), (12, 2, 0), (12, 3, 0), (12, 4, 0), (12, 5, 1), (12, 6, 0), (12, 7, 1), (12, 8, 0),
-(12, 9, 1), (12, 10, 1), (12, 11, 0), (12, 12, 0), (12, 13, 1), (12, 14, 0), (12, 15, 0),
-(12, 16, 1), (12, 17, 0), (12, 18, 1), (12, 19, 1), (12, 20, 0), (12, 21, 1), (12, 22, 0), (12, 23, 0), (12, 24, 0);
+-- 11. Batgirl
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Batgirl', '/img/personajes/batgirl.jpg', 'Barbara Gordon, heroína de Gotham con habilidades de combate y tecnología avanzada.', 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1);
 
--- Green Arrow (13)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(13, 1, 1), (13, 2, 0), (13, 3, 1), (13, 4, 0), (13, 5, 0), (13, 6, 0), (13, 7, 1), (13, 8, 0),
-(13, 9, 0), (13, 10, 0), (13, 11, 0), (13, 12, 1), (13, 13, 0), (13, 14, 0), (13, 15, 0),
-(13, 16, 0), (13, 17, 1), (13, 18, 0), (13, 19, 0), (13, 20, 0), (13, 21, 0), (13, 22, 1), (13, 23, 0), (13, 24, 0);
+-- 12. Supergirl
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Supergirl', '/img/personajes/supergirl.jpg', 'Kara Zor-El, prima de Superman con los mismos poderes kryptonianos.', 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0);
 
--- Black Canary (14)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(14, 1, 0), (14, 2, 0), (14, 3, 0), (14, 4, 0), (14, 5, 0), (14, 6, 0), (14, 7, 1), (14, 8, 0),
-(14, 9, 0), (14, 10, 1), (14, 11, 1), (14, 12, 0), (14, 13, 0), (14, 14, 0), (14, 15, 0),
-(14, 16, 0), (14, 17, 0), (14, 18, 0), (14, 19, 0), (14, 20, 0), (14, 21, 0), (14, 22, 1), (14, 23, 0), (14, 24, 0);
+-- 13. Green Arrow
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Green Arrow', '/img/personajes/green-arrow.jpg', 'Oliver Queen, arquero maestro que lucha contra el crimen con su arco y flechas especializadas.', 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0);
 
--- Hawkgirl (15)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(15, 1, 0), (15, 2, 0), (15, 3, 1), (15, 4, 1), (15, 5, 0), (15, 6, 1), (15, 7, 1), (15, 8, 0),
-(15, 9, 1), (15, 10, 0), (15, 11, 0), (15, 12, 1), (15, 13, 1), (15, 14, 0), (15, 15, 0),
-(15, 16, 0), (15, 17, 1), (15, 18, 1), (15, 19, 1), (15, 20, 0), (15, 21, 1), (15, 22, 1), (15, 23, 0), (15, 24, 0);
+-- 14. Black Canary
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Black Canary', '/img/personajes/black-canary.jpg', 'Dinah Lance, experta en artes marciales con un grito sónico devastador.', 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
 
--- Zatanna (16)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(16, 1, 0), (16, 2, 0), (16, 3, 0), (16, 4, 1), (16, 5, 0), (16, 6, 0), (16, 7, 1), (16, 8, 0),
-(16, 9, 1), (16, 10, 1), (16, 11, 1), (16, 12, 0), (16, 13, 0), (16, 14, 0), (16, 15, 0),
-(16, 16, 0), (16, 17, 1), (16, 18, 0), (16, 19, 0), (16, 20, 1), (16, 21, 0), (16, 22, 0), (16, 23, 0), (16, 24, 0);
+-- 15. Hawkgirl
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Hawkgirl', '/img/personajes/hawkgirl.jpg', 'Shayera Hol, guerrera alada de Thanagar con alas metálicas y una maza Nth.', 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0);
 
--- Constantine (17)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(17, 1, 1), (17, 2, 0), (17, 3, 0), (17, 4, 0), (17, 5, 0), (17, 6, 0), (17, 7, 0), (17, 8, 0),
-(17, 9, 0), (17, 10, 0), (17, 11, 1), (17, 12, 0), (17, 13, 1), (17, 14, 0), (17, 15, 0),
-(17, 16, 0), (17, 17, 0), (17, 18, 0), (17, 19, 0), (17, 20, 1), (17, 21, 0), (17, 22, 0), (17, 23, 0), (17, 24, 0);
+-- 16. Zatanna
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Zatanna', '/img/personajes/zatanna.jpg', 'Maga y ilusionista que lanza hechizos hablando al revés.', 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0);
 
--- Red Hood (18)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(18, 1, 1), (18, 2, 0), (18, 3, 1), (18, 4, 1), (18, 5, 0), (18, 6, 1), (18, 7, 1), (18, 8, 0),
-(18, 9, 1), (18, 10, 0), (18, 11, 1), (18, 12, 0), (18, 13, 0), (18, 14, 0), (18, 15, 0),
-(18, 16, 1), (18, 17, 1), (18, 18, 0), (18, 19, 0), (18, 20, 0), (18, 21, 0), (18, 22, 0), (18, 23, 0), (18, 24, 1);
+-- 17. Constantine
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Constantine', '/img/personajes/constantine.jpg', 'John Constantine, mago y ocultista experto en demonología y magia oscura.', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
 
--- Starfire (19)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(19, 1, 0), (19, 2, 1), (19, 3, 0), (19, 4, 0), (19, 5, 0), (19, 6, 0), (19, 7, 1), (19, 8, 0),
-(19, 9, 0), (19, 10, 0), (19, 11, 0), (19, 12, 1), (19, 13, 0), (19, 14, 1), (19, 15, 0),
-(19, 16, 0), (19, 17, 0), (19, 18, 1), (19, 19, 1), (19, 20, 0), (19, 21, 1), (19, 22, 0), (19, 23, 0), (19, 24, 0);
+-- 18. Red Hood
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Red Hood', '/img/personajes/red-hood.jpg', 'Jason Todd, el segundo Robin que ahora opera como antihéroe con métodos más violentos.', 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1);
 
--- Raven (20)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(20, 1, 0), (20, 2, 1), (20, 3, 0), (20, 4, 0), (20, 5, 1), (20, 6, 0), (20, 7, 0), (20, 8, 0),
-(20, 9, 0), (20, 10, 1), (20, 11, 1), (20, 12, 0), (20, 13, 0), (20, 14, 1), (20, 15, 0),
-(20, 16, 0), (20, 17, 0), (20, 18, 1), (20, 19, 0), (20, 20, 1), (20, 21, 0), (20, 22, 0), (20, 23, 0), (20, 24, 0);
+-- 19. Starfire
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Starfire', '/img/personajes/starfire.jpg', 'Princesa alienígena de Tamaran con la capacidad de volar y proyectar energía estelar.', 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0);
 
--- Joker (21)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(21, 1, 1), (21, 2, 0), (21, 3, 0), (21, 4, 0), (21, 5, 0), (21, 6, 0), (21, 7, 1), (21, 8, 0),
-(21, 9, 0), (21, 10, 0), (21, 11, 0), (21, 12, 1), (21, 13, 0), (21, 14, 1), (21, 15, 1),
-(21, 16, 0), (21, 17, 1), (21, 18, 0), (21, 19, 0), (21, 20, 0), (21, 21, 0), (21, 22, 0), (21, 23, 1), (21, 24, 1);
+-- 20. Raven
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Raven', '/img/personajes/raven.jpg', 'Hija de un demonio con poderes de magia oscura y capacidades empáticas.', 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0);
 
--- Harley Quinn (22)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(22, 1, 0), (22, 2, 0), (22, 3, 0), (22, 4, 0), (22, 5, 0), (22, 6, 0), (22, 7, 1), (22, 8, 0),
-(22, 9, 1), (22, 10, 1), (22, 11, 1), (22, 12, 0), (22, 13, 0), (22, 14, 0), (22, 15, 1),
-(22, 16, 0), (22, 17, 1), (22, 18, 0), (22, 19, 0), (22, 20, 0), (22, 21, 0), (22, 22, 0), (22, 23, 1), (22, 24, 1);
+-- 21. Joker
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Joker', '/img/personajes/joker.jpg', 'El Príncipe Payaso del Crimen, archienemigo de Batman conocido por su caos impredecible.', 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1);
 
--- Lex Luthor (23)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(23, 1, 1), (23, 2, 0), (23, 3, 0), (23, 4, 0), (23, 5, 0), (23, 6, 1), (23, 7, 1), (23, 8, 0),
-(23, 9, 0), (23, 10, 0), (23, 11, 1), (23, 12, 1), (23, 13, 0), (23, 14, 1), (23, 15, 0),
-(23, 16, 0), (23, 17, 0), (23, 18, 0), (23, 19, 0), (23, 20, 0), (23, 21, 0), (23, 22, 0), (23, 23, 1), (23, 24, 0);
+-- 22. Harley Quinn
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Harley Quinn', '/img/personajes/harley-quinn.jpg', 'Antigua psiquiatra del Joker convertida en antiheroína caótica y acrobática.', 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1);
 
--- Catwoman (24)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(24, 1, 0), (24, 2, 0), (24, 3, 1), (24, 4, 0), (24, 5, 0), (24, 6, 0), (24, 7, 1), (24, 8, 1),
-(24, 9, 0), (24, 10, 0), (24, 11, 1), (24, 12, 0), (24, 13, 0), (24, 14, 1), (24, 15, 0),
-(24, 16, 0), (24, 17, 1), (24, 18, 0), (24, 19, 0), (24, 20, 0), (24, 21, 0), (24, 22, 0), (24, 23, 1), (24, 24, 1);
+-- 23. Lex Luthor
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Lex Luthor', '/img/personajes/lex-luthor.jpg', 'Genio millonario y archienemigo de Superman, obsesionado con demostrar la superioridad humana.', 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
 
--- Poison Ivy (25)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(25, 1, 0), (25, 2, 1), (25, 3, 0), (25, 4, 0), (25, 5, 0), (25, 6, 0), (25, 7, 1), (25, 8, 0),
-(25, 9, 0), (25, 10, 0), (25, 11, 0), (25, 12, 1), (25, 13, 0), (25, 14, 0), (25, 15, 0),
-(25, 16, 0), (25, 17, 0), (25, 18, 0), (25, 19, 0), (25, 20, 0), (25, 21, 0), (25, 22, 0), (25, 23, 1), (25, 24, 1);
+-- 24. Catwoman
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Catwoman', '/img/personajes/catwoman.jpg', 'Selina Kyle, ladrona de guante blanco con habilidades felinas y compleja relación con Batman.', 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1);
 
--- Two-Face (26)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(26, 1, 1), (26, 2, 0), (26, 3, 0), (26, 4, 0), (26, 5, 0), (26, 6, 0), (26, 7, 1), (26, 8, 0),
-(26, 9, 0), (26, 10, 0), (26, 11, 0), (26, 12, 0), (26, 13, 1), (26, 14, 1), (26, 15, 0),
-(26, 16, 0), (26, 17, 1), (26, 18, 0), (26, 19, 0), (26, 20, 0), (26, 21, 0), (26, 22, 0), (26, 23, 1), (26, 24, 1);
+-- 25. Poison Ivy
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Poison Ivy', '/img/personajes/poison-ivy.jpg', 'Pamela Isley, eco-terrorista con control sobre las plantas y toxinas vegetales.', 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1);
 
--- Penguin (27)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(27, 1, 1), (27, 2, 0), (27, 3, 0), (27, 4, 1), (27, 5, 0), (27, 6, 0), (27, 7, 1), (27, 8, 1),
-(27, 9, 0), (27, 10, 0), (27, 11, 1), (27, 12, 0), (27, 13, 0), (27, 14, 1), (27, 15, 0),
-(27, 16, 0), (27, 17, 1), (27, 18, 0), (27, 19, 0), (27, 20, 0), (27, 21, 0), (27, 22, 0), (27, 23, 1), (27, 24, 1);
+-- 26. Two-Face
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Two-Face', '/img/personajes/two-face.jpg', 'Harvey Dent, ex fiscal de distrito obsesionado con la dualidad y las decisiones al azar.', 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1);
 
--- Riddler (28)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(28, 1, 1), (28, 2, 0), (28, 3, 1), (28, 4, 1), (28, 5, 0), (28, 6, 0), (28, 7, 1), (28, 8, 0),
-(28, 9, 0), (28, 10, 0), (28, 11, 0), (28, 12, 1), (28, 13, 0), (28, 14, 1), (28, 15, 0),
-(28, 16, 0), (28, 17, 1), (28, 18, 0), (28, 19, 0), (28, 20, 0), (28, 21, 0), (28, 22, 0), (28, 23, 1), (28, 24, 1);
+-- 27. Penguin
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Penguin', '/img/personajes/penguin.jpg', 'Oswald Cobblepot, señor del crimen de Gotham con apariencia de pingüino y paraguas armados.', 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1);
 
--- Bane (29)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(29, 1, 1), (29, 2, 0), (29, 3, 1), (29, 4, 0), (29, 5, 0), (29, 6, 0), (29, 7, 1), (29, 8, 0),
-(29, 9, 0), (29, 10, 0), (29, 11, 1), (29, 12, 1), (29, 13, 0), (29, 14, 0), (29, 15, 0),
-(29, 16, 0), (29, 17, 0), (29, 18, 0), (29, 19, 1), (29, 20, 0), (29, 21, 0), (29, 22, 0), (29, 23, 1), (29, 24, 1);
+-- 28. Riddler
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Riddler', '/img/personajes/riddler.jpg', 'Edward Nygma, criminal obsesionado con acertijos y demostrar su superioridad intelectual.', 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1);
 
--- Scarecrow (30)
-INSERT INTO respuestas_personajes (personaje_id, pregunta_id, respuesta) VALUES
-(30, 1, 1), (30, 2, 0), (30, 3, 1), (30, 4, 1), (30, 5, 0), (30, 6, 0), (30, 7, 1), (30, 8, 0),
-(30, 9, 0), (30, 10, 0), (30, 11, 1), (30, 12, 0), (30, 13, 1), (30, 14, 0), (30, 15, 0),
-(30, 16, 0), (30, 17, 1), (30, 18, 0), (30, 19, 0), (30, 20, 0), (30, 21, 0), (30, 22, 0), (30, 23, 1), (30, 24, 1);
+-- 29. Bane
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Bane', '/img/personajes/bane.jpg', 'Mercenario con fuerza sobrehumana gracias al suero Venom, conocido por romper la espalda de Batman.', 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1);
 
+-- 30. Scarecrow
+INSERT INTO personajes (nombre, imagen_url, descripcion, es_masculino, piel_inusual, usa_mascara, usa_casco, usa_capa, usa_armadura, usa_guantes, usa_gafas, color_rojo, color_azul, color_negro, color_verde, color_amarillo, color_morado, usa_maquillaje, tiene_emblema, porta_arma, puede_volar, super_fuerza, usa_magia, es_alien, es_liga_justicia, es_villano, asociado_batman) 
+VALUES ('Scarecrow', '/img/personajes/scarecrow.jpg', 'Jonathan Crane, psiquiatra que usa toxinas del miedo para aterrorizar a sus víctimas.', 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1);
+
+-- ============================================
 -- TABLA DE USUARIOS
+-- ============================================
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
@@ -276,7 +213,9 @@ CREATE TABLE usuarios (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- TABLA DE HISTORIAL (registro de personajes adivinados por usuario)
+-- ============================================
+-- TABLA DE HISTORIAL
+-- ============================================
 CREATE TABLE historial (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,

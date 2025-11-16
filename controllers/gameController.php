@@ -76,12 +76,15 @@
     }
 
     $controlador = new gameController();
-
+    // Cuando el post sea inicio, se iniciará el juego
     if (isset($_POST['inicio'])) {
         $controlador->iniciarJuego();
-    } else {
-        // Si no hay acción válida, volver al index
-        header('Location: ../public/index.php');
-        exit;
+    }
+    
+    // Cuando respuesta este set, significa que se ha respondido si o no a una pregunta
+    if(isset($_POST['respuesta'])){
+        $pregunta_session = $_SESSION['pregunta_actual']['id'];
+        echo "$pregunta_session";
+
     }
 ?>

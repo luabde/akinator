@@ -1,4 +1,4 @@
-# Tabla de Referencia - Akinator DC
+# Tabla de Referencia COMPLETA - Akinator DC
 
 ## Leyenda
 - ✅ = Sí (1)
@@ -8,73 +8,73 @@
 
 ## Lista de Preguntas (24)
 
-| ID | Pregunta |
-|----|----------|
-| P1 | ¿Es un personaje masculino? |
-| P2 | ¿Su piel es de un color inusual? |
-| P3 | ¿Usa máscara que cubre su rostro? |
-| P4 | ¿Lleva casco o sombrero? |
-| P5 | ¿Usa capa? |
-| P6 | ¿Lleva armadura metálica o protección corporal? |
-| P7 | ¿Usa guantes como parte de su traje? |
-| P8 | ¿Lleva gafas, lentes o visera? |
-| P9 | ¿Su vestimenta incluye el color rojo? |
-| P10 | ¿Su vestimenta incluye el color azul? |
-| P11 | ¿Su vestimenta incluye el color negro? |
-| P12 | ¿Su vestimenta incluye el color verde? |
-| P13 | ¿Su vestimenta incluye el color amarillo o dorado? |
-| P14 | ¿Su vestimenta incluye el color morado? |
-| P15 | ¿Lleva maquillaje o pintura facial? |
-| P16 | ¿Tiene un símbolo o emblema en el pecho? |
-| P17 | ¿Porta un arma o herramienta característica? |
-| P18 | ¿Tiene la capacidad de volar? |
-| P19 | ¿Posee super fuerza? |
-| P20 | ¿Usa magia o tiene poderes mágicos? |
-| P21 | ¿Es un alien o de origen extraterrestre? |
-| P22 | ¿Es miembro de la Liga de la Justicia? |
-| P23 | ¿Es un villano o antagonista? |
-| P24 | ¿Está asociado directamente con Batman? |
+| ID | Pregunta | Columna BD |
+|----|----------|------------|
+| 1  | ¿Es un personaje masculino? | `es_masculino` |
+| 2  | ¿Su piel es de un color inusual? | `piel_inusual` |
+| 3  | ¿Usa máscara que cubre su rostro? | `usa_mascara` |
+| 4  | ¿Lleva casco o sombrero? | `usa_casco` |
+| 5  | ¿Usa capa? | `usa_capa` |
+| 6  | ¿Lleva armadura metálica? | `usa_armadura` |
+| 7  | ¿Usa guantes? | `usa_guantes` |
+| 8  | ¿Lleva gafas/lentes/visera? | `usa_gafas` |
+| 9  | ¿Vestimenta incluye rojo? | `color_rojo` |
+| 10 | ¿Vestimenta incluye azul? | `color_azul` |
+| 11 | ¿Vestimenta incluye negro? | `color_negro` |
+| 12 | ¿Vestimenta incluye verde? | `color_verde` |
+| 13 | ¿Vestimenta incluye amarillo/dorado? | `color_amarillo` |
+| 14 | ¿Vestimenta incluye morado? | `color_morado` |
+| 15 | ¿Lleva maquillaje/pintura facial? | `usa_maquillaje` |
+| 16 | ¿Tiene símbolo/emblema en el pecho? | `tiene_emblema` |
+| 17 | ¿Porta arma/herramienta característica? | `porta_arma` |
+| 18 | ¿Puede volar? | `puede_volar` |
+| 19 | ¿Posee super fuerza? | `super_fuerza` |
+| 20 | ¿Usa magia? | `usa_magia` |
+| 21 | ¿Es alien/extraterrestre? | `es_alien` |
+| 22 | ¿Es miembro de Liga de Justicia? | `es_liga_justicia` |
+| 23 | ¿Es villano/antagonista? | `es_villano` |
+| 24 | ¿Asociado con Batman? | `asociado_batman` |
 
 ---
 
-## Respuestas por Personaje
+## TODOS LOS PERSONAJES (30)
 
-### 1. Batman
+### 1. Batman 
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | ✅ | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌  | ✅  | ❌  | ✅  | ❌  | ❌  | ✅  | ✅  | ❌  | ❌  | ❌  | ❌  | ✅  | ❌  | ✅  |
 
-### 2. Superman
+### 2. Superman 
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ✅  | ✅  | ❌  | ✅  | ✅  | ❌  | ❌  |
 
-### 3. Wonder Woman
+### 3. Wonder Woman 
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  | ✅  | ✅  | ✅  | ✅  | ✅  | ❌  | ✅  | ❌  | ❌  |
 
-### 4. Flash
+### 4. Flash 
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌  | ❌  | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  | ❌  | ❌  | ❌  | ✅  | ❌  | ❌  |
 
-### 5. Aquaman
+### 5. Aquaman 
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ | ❌  | ❌  | ✅  | ✅  | ❌  | ❌  | ❌  | ✅  | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  |
 
-### 6. Green Lantern
+### 6. Green Lantern 
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌  | ✅  | ✅  | ❌  | ❌  | ❌  | ✅  | ✅  | ✅  | ❌  | ❌  | ✅  | ✅  | ❌  | ❌  |
 
-### 7. Cyborg
+### 7. Cyborg 
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ✅ | ✅  | ❌  | ❌  | ❌  | ❌  | ❌  | ✅  | ✅  | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  |
+| ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌  | ✅ | ✅ | ✅  | ❌  | ❌  | ❌  | ❌  | ❌  | ✅  | ✅  | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  |
 
-### 8. Shazam
+### 8. Shazam 
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌  | ❌  | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ✅  | ✅  | ✅  | ❌  | ✅  | ❌  | ❌  |
@@ -172,32 +172,4 @@
 ### 27. Penguin
 | P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
 |----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| ✅ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  | ❌  | ❌  | ❌  | ✅  | ✅  |
-
-### 28. Riddler
-| P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
-|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| ✅ | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌  | ❌  | ✅  | ❌  | ✅  | ❌  | ❌  | ✅  | ❌  | ❌  | ❌  | ❌  | ❌  | ✅  | ✅  |
-
-### 29. Bane
-| P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
-|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌  | ✅  | ✅  | ❌  | ❌  | ❌  | ❌  | ❌  | ❌  | ✅  | ❌  | ❌  | ❌  | ✅  | ✅  |
-
-### 30. Scarecrow
-| P1 | P2 | P3 | P4 | P5 | P6 | P7 | P8 | P9 | P10 | P11 | P12 | P13 | P14 | P15 | P16 | P17 | P18 | P19 | P20 | P21 | P22 | P23 | P24 |
-|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| ✅ | ❌ | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌  | ✅  | ❌  | ✅  | ❌  | ❌  | ❌  | ✅  | ❌  | ❌  | ❌  | ❌  | ❌  | ✅  | ✅  |
-
----
-
-## Resumen Estadístico
-
-- **Total de personajes:** 30
-- **Total de preguntas:** 24
-- **Héroes:** 20
-- **Villanos/Antagonistas:** 10
-- **Miembros de la Liga de la Justicia:** 12
-- **Asociados con Batman:** 11
-- **Personajes femeninos:** 9
-- **Personajes masculinos:** 21
+| ✅ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ |

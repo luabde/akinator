@@ -6,11 +6,10 @@
 <?php if ($pregunta): ?>
     <p class="pregunta"><?= htmlspecialchars($pregunta['texto'] ?? '') ?></p>
 
-    <form method="POST" action="juego.php">
-        <input type="hidden" name="pregunta_id" value="<?= $pregunta_actual['id'] ?? '' ?>">
+    <form method="POST" action='../controllers/gameController.php'>
         <div class="botones">
-            <button type="submit" name="respuesta" value="1" class="btn-primary">Sí</button>
-            <button type="submit" name="respuesta" value="0" class="btn-primary">No</button>
+            <button type="submit" name="respuesta" value="si" class="btn-primary">Sí</button>
+            <button type="submit" name="respuesta" value="no" class="btn-primary">No</button>
         </div>
     </form>
 <?php else: ?>

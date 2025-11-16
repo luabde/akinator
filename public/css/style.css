@@ -230,9 +230,8 @@ body {
 }
 
 .pregunta {
-  width: 50%;
   font-size: 1.5rem;
-  margin: 30px 0;
+  margin: 30px 50px;
   padding: 25px 35px;
   background: var(--comic-white);
   color: var(--comic-black);
@@ -254,7 +253,6 @@ body {
   background: var(--comic-yellow);
   border: 5px solid var(--comic-black);
   border-radius: 20px;
-  padding: 25px 40px;
   margin: 30px auto;
   max-width: 80%;
   font-size: 1.8rem;

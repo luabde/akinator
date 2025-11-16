@@ -88,7 +88,7 @@
             
         }
 
-         public function procesarRespuesta() {
+        public function procesarRespuesta() {
             // 1. Obtener la información de la pregunta actual y la respuesta
             $pregunta_id = $_SESSION['pregunta_actual']['id'];
             $respuestaUser = $_POST['respuesta'];
@@ -119,25 +119,31 @@
                 // NO QUEDAN PERSONAJES
                 $_SESSION['vista'] = 'sin_resultados';
                 
-            } elseif ($num_personajes >= 2 && $num_personajes <= 5) {
-                // 📋 ENTRE 2 Y 5 - MOSTRAR LISTA
-                $_SESSION['personajes_posibles_lista'] = $personajes_restantes;
-                $_SESSION['vista'] = 'lista';
-                
             } else {
-                // ❓ MÁS DE 5 - SIGUIENTE PREGUNTA
-                if (empty($_SESSION['preguntas_disponibles'])) {
-                    // No quedan preguntas - mostrar lista
+                // Quedan 2 o más personajes
+                
+                // Verificar si quedan preguntas disponibles
+                $quedan_preguntas = !empty($_SESSION['preguntas_disponibles']);
+                
+                if (!$quedan_preguntas) {
+                    // NO HAY MÁS PREGUNTAS - MOSTRAR LISTA
+                    $_SESSION['personajes_posibles_lista'] = $personajes_restantes;
+                    $_SESSION['vista'] = 'lista';
+                    
+                } elseif ($num_personajes <= 5) {
+                    // QUEDAN 5 O MENOS Y HAY PREGUNTAS - MOSTRAR LISTA
                     $_SESSION['personajes_posibles_lista'] = $personajes_restantes;
                     $_SESSION['vista'] = 'lista';
                 } else {
-                    // Generar siguiente pregunta
+                    //MÁS DE 5 Y HAY PREGUNTAS - SIGUIENTE PREGUNTA
                     $siguiente_pregunta = $this->preguntaAleatoria();
                     if ($siguiente_pregunta) {
                         $_SESSION['pregunta_actual'] = $siguiente_pregunta;
                         $_SESSION['vista'] = 'pregunta';
                     } else {
-                        $_SESSION['vista'] = 'error';
+                        // Por seguridad, si falla mostrar lista
+                        $_SESSION['personajes_posibles_lista'] = $personajes_restantes;
+                        $_SESSION['vista'] = 'lista';
                     }
                 }
             }

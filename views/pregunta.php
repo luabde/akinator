@@ -8,8 +8,8 @@
 
     <form method="POST" action='../controllers/gameController.php'>
         <div class="botones">
-            <button type="submit" name="respuesta" value="si" class="btn-primary">Sí</button>
-            <button type="submit" name="respuesta" value="no" class="btn-primary">No</button>
+            <button type="submit" name="respuesta" value="si" class="btn-primary-si">Sí</button>
+            <button type="submit" name="respuesta" value="no" class="btn-primary-no">No</button>
         </div>
     </form>
 <?php else: ?>

@@ -1,14 +1,17 @@
 <?php
     require_once '../models/preguntasModel.php';
+    require_once '../models/personajesModel.php';
     session_start();
     class gameController{
-        private $model;
+        private $preguntasModel;
+        private $personajesModel;
 
         // Pregunta aleatoria, hace referencia al id de la pregunta que se ha seleccionado como aleatoria
         private $pregunta_aleatoria;
         
         public function __construct(){
-            $this->model = new preguntasModel();
+            $this->preguntasModel = new preguntasModel();
+            $this->personajesModel = new Personaje();
         }
 
         // Getters y setters
@@ -18,7 +21,7 @@
 
         public function iniciarJuego() {
             // 1. Obtener todas las IDs de preguntas de la BD
-            $preguntas = $this->model->obtenerTodasIdsPreguntas();
+            $preguntas = $this->preguntasModel->obtenerTodasIdsPreguntas();
             $_SESSION['preguntas_disponibles'] = $preguntas;
             
             // 2. Reiniciar respuestas del usuario
@@ -37,7 +40,7 @@
             }
             
             // 4. Redirigir al index
-            // header('Location: ../public/index.php');
+            header('Location: ../public/index.php');
             exit;
         }
 
@@ -56,7 +59,7 @@
             $id_pregunta = $preguntas[$indice_aleatorio];
 
             // Obtenemos por id toda la información de la pregunta y la guardamos en el atributo pregunta_aleatoria
-            $this->pregunta_aleatoria = $this->model->obtenerPreguntaPorId($id_pregunta);
+            $this->pregunta_aleatoria = $this->preguntasModel->obtenerPreguntaPorId($id_pregunta);
 
             // Comrpovamos que el array asociativo exista, sino lo creamos vacio.
             if (!isset($_SESSION['preguntas_info'])) {
@@ -84,6 +87,65 @@
             return $this->pregunta_aleatoria;
             
         }
+
+         public function procesarRespuesta() {
+            // 1. Obtener la información de la pregunta actual y la respuesta
+            $pregunta_id = $_SESSION['pregunta_actual']['id'];
+            $respuestaUser = $_POST['respuesta'];
+            
+            // 2. Convertir 'si'/'no' a 1/0
+            $respuesta_valor = ($respuestaUser === 'si') ? 1 : 0;
+            
+            // 3. Guardar la respuesta en preguntas_info
+            $_SESSION['preguntas_info'][$pregunta_id]['respuestaUser'] = $respuesta_valor;
+            
+            // 4. Incrementar contador de preguntas respondidas
+            $_SESSION['preguntas_respondidas']++;
+            
+            // 5. FILTRAR PERSONAJES según las respuestas
+            $personajes_restantes = $this->personajesModel->filtrarPersonajes($_SESSION['preguntas_info']);
+            $num_personajes = count($personajes_restantes);
+            
+            // Actualizar número de personajes posibles
+            $_SESSION['personajes_posibles'] = $num_personajes;
+            
+            // 6. DECIDIR QUÉ HACER según cuántos personajes quedan
+            if ($num_personajes == 1) {
+                // SOLO QUEDA 1 - ADIVINAR
+                $_SESSION['personaje_adivinado'] = $personajes_restantes[0];
+                $_SESSION['vista'] = 'adivinar';
+                
+            } elseif ($num_personajes == 0) {
+                // NO QUEDAN PERSONAJES
+                $_SESSION['vista'] = 'sin_resultados';
+                
+            } elseif ($num_personajes >= 2 && $num_personajes <= 5) {
+                // 📋 ENTRE 2 Y 5 - MOSTRAR LISTA
+                $_SESSION['personajes_posibles_lista'] = $personajes_restantes;
+                $_SESSION['vista'] = 'lista';
+                
+            } else {
+                // ❓ MÁS DE 5 - SIGUIENTE PREGUNTA
+                if (empty($_SESSION['preguntas_disponibles'])) {
+                    // No quedan preguntas - mostrar lista
+                    $_SESSION['personajes_posibles_lista'] = $personajes_restantes;
+                    $_SESSION['vista'] = 'lista';
+                } else {
+                    // Generar siguiente pregunta
+                    $siguiente_pregunta = $this->preguntaAleatoria();
+                    if ($siguiente_pregunta) {
+                        $_SESSION['pregunta_actual'] = $siguiente_pregunta;
+                        $_SESSION['vista'] = 'pregunta';
+                    } else {
+                        $_SESSION['vista'] = 'error';
+                    }
+                }
+            }
+            
+            // 7. Redirigir al index
+            header('Location: ../public/index.php');
+            exit;
+        }
     }
 
     $controlador = new gameController();
@@ -94,13 +156,6 @@
 
     // Cuando respuesta este set, significa que se ha respondido si o no a una pregunta
     if(isset($_POST['respuesta'])){
-        // Obtenemos la información de la pregunta (la id y la respuesta) para añadirla al array asociativo
-        $pregunta_session = $_SESSION['pregunta_actual']['id'];
-        echo "$pregunta_session";
-
-        $respuestaUser = $_POST['respuesta'];
-        echo "respuestaUser $respuestaUser";
-
-        var_dump($_SESSION['preguntas_info']);
+        $controlador->procesarRespuesta();
     }
 ?>

@@ -192,6 +192,7 @@ $seccio = $_GET['seccio'] ?? '';
 <div class="main">
    <?php
         $vista = $_SESSION['vista'] ?? 'inicio';
+        echo "VISTA: $vista";           
     ?>
 
         <?php if ($vista === 'inicio'): ?> 
@@ -210,6 +211,27 @@ $seccio = $_GET['seccio'] ?? '';
                 include '../views/pregunta.php';
             ?>
         <?php endif?>
+
+        <?php
+            if ($vista === 'adivinar') {
+                // Mostrar personaje adivinado
+                $personaje_adivinado = $_SESSION['personaje_adivinado'];
+                include '../views/adivinar.php';
+                
+            } elseif ($vista === 'lista') {
+                // Mostrar lista de personajes
+                $personajes_posibles = $_SESSION['personajes_posibles_lista'];
+                $num_personajes = count($personajes_posibles);
+                include '../views/lista.php';
+                
+            } elseif ($vista === 'sin_resultados') {
+                // No se encontró ningún personaje
+                include '../views/sin_resultados.php';
+                
+            } elseif ($vista === 'error') {
+                echo "<h2>Error: No hi ha més preguntes disponibles</h2>";
+            }
+        ?>
 </div>
 <?php require '../views/footer.php';?>
 </div>

@@ -8,7 +8,7 @@
         }
 
         public function ObtenerTodasIdsPreguntas(){
-        $query = 'SELECT id FROM preguntas;'; // ← Solo IDs
+        $query = 'SELECT id FROM preguntas;';
         $resultado = mysqli_query($this->db, $query);
         $preguntas = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
@@ -18,11 +18,11 @@
             $ids[] = $pregunta['id'];
         }
 
-        return $ids; // ← Devuelve array de IDs
+        return $ids;
     }
 
     public function obtenerPreguntaPorId($id) {
-        $query = "SELECT id, texto FROM preguntas WHERE id = $id";
+        $query = "SELECT id, texto, columna_asociada FROM preguntas WHERE id = $id";
         $resultado = mysqli_query($this->db, $query);
         
         // Devolver el primer resultado

@@ -192,7 +192,6 @@ $seccio = $_GET['seccio'] ?? '';
 <div class="main">
    <?php
         $vista = $_SESSION['vista'] ?? 'inicio';
-        var_dump($vista);
     ?>
 
         <?php if ($vista === 'inicio'): ?> 

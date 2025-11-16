@@ -37,13 +37,13 @@
             }
             
             // 4. Redirigir al index
-            header('Location: ../public/index.php');
+            // header('Location: ../public/index.php');
             exit;
         }
 
         public function preguntaAleatoria(){
             $preguntas = $_SESSION['preguntas_disponibles'];
-            // Comprovamos que en el arrayd e preguntas, aun quedan preguntas y sino hace un return false Si hay se sigue con el flujo
+            // Comprovamos que en el array de preguntas, aun quedan preguntas y sino hace un return false Si hay se sigue con el flujo
             if (empty($preguntas)) {
                 // No hay más preguntas disponibles
                 return false; 
@@ -57,7 +57,18 @@
 
             // Obtenemos por id toda la información de la pregunta y la guardamos en el atributo pregunta_aleatoria
             $this->pregunta_aleatoria = $this->model->obtenerPreguntaPorId($id_pregunta);
-            
+
+            // Comrpovamos que el array asociativo exista, sino lo creamos vacio.
+            if (!isset($_SESSION['preguntas_info'])) {
+                $_SESSION['preguntas_info'] = [];
+            }
+            var_dump($this->pregunta_aleatoria);
+            // Ahora actualizamos preguntas respondidas con el id de la pregunta, y la columna. La respuesta del user de primeras se queda a null, porque es cuando ya se responde que se actualiza.
+            $_SESSION['preguntas_info'][$id_pregunta] = [
+                'columna' => $this->pregunta_aleatoria['columna_asociada'],
+                'respuestaUser' => null
+            ];
+
             // Ahora eliminamos de las rpeguntas disponibles el indice aleatorio. Pero los indices seguramente saltaran al que se 
             // ha eliminado, por eso hacemos array_values para que los indices se reseteen y sean seguidos
 
@@ -80,11 +91,16 @@
     if (isset($_POST['inicio'])) {
         $controlador->iniciarJuego();
     }
-    
+
     // Cuando respuesta este set, significa que se ha respondido si o no a una pregunta
     if(isset($_POST['respuesta'])){
+        // Obtenemos la información de la pregunta (la id y la respuesta) para añadirla al array asociativo
         $pregunta_session = $_SESSION['pregunta_actual']['id'];
         echo "$pregunta_session";
 
+        $respuestaUser = $_POST['respuesta'];
+        echo "respuestaUser $respuestaUser";
+
+        var_dump($_SESSION['preguntas_info']);
     }
 ?>

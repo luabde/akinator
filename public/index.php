@@ -4,8 +4,23 @@ $db = conectarDB();
 
 session_start();
 
-if (!isset($_SESSION['historial'])) $_SESSION['historial'] = [];
-if (!isset($_SESSION['condiciones'])) $_SESSION['condiciones'] = [];
+// Condicional para volver a empezar una nueva partida.
+// Se reseta el session para que salga de nuevo empezar
+if (isset($_GET['seccio']) && $_GET['seccio'] === 'nueva') {
+    $_SESSION = [
+        'vista' => 'inicio',
+        'historial' => [],
+        'preguntas_disponibles' => [],
+        'pregunta_actual' => null,
+        'respuestas_usuario' => [],
+    ];
+    header("Location: index.php");
+    exit;
+}
+
+// Inicialización segura (solo si no existen)
+$_SESSION['historial'] = $_SESSION['historial'] ?? [];
+$_SESSION['vista'] = $_SESSION['vista'] ?? 'inicio';
 
 // -------------------
 // FUNCIONES
@@ -23,54 +38,41 @@ function mostraHistorial() {
 // -------------------
 // Afegir nou personatge amb fitxer
 // -------------------
-$missatge = '';
-$final = false;
-if (isset($_POST['afegir_personatge'])) {
-    $nom = trim($_POST['nou_personatge']);
-    $desc = trim($_POST['descripcion_personatge']);
+// $missatge = '';
+// $final = false;
+// if (isset($_POST['afegir_personatge'])) {
+//     $nom = trim($_POST['nou_personatge']);
+//     $desc = trim($_POST['descripcion_personatge']);
     
-    if (isset($_FILES['imagen_personatge']) && $_FILES['imagen_personatge']['error'] === UPLOAD_ERR_OK) {
-        $tmp_name = $_FILES['imagen_personatge']['tmp_name'];
-        $filename = basename($_FILES['imagen_personatge']['name']);
-        $upload_dir = __DIR__ . '/uploads/';
-        if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
-        $target_file = $upload_dir . $filename;
+//     if (isset($_FILES['imagen_personatge']) && $_FILES['imagen_personatge']['error'] === UPLOAD_ERR_OK) {
+//         $tmp_name = $_FILES['imagen_personatge']['tmp_name'];
+//         $filename = basename($_FILES['imagen_personatge']['name']);
+//         $upload_dir = __DIR__ . '/uploads/';
+//         if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
+//         $target_file = $upload_dir . $filename;
 
-        if (move_uploaded_file($tmp_name, $target_file)) {
-            $img = 'uploads/' . $filename;
+//         if (move_uploaded_file($tmp_name, $target_file)) {
+//             $img = 'uploads/' . $filename;
 
-            $stmt = $db->prepare("INSERT INTO personajes (nombre, descripcion, imagen_url) VALUES (?, ?, ?)");
-            $stmt->execute([$nom, $desc, $img]);
+//             $stmt = $db->prepare("INSERT INTO personajes (nombre, descripcion, imagen_url) VALUES (?, ?, ?)");
+//             $stmt->execute([$nom, $desc, $img]);
 
-            $_SESSION['historial'][] = $nom;
-            $missatge = "<h2>Personatge afegit correctament: $nom</h2>
-                         <form method='post'>
-                             <button name='start' class='btn'>Jugar de nou</button>
-                         </form>";
-            $final = true;
-            $_SESSION['condiciones'] = [];
-        } else {
-            $missatge = "<p>Error pujant la imatge.</p>";
-        }
-    } else {
-        $missatge = "<p>Has de seleccionar una imatge.</p>";
-    }
-}
-
-// -------------------
-// Juego
-// -------------------
-if (isset($_POST['reiniciar'])) {
-    $_SESSION['historial'] = [];
-    $_SESSION['condiciones'] = [];
-    header("Location: index.php");
-    exit;
-}
+//             $_SESSION['historial'][] = $nom;
+//             $missatge = "<h2>Personatge afegit correctament: $nom</h2>
+//                          <form method='post'>
+//                              <button name='start' class='btn'>Jugar de nou</button>
+//                          </form>";
+//             $final = true;
+//             $_SESSION['condiciones'] = [];
+//         } else {
+//             $missatge = "<p>Error pujant la imatge.</p>";
+//         }
+//     } else {
+//         $missatge = "<p>Has de seleccionar una imatge.</p>";
+//     }
+// }
 
 $seccio = $_GET['seccio'] ?? '';
-
-$pregunta = null;
-$comptador_restants = 0;
 
 // $preguntas = $db->query("SELECT * FROM preguntas")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -147,7 +149,7 @@ $comptador_restants = 0;
 <body>
 <div class="sidebar">
     <h2>Menu</h2>
-    <a href="?seccio=">
+    <a href="?seccio=nueva">
         <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#212529"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h240v80H200v560h560v-240h80v240q0 33-23.5 56.5T760-120H200Zm440-400v-120H520v-80h120v-120h80v120h120v80H720v120h-80Z"/></svg>
         <span>Nova partida</span>
     </a>
@@ -188,31 +190,27 @@ $comptador_restants = 0;
 <?php require '../views/header.php'?>
 
 <div class="main">
-    <!-- <?php if(!isset($_POST['start']) && !isset($_POST['pregunta_id']) && !$final): ?> -->
-        <h1>Pensa en un personatge!</h1>
-        <p>I jo intentaré endevinar-lo amb preguntes de sí/no!</p>
-        <form action="../controllers/gameController?estadoJuego=comenzar">
-            <button name="start" class="btn">Començar partida</button>
+   <?php
+        $vista = $_SESSION['vista'] ?? 'inicio';
+        var_dump($vista);
+    ?>
+
+        <?php if ($vista === 'inicio'): ?> 
+            
+            <h1>Pensa en un personatge!</h1>
+            <p>I jo intentaré endevinar-lo amb preguntes de sí/no!</p>
+            <form method="POST" action="../controllers/gameController.php">
+            <button name="inicio" class="btn">Començar partida</button>
         </form>
-    <?php elseif($final): ?>
-        <?= $missatge ?>
-        <?php if (!isset($_POST['afegir_personatge'])): ?>
-            <form method="post">
-                <button name="start" class="btn">Jugar de nou</button>
-                <button name="reiniciar" class="btn-no">Sortir</button>
-            </form>
-        <?php endif; ?>
-    <?php else: ?>
-        <div class="restants">
-            Estic pensant en <?= $comptador_restants ?> personatges possibles
-        </div>
-        <h2><?= $pregunta['texto'] ?></h2>
-        <form method="post">
-            <input type="hidden" name="pregunta_id" value="<?= $pregunta['id'] ?>">
-            <button name="respuesta" value="1" class="btn">Sí</button>
-            <button name="respuesta" value="0" class="btn-no">No</button>
-        </form>
-    <?php endif; ?>
+        <?php elseif ($vista === 'pregunta'): ?> 
+            <?php
+                $pregunta = $_SESSION['pregunta_actual'];
+                $preguntas_respondidas = $_SESSION['preguntas_respondidas'];
+                $num_personajes = $_SESSION['personajes_posibles'];
+
+                include '../views/pregunta.php';
+            ?>
+        <?php endif?>
 </div>
 <?php require '../views/footer.php';?>
 </div>

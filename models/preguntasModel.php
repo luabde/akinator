@@ -1,16 +1,34 @@
 <?php
-// class PreguntasModel{
-//     private $db;
-//     private $preguntas;
-//     public function __construct(){
-//         $this->db=Conectar::conexion();
-//         $this->preguntas.array();
-//     }
+    require_once '../config/database.php';
+    class preguntasModel{
+        private $db;
 
-//     // Función para obtener una pregunta por ID
-//     public function getQuestionById($qId){
-//         $consulta = $this->db->query("SELECT * FROM preguntas WHERE id = $qId;");
-//         return $consulta;
-//     }
-// }
+        public function __construct(){
+            $this->db = conectarDB();
+        }
+
+        public function ObtenerTodasIdsPreguntas(){
+        $query = 'SELECT id FROM preguntas;'; // ← Solo IDs
+        $resultado = mysqli_query($this->db, $query);
+        $preguntas = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+
+        // Extraer solo los IDs
+        $ids = [];
+        foreach ($preguntas as $pregunta) {
+            $ids[] = $pregunta['id'];
+        }
+
+        return $ids; // ← Devuelve array de IDs
+    }
+
+    public function obtenerPreguntaPorId($id) {
+        $query = "SELECT id, texto FROM preguntas WHERE id = $id";
+        $resultado = mysqli_query($this->db, $query);
+        
+        // Devolver el primer resultado
+        return mysqli_fetch_assoc($resultado);
+    }
+
+    }
+
 ?>

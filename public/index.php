@@ -7,13 +7,18 @@ session_start();
 // Condicional para volver a empezar una nueva partida.
 // Se reseta el session para que salga de nuevo empezar
 if (isset($_GET['seccio']) && $_GET['seccio'] === 'nueva') {
-    $_SESSION = [
-        'vista' => 'inicio',
-        'historial' => [],
-        'preguntas_disponibles' => [],
-        'pregunta_actual' => null,
-        'respuestas_usuario' => [],
-    ];
+    // RESETEAR TODAS LAS VARIABLES DEL JUEGO
+    unset($_SESSION['vista']);
+    unset($_SESSION['preguntas_disponibles']);
+    unset($_SESSION['pregunta_actual']);
+    unset($_SESSION['preguntas_info']);
+    unset($_SESSION['preguntas_respondidas']);
+    unset($_SESSION['personajes_posibles']);
+    unset($_SESSION['personaje_adivinado']);
+    unset($_SESSION['personajes_posibles_lista']);
+
+    $_SESSION['vista'] = 'inicio';
+    
     header("Location: index.php");
     exit;
 }
@@ -192,7 +197,7 @@ $seccio = $_GET['seccio'] ?? '';
 <div class="main">
    <?php
         $vista = $_SESSION['vista'] ?? 'inicio';
-        echo "VISTA: $vista";           
+        echo "VISTA: $vista";
     ?>
 
         <?php if ($vista === 'inicio'): ?> 

@@ -1,14 +1,14 @@
 <div class="resultado">
-  <h2>¡Tu personaje era <?= htmlspecialchars($personaje_adivinado['nombre']) ?>!</h2>
+  <p>¡Tu personaje era <?= htmlspecialchars($personaje_adivinado['nombre']) ?>!</p>
   <img src="./<?= htmlspecialchars($personaje_adivinado['imagen_url']) ?>" 
-     height="200px" border-radius= "10px">
-  <p class="pregunta"><?= htmlspecialchars($personaje_adivinado['descripcion']) ?></p>
+     class="foto-adivinar">
+  <p><?= htmlspecialchars($personaje_adivinado['descripcion']) ?></p>
   
   <form method="POST" action="procesar.php">
     <input type="hidden" name="personaje_id" value="<?= $personaje_adivinado['id'] ?>">
     
     <div class="botones">
-      <button type="submit" name="correcto" value="1" class="btn-primary-si">Vover a jugar</button>
+              <a href="../public/index.php?seccio=nueva" class="btn-primary-si">Vover a jugar</a>
     </div>
   </form>
 </div>

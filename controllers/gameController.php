@@ -77,7 +77,14 @@ class gameController {
         $respuestaUser = $_POST['respuesta'];
 
         // 2. Convertir si/no en 1/0
-        $valor = ($respuestaUser === 'si') ? 1 : 0;
+        if ($respuestaUser === 'si') {
+            $valor = 1;
+        } elseif ($respuestaUser === 'no') {
+            $valor = 0;
+        } else {
+            $valor = null; // o maneja error
+        }
+
 
         // 3. Guardar respuesta
         $_SESSION['preguntas_info'][$pregunta_id]['respuestaUser'] = $valor;

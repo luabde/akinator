@@ -31,6 +31,7 @@ body {
   flex-direction: column;
   padding: 15px;
   width: 333px;
+  min-width: 333px;
   overflow-y: auto;
   background: var(--comic-blue);
   color: var(--comic-black);
@@ -93,6 +94,14 @@ body {
   display: block;
 }
 
+.foto-adivinar {
+  border-radius: 10px;
+  height: 350px;
+  width: auto;
+  border: 5px solid var(--comic-black);
+  box-shadow: 8px 8px 0 var(--login-yellow);
+}
+
 .card h3 {
   position: absolute;
   top: -10px;
@@ -107,6 +116,12 @@ body {
   border-radius: 8px;
   box-shadow: 4px 4px 0 var(--comic-black);
   transform: rotate(-2deg);
+}
+
+.personajes-lista{
+    font-family: cursive;
+    font-size: 1.3em;
+    padding: 20px 15px;
 }
 
 .card p {
@@ -126,7 +141,8 @@ body {
 }
 
 .btn-primary-si,
-.btn-primary-no {
+.btn-primary-no,
+.btn-primary-ns {
   font-family: 'Bangers', cursive;
   display: inline-flex;
   align-items: center;
@@ -145,13 +161,19 @@ body {
 }
 
 .btn-primary-si:hover,
-.btn-primary-no:hover {
+.btn-primary-no:hover,
+.btn-primary-ns:hover {
   transform: translate(2px, 2px);
   box-shadow: none;
 }
 
 .btn-primary-si {
   background: var(--comic-blue);
+  color: var(--comic-white);
+}
+
+.btn-primary-ns {
+  background: grey;
   color: var(--comic-white);
 }
 
@@ -233,11 +255,8 @@ body {
   font-size: 1.5rem;
   margin: 30px 50px;
   padding: 25px 35px;
-  background: var(--comic-white);
   color: var(--comic-black);
-  border: 5px solid var(--comic-black);
   border-radius: 15px;
-  box-shadow: 8px 8px 0 var(--comic-yellow);
   position: relative;
 }
 

@@ -25,6 +25,8 @@
     padding: 20px;
     color: var(--comic-black);
     font-weight: bold;
+    background-color: var(--comic-white);
+    border-bottom: 6px solid var(--comic-black);
 }
 
 .header-title {

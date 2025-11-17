@@ -18,4 +18,20 @@ footer {
   text-align: center;
   padding: 20px 0;
   font-size: 1.3rem;
+      position: relative; /* Establece contexto para ::before */
+  z-index: 1; /* Para que el contenido siga encima de los puntos */
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* deja pasar los clicks */
+  background-image: radial-gradient(var(--comic-yellow) 2px, transparent 2px);
+  background-size: 10px 10px;
+  opacity: 0.2;
+  z-index: -1; /* se queda detrás de todo el contenido de .puntos */
 }

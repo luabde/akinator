@@ -98,6 +98,7 @@ $seccio = $_GET['seccio'] ?? '';
     <?php require '../views/header.php'?>
 
         <div class="main">
+            <div class="puntos">
             <?php
                 $vista = $_SESSION['vista'] ?? 'inicio';
                 echo "VISTA: $vista";
@@ -140,6 +141,7 @@ $seccio = $_GET['seccio'] ?? '';
                         echo "<h2>Error: No hi ha més preguntes disponibles</h2>";
                     }
                 ?>
+            </div>
         </div>
     <?php require '../views/footer.php';?>
 </div>

@@ -63,7 +63,14 @@ class gameController {
             'respuestaUser' => null
         ];
 
-        // Eliminarla del listado y reindexar
+        // Ahora eliminamos de las rpeguntas disponibles el indice aleatorio. Pero los indices seguramente saltaran al que se 
+        // ha eliminado, por eso hacemos array_values para que los indices se reseteen y sean seguidos
+
+        /*
+            Ejemplo:
+            sin values eliminamod el indice 2 --> 0 => 1, 1 => 2, 3 => 4, 4 => 5 Índices: 0, 1, 3, 4 ← ¡Hay un "hueco"!
+            Con values eliminamos el indice 2 --> [0 => 1, 1 => 2, 3 => 4, 4 => 5]  // índices: 0, 1, 3, 4
+        */
         unset($_SESSION['preguntas_disponibles'][$indice_aleatorio]);
         $_SESSION['preguntas_disponibles'] = array_values($_SESSION['preguntas_disponibles']);
 

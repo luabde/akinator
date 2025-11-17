@@ -1,5 +1,5 @@
 <div class="info">
-  <p>Personajes posibles: <?= $num_personajes ?? 0 ?></p>
+  <p>Estoy pensando en <?= $num_personajes ?? 0 ?> Personajes</p>
   <p>Preguntas respondidas: <?= $preguntas_respondidas ?></p>
 </div>
 

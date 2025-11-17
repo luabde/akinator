@@ -98,10 +98,6 @@ class gameController {
 
         $_SESSION['personajes_posibles'] = $num;
 
-        // ──────────────────────────────────────────────
-        //        LÓGICA ARREGLADA QUE QUIERES
-        // ──────────────────────────────────────────────
-        
         if ($num == 1) {
             // ADIVINADO
             $_SESSION['personaje_adivinado'] = $personajes_restantes[0];

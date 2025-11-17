@@ -183,7 +183,8 @@ body {
 }
 
 .sidebar a,
-.btn-logout {
+.btn-logout,
+.usuario {
   font-family: cursive;
   display: inline-flex;
   align-items: center;
@@ -201,9 +202,13 @@ body {
   letter-spacing: 2px;
 }
 
-.sidebar a,
-.btn-logout {
+.sidebar a, .usuario {
   background: var(--comic-yellow);
+  color: var(--comic-black);
+}
+
+.btn-logout {
+  background: var(--comic-red);
   color: var(--comic-black);
 }
 

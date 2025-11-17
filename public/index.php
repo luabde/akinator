@@ -192,53 +192,53 @@ $seccio = $_GET['seccio'] ?? '';
 </div>
 
 <div class="right-container">
-<?php require '../views/header.php'?>
+    <?php require '../views/header.php'?>
 
-<div class="main">
-   <?php
-        $vista = $_SESSION['vista'] ?? 'inicio';
-        echo "VISTA: $vista";
-    ?>
-
-        <?php if ($vista === 'inicio'): ?> 
-            
-            <h1>Pensa en un personatge!</h1>
-            <p>I jo intentaré endevinar-lo amb preguntes de sí/no!</p>
-            <form method="POST" action="../controllers/gameController.php">
-            <button name="inicio" class="btn-primary-si">Començar partida</button>
-        </form>
-        <?php elseif ($vista === 'pregunta'): ?> 
+        <div class="main">
             <?php
-                $pregunta = $_SESSION['pregunta_actual'];
-                $preguntas_respondidas = $_SESSION['preguntas_respondidas'];
-                $num_personajes = $_SESSION['personajes_posibles'];
-
-                include '../views/pregunta.php';
+                $vista = $_SESSION['vista'] ?? 'inicio';
+                echo "VISTA: $vista";
             ?>
-        <?php endif?>
 
-        <?php
-            if ($vista === 'adivinar') {
-                // Mostrar personaje adivinado
-                $personaje_adivinado = $_SESSION['personaje_adivinado'];
-                include '../views/adivinar.php';
-                
-            } elseif ($vista === 'lista') {
-                // Mostrar lista de personajes
-                $personajes_posibles = $_SESSION['personajes_posibles_lista'];
-                $num_personajes = count($personajes_posibles);
-                include '../views/lista.php';
-                
-            } elseif ($vista === 'sin_resultados') {
-                // No se encontró ningún personaje
-                include '../views/sin_resultados.php';
-                
-            } elseif ($vista === 'error') {
-                echo "<h2>Error: No hi ha més preguntes disponibles</h2>";
-            }
-        ?>
-</div>
-<?php require '../views/footer.php';?>
+                <?php if ($vista === 'inicio'): ?> 
+                    
+                    <h1>Pensa en un personatge!</h1>
+                    <p>I jo intentaré endevinar-lo amb preguntes de sí/no!</p>
+                    <form method="POST" action="../controllers/gameController.php">
+                    <button name="inicio" class="btn-primary-si">Començar partida</button>
+                </form>
+                <?php elseif ($vista === 'pregunta'): ?> 
+                    <?php
+                        $pregunta = $_SESSION['pregunta_actual'];
+                        $preguntas_respondidas = $_SESSION['preguntas_respondidas'];
+                        $num_personajes = $_SESSION['personajes_posibles'];
+
+                        include '../views/pregunta.php';
+                    ?>
+                <?php endif?>
+
+                <?php
+                    if ($vista === 'adivinar') {
+                        // Mostrar personaje adivinado
+                        $personaje_adivinado = $_SESSION['personaje_adivinado'];
+                        include '../views/adivinar.php';
+                        
+                    } elseif ($vista === 'lista') {
+                        // Mostrar lista de personajes
+                        $personajes_posibles = $_SESSION['personajes_posibles_lista'];
+                        $num_personajes = count($personajes_posibles);
+                        include '../views/lista.php';
+                        
+                    } elseif ($vista === 'sin_resultados') {
+                        // No se encontró ningún personaje
+                        include '../views/sin_resultados.php';
+                        
+                    } elseif ($vista === 'error') {
+                        echo "<h2>Error: No hi ha més preguntes disponibles</h2>";
+                    }
+                ?>
+        </div>
+    <?php require '../views/footer.php';?>
 </div>
 </body>
 </html>

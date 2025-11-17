@@ -202,12 +202,17 @@ body {
   letter-spacing: 2px;
 }
 
+.usuario {
+  cursor: default;
+}
+
 .sidebar a, .usuario {
   background: var(--comic-yellow);
   color: var(--comic-black);
 }
 
 .btn-logout {
+  padding: 7.5px 10px;
   background: var(--comic-red);
   color: var(--comic-black);
 }

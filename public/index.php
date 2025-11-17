@@ -101,7 +101,6 @@ $seccio = $_GET['seccio'] ?? '';
             <div class="puntos">
             <?php
                 $vista = $_SESSION['vista'] ?? 'inicio';
-                echo "VISTA: $vista";
             ?>
 
                 <?php if ($vista === 'inicio'): ?> 

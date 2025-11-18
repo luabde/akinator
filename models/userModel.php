@@ -35,5 +35,22 @@
             // Hacemos la consulta a la bd y la devolvemos
             return mysqli_query($this->db, $query);
         }
+
+        public function obtenerHistorial($userId){
+            $query = "SELECT * FROM historial WHERE usuario_id = $userId";
+
+            $resultado = mysqli_query($this->db, $query);
+            
+            if ($resultado && mysqli_num_rows($resultado) > 0) {
+                return mysqli_fetch_all($resultado);
+            }
+            return null;
+        }
+
+        public function guardarHistorial($userId, $personajeId){
+            $query = "INSERT INTO historial (usuario_id, personaje_id) VALUES ($userId, $personajeId)";
+            
+            return mysqli_query($this->db, $query);
+        }
     }
 ?>

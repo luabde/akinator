@@ -38,7 +38,6 @@
             return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
         }
 
-        // Definimos los metodos para los personajes
         public function obtenerPersonajes(){
             $query = 'SELECT * FROM personajes';
             $resultado = mysqli_query($this->db, $query);

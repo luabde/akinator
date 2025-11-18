@@ -72,12 +72,12 @@ $seccio = $_GET['seccio'] ?? '';
 
     <?php if ($seccio==='historial'): ?>
         <div class="sidebar-content"><h2>Historial</h2>
-            <?php mostraHistorial(); ?>
+            <!-- <?php mostraHistorial(); ?>
             <form method="post">
                 <?php if(!empty($_SESSION['historial'])): ?>
                     <button name="reiniciar" class="btn-no">Esborrar historial</button>
                 <?php endif; ?>
-            </form>
+            </form> -->
         </div>
     <?php endif; ?>
 

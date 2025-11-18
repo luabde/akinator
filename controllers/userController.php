@@ -34,8 +34,10 @@ session_start();
                     if($auth){
                         // Si auth es true, significa que la contraseña también es correcta
                         // Se gurada en session el nombre del usuario y login true que se obtiene de lo que ha devuelto la consulta a la db
-                        $_SESSION['usuario'] = $usuario['nombre_usuario'];;
+                        $_SESSION['usuario'] = $usuario['nombre_usuario'];
                         $_SESSION['login'] = true;
+                        // Se guarda tambien el id de usuario, debido a que se necesitara en el historial.
+                        $_SESSION['user_id'] = $usuario['id'];
                         // Una vez se ha iniciado la sessión se redirge a la pagina de inicio
                         header('Location: ../public/index.php');
                         exit;
@@ -105,6 +107,29 @@ session_start();
             // Redirigimos al index
             header("Location: ../public/index.php");
         }
+
+        public function guardarHistorial(){
+            if($_SESSION['login']){
+                // Obtenemos el id del usuario
+                $id = $_SESSION['user_id'];
+                $id_personaje = $_SESSION['personaje_adivinado']['id'];
+
+                $this->model->guardarHistorial($id, $id_personaje);
+
+            }else{
+                return false;
+            }
+        }
+
+        public function mostrarHistorial(){
+            // Comprovar si hay el usuario logueado
+
+            // Si esta logueado
+                // Obtener el id del usuario y hacer query para obtener todos los regsitros de historial de ese usuario 
+                // Después devolver un array con todos los registros
+            
+            // Si no esta logueado se 
+        }
     }
  
     /*
@@ -115,11 +140,11 @@ session_start();
             - signup --> esto se envia desde el formulario de registro (situado en el login.php)
             - logout --> esto se envía desde el <a> situado en el header cuando la sessión esta iniciada, el a permite desloguearte (situado en views/header.php)
     */
-    $action = $_GET['action'];
+    $action = $_GET['action'] ?? null;
 
     // Creamos una instancia del controlador para más adelante llamar a sus metodos
     $userController = new userController();
-
+    
     switch($action){
         case 'login':
             $userController->login();

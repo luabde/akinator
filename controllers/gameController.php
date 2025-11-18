@@ -1,17 +1,24 @@
 <?php
 require_once '../models/preguntasModel.php';
 require_once '../models/personajesModel.php';
-session_start();
+require_once '../controllers/userController.php';
+
+// Se hace session start en caso de que anteriormente no estuviera inicada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 class gameController {
 
     private $preguntasModel;
     private $personajesModel;
+    private $userController;
     private $pregunta_aleatoria;
 
     public function __construct() {
         $this->preguntasModel = new preguntasModel();
         $this->personajesModel = new Personaje();
+        $this->userController = new userController();
     }
 
     public function getPreguntaAleatoria() {
@@ -109,6 +116,8 @@ class gameController {
             // ADIVINADO
             $_SESSION['personaje_adivinado'] = $personajes_restantes[0];
             $_SESSION['vista'] = 'adivinar';
+
+           $this->userController->guardarHistorial();
 
         } elseif ($num == 0) {
             // SIN RESULTADOS POSIBLES

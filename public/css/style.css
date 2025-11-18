@@ -54,6 +54,7 @@ html, body {
 }
 
 .biblioteca {
+  justify-items: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 30px;
@@ -231,7 +232,7 @@ html, body {
   box-shadow: none;
 }
 
-.sidebar, .right-container {
+.sidebar, .main {
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -243,15 +244,14 @@ html, body {
 
 
 .main {
-  padding: 50px;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: hidden;
   position: relative;
   z-index: 1;
+  min-height: 500px;
 }
 
 .main::before {
@@ -332,7 +332,7 @@ html, body {
   transform: rotate(-1deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 875px) {
 
     html, body {
         flex-direction: column-reverse;
@@ -343,10 +343,6 @@ html, body {
       width: 100%;;
       border-top: 6px solid var(--comic-black);
       border-right: none;
-    }
-
-    .header{
-          flex-direction: column;
     }
 }
 

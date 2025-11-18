@@ -30,15 +30,15 @@ $_SESSION['vista'] = $_SESSION['vista'] ?? 'inicio';
 // -------------------
 // FUNCIONES
 // -------------------
-function mostraHistorial() {
-    if (!empty($_SESSION['historial'])) {
-        echo "<ul class='llista-sidebar'>";
-        foreach (array_reverse($_SESSION['historial']) as $h) echo "<li>$h</li>";
-        echo "</ul>";
-    } else {
-        echo "<h2 class='historial-buit'>No hi ha encerts</h2>";
-    }
-}
+// function mostraHistorial() {
+//     if (!empty($_SESSION['historial'])) {
+//         echo "<ul class='llista-sidebar'>";
+//         foreach (array_reverse($_SESSION['historial']) as $h) echo "<li>$h</li>";
+//         echo "</ul>";
+//     } else {
+//         echo "<h2 class='historial-buit'>No hi ha encerts</h2>";
+//     }
+// }
 $seccio = $_GET['seccio'] ?? '';
 ?>
 
@@ -72,7 +72,12 @@ $seccio = $_GET['seccio'] ?? '';
 
     <?php if ($seccio==='historial'): ?>
         <div class="sidebar-content"><h2>Historial</h2>
-            <!-- <?php mostraHistorial(); ?>
+        <?php
+            require '../controllers/userController.php';
+            $controller = new userController();
+            $controller->mostrarHistorial();
+        ?>   
+        <!-- <?php mostraHistorial(); ?>
             <form method="post">
                 <?php if(!empty($_SESSION['historial'])): ?>
                     <button name="reiniciar" class="btn-no">Esborrar historial</button>

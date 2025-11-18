@@ -1,6 +1,9 @@
 <?php
-session_start();
     require_once '../models/userModel.php';
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
     class userController{
         private $model;
@@ -124,11 +127,21 @@ session_start();
         public function mostrarHistorial(){
             // Comprovar si hay el usuario logueado
 
-            // Si esta logueado
-                // Obtener el id del usuario y hacer query para obtener todos los regsitros de historial de ese usuario 
-                // Después devolver un array con todos los registros
+            // Definimos la variable logueado como true
+            $logueado = true;
+            $historial = [];
+            if($_SESSION['login']){
+                // Si esta logueado
+                    // Obtener el id del usuario y hacer query para obtener todos los regsitros de historial de ese usuario 
+                    $idUser = $_SESSION['user_id'];
+                    $historial = $this->model->obtenerHistorial($idUser);
+            }else{
+                // Si no esta logueado se pone la variable logueado como false
+            }
             
-            // Si no esta logueado se 
+
+            // Se llama a la vista de historial
+            include '../views/historial.php';
         }
     }
  

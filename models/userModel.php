@@ -42,7 +42,7 @@
             $resultado = mysqli_query($this->db, $query);
             
             if ($resultado && mysqli_num_rows($resultado) > 0) {
-                return mysqli_fetch_assoc($resultado);
+                return mysqli_fetch_all($resultado);
             }
             return null;
         }

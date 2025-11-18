@@ -29,6 +29,7 @@
 }
 
 .header-title {
+    margin: 10px;
     font-size: 2rem;
     letter-spacing: 3px;
     color: var(--comic-red);
@@ -62,4 +63,11 @@
 .btn-login:hover {
     transform: translate(2px, 2px);
     box-shadow: none;
+}
+
+@media (max-width: 875px) {
+
+    .header{
+          flex-direction: column;
+    }
 }

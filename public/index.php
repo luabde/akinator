@@ -61,17 +61,12 @@ $seccio = $_GET['seccio'] ?? '';
 
     <?php if ($seccio==='historial'): ?>
         <div class="sidebar-content"><h2>Historial</h2>
-        <?php
-            require '../controllers/userController.php';
-            $controller = new userController();
-            $controller->mostrarHistorial();
-        ?>   
-        <!-- <?php mostraHistorial(); ?>
+            <?php mostraHistorial(); ?>
             <form method="post">
                 <?php if(!empty($_SESSION['historial'])): ?>
                     <button name="reiniciar" class="btn-no">Esborrar historial</button>
                 <?php endif; ?>
-            </form> -->
+            </form>
         </div>
     <?php endif; ?>
 
@@ -90,6 +85,7 @@ $seccio = $_GET['seccio'] ?? '';
 
 <div class="right-container">
     <?php require '../views/header.php'?>
+    
 
         <div class="main">
             <div class="puntos">

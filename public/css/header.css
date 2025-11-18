@@ -21,8 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
-    padding: 20px;
+    padding: 10px;
     color: var(--comic-black);
     font-weight: bold;
     background-color: var(--comic-white);

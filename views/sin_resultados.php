@@ -5,7 +5,5 @@
 
   <p>Tu elección no coincide con ninguno de los personajes que conozco.</p>
 
-  <div class="botones">
     <a href="../public/index.php?seccio=nueva" class="btn-primary-si">Intentar de nuevo</a>
-  </div>
 </div>

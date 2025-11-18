@@ -7,8 +7,6 @@
   <form method="POST" action="procesar.php">
     <input type="hidden" name="personaje_id" value="<?= $personaje_adivinado['id'] ?>">
     
-    <div class="botones">
       <a href="../public/index.php?seccio=nueva" class="btn-primary-si">Vover a jugar</a>
-    </div>
   </form>
 </div>

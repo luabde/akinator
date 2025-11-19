@@ -33,19 +33,34 @@
             $query = "INSERT INTO usuarios (nombre_usuario, email, contrasena) VALUES ('$nombre_usuario', '$email', '$passwordHash')";
 
             // Hacemos la consulta a la bd y la devolvemos
-            return mysqli_query($this->db, $query);
+            // return mysqli_query($this->db, $query);
+
+             $result = mysqli_query($this->db, $query);
+
+    // Si fue bien, devolvemos el ID autoincrement; si no, false
+    if ($result) {
+        return mysqli_insert_id($this->db); 
+    } else {
+        return false;
+    }
         }
 
         public function obtenerHistorial($userId){
-            $query = "SELECT * FROM historial WHERE usuario_id = $userId";
+            $query = "
+                SELECT p.nombre
+                FROM historial h
+                INNER JOIN personajes p ON h.personaje_id = p.id
+                WHERE h.usuario_id = $userId
+            ";
 
             $resultado = mysqli_query($this->db, $query);
             
             if ($resultado && mysqli_num_rows($resultado) > 0) {
-                return mysqli_fetch_all($resultado);
+                return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
             }
             return null;
         }
+
 
         public function guardarHistorial($userId, $personajeId){
             $query = "INSERT INTO historial (usuario_id, personaje_id) VALUES ($userId, $personajeId)";

@@ -83,11 +83,13 @@
             if(empty($this->errores)){
                 // Si no hay errores se crea el usuario
                 $resultado = $this->model->createUser($nombre_usuario, $email, $password);
-
+                
+                var_dump($resultado);
                  if ($resultado) {
                     // Registro exitoso, iniciar sesión automáticamente
                     $_SESSION['usuario'] = $nombre_usuario;
                     $_SESSION['login'] = true;
+                    $_SESSION['user_id'] = $resultado;
                     header('Location: ../public/index.php');
                     exit;
                 } else {

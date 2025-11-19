@@ -1,16 +1,12 @@
 
 <div class="historial">
     <?php foreach ($historial as $indice => $fila): ?>
-        <li>
-            <strong>Registro #<?= $indice + 1 ?>:</strong>
             <ul>
                 <?php foreach ($fila as $campo => $valor): ?>
-                    <li>
-                        <strong><?= $campo ?>:</strong> 
+                    <h3>
                         <?= (string)$valor ?>
-                    </li>
+                </h3>
                 <?php endforeach; ?>
             </ul>
-        </li>
     <?php endforeach; ?>
 </div>

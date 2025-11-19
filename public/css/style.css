@@ -226,6 +226,13 @@ html, body {
   font-size: 1.3rem;
 }
 
+.sidebar h3 {
+  font-family: cursive;
+  color: var(--comic-white);
+  padding: 5px 15px;
+  font-size: 1.3rem;
+}
+
 .sidebar a:hover,
 .btn-logout:hover {
   transform: translate(2px, 2px);

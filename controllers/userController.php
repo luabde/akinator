@@ -57,7 +57,7 @@
             header('Location: ../public/login.php?login=login');
             exit;
         }
-
+        
         public function signIn(){
             // Obtenemos la informació enviada a través del form
             $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);

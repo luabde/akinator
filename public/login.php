@@ -26,7 +26,7 @@
 <?php require '../views/header.php'; ?>
 
 <div id="main">
-    <img src="img/fotoAkinator.png" alt="Akinator" height="100%">
+    <img id="akinatorimg" src="img/fotoAkinator.png" alt="Akinator" height="100%">
 <div>
     <?php
       $form = $_GET['login'] ?? '';

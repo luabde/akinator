@@ -61,7 +61,6 @@ body {
   padding: 30px 40px;
   width: 100%;
   max-width: 400px;
-  margin: 20px;
 }
 
 .login-form h2,
@@ -143,7 +142,7 @@ legend {
   text-align: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 875px) {
   .akinator {
     flex-direction: column;
     gap: 2rem;
@@ -156,4 +155,9 @@ legend {
   margin-left: 50px;
   margin-right: 50px;
 }
+
+ #akinatorimg{
+  width: 300px !important;
+  height: auto !important;
+ }
   }

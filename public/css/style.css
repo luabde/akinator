@@ -98,7 +98,7 @@ html, body {
 
 .foto-adivinar {
   border-radius: 10px;
-  height: 350px;
+  height: 300px;
   width: auto;
   border: 5px solid var(--comic-black);
   box-shadow: 8px 8px 0 var(--login-yellow);
@@ -232,7 +232,7 @@ html, body {
   box-shadow: none;
 }
 
-.sidebar, .main {
+.sidebar{
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;

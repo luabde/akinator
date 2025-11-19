@@ -84,7 +84,6 @@
                 // Si no hay errores se crea el usuario
                 $resultado = $this->model->createUser($nombre_usuario, $email, $password);
                 
-                var_dump($resultado);
                  if ($resultado) {
                     // Registro exitoso, iniciar sesión automáticamente
                     $_SESSION['usuario'] = $nombre_usuario;
@@ -130,20 +129,17 @@
             // Comprovar si hay el usuario logueado
 
             // Definimos la variable logueado como true
-            $logueado = true;
             $historial = [];
             if($_SESSION['login']){
                 // Si esta logueado
                     // Obtener el id del usuario y hacer query para obtener todos los regsitros de historial de ese usuario 
                     $idUser = $_SESSION['user_id'];
                     $historial = $this->model->obtenerHistorial($idUser);
-            }else{
-                // Si no esta logueado se pone la variable logueado como false
             }
             
 
             // Se llama a la vista de historial
-            include '../views/historial.php';
+            return $historial;
         }
     }
  

@@ -226,7 +226,7 @@ html, body {
   font-size: 1.3rem;
 }
 
-.sidebar h3 {
+.sidebar h4 {
   font-family: cursive;
   color: var(--comic-white);
   padding: 5px 15px;

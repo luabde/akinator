@@ -64,14 +64,16 @@ $seccio = $_GET['seccio'] ?? '';
         <?php
             require '../controllers/userController.php';
             $controller = new userController();
-            $controller->mostrarHistorial();
+            $historial = $controller->mostrarHistorial();
+
+            if (!empty($historial)) {
+                foreach ($historial as $fila) {
+                    echo "<p>".htmlspecialchars($fila['nombre'])."</p>";
+                }
+            } else {
+                echo "<p>No tens cap historial.</p>";
+            }
         ?> 
-            <!-- <?php mostraHistorial(); ?>
-            <form method="post">
-                <?php if(!empty($_SESSION['historial'])): ?>
-                    <button name="reiniciar" class="btn-no">Esborrar historial</button>
-                <?php endif; ?>
-            </form> -->
         </div>
     <?php endif; ?>
 

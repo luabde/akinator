@@ -139,7 +139,8 @@
             
 
             // Se llama a la vista de historial
-            return $historial;
+            // return $historial;
+            include '../views/historial.php';
         }
     }
  

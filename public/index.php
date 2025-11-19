@@ -64,15 +64,9 @@ $seccio = $_GET['seccio'] ?? '';
         <?php
             require '../controllers/userController.php';
             $controller = new userController();
-            $historial = $controller->mostrarHistorial();
+            $controller->mostrarHistorial();
 
-            if (!empty($historial)) {
-                foreach ($historial as $fila) {
-                    echo "<p>".htmlspecialchars($fila['nombre'])."</p>";
-                }
-            } else {
-                echo "<p>No tens cap historial.</p>";
-            }
+            
         ?> 
         </div>
     <?php endif; ?>

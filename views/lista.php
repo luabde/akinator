@@ -4,12 +4,18 @@
 
 <div class="resultado"> 
     <div class="personajes-lista">
-      <?php foreach ($personajes_posibles as $personaje): ?>
-        <label class="personaje-card">
-          <span><?= htmlspecialchars($personaje['nombre']) ?> - </span>
-        </label>
-      <?php endforeach; ?>
-    </div>
+  <?php foreach ($personajes_posibles as $personaje): ?>
+    <label class="personaje-card">
+      <span>
+        <?= htmlspecialchars($personaje['nombre']) ?>
+        <?php if ($personaje !== end($personajes_posibles)): ?>
+          -
+        <?php endif; ?>
+      </span>
+    </label>
+  <?php endforeach; ?>
+</div>
+
   
     <a href="../public/index.php?seccio=nueva" class="btn-primary-si">Intentar de nuevo</a>
 </div>  

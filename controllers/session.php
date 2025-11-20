@@ -18,9 +18,10 @@
         }
 
         // Se guardan los personajes adivinados
-        if(!isset(($_SESSION['historial']))){
+        if (isset($_SESSION['user_id']) && !isset($_SESSION['historial'])) {
             $_SESSION['historial'] = [];
         }
+
     }
 
     // Función para guardar la respuesta y la columna en el array preguntas_respondidas

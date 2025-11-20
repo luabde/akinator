@@ -130,9 +130,11 @@
 
             // Definimos la variable logueado como true
             $historial = [];
-            if($_SESSION['login']){
+            $logueado = false;
+            if (!empty($_SESSION['login']) && $_SESSION['login'] === true) {
                 // Si esta logueado
                     // Obtener el id del usuario y hacer query para obtener todos los regsitros de historial de ese usuario 
+                    $logueado = true;
                     $idUser = $_SESSION['user_id'];
                     $historial = $this->model->obtenerHistorial($idUser);
             }

@@ -27,7 +27,7 @@
 
 <div id="main">
     <img id="akinatorimg" src="img/fotoAkinator.png" alt="Akinator" height="100%">
-<div>
+<div id="main2">
     <?php
       $form = $_GET['login'] ?? '';
       // En el caso de que no haya nada en form o que form sea login, se mostrará el formulario de login.

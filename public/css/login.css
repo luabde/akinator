@@ -37,6 +37,15 @@ body {
   z-index: 1; /* Para que el contenido siga encima de los puntos */
 }
 
+#main2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative; /* Establece contexto para ::before */
+  z-index: 1; /* Para que el contenido siga encima de los puntos */
+}
+
 
 #main::before {
   content: "";
@@ -151,7 +160,7 @@ legend {
   .signIn-container {
     max-width: 90%;
   margin-top: 0px;
-  margin-bottom: 50px;
+  margin-bottom: 0px;
   margin-left: 50px;
   margin-right: 50px;
 }

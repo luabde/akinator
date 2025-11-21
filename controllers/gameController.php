@@ -31,7 +31,6 @@ class gameController {
         $_SESSION['preguntas_disponibles'] = $preguntas;
 
         // 2. Reiniciar respuestas del usuario
-        $_SESSION['respuestas_usuario'] = [];
         $_SESSION['preguntas_info'] = [];
         $_SESSION['preguntas_respondidas'] = 0;
 
